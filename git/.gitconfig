@@ -1,0 +1,9 @@
+[user]
+  email = 15231996+jradam@users.noreply.github.com
+  name = jradam 
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential

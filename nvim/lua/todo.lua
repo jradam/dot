@@ -1,0 +1,85 @@
+-- TODO split up into more files so easier to find stuff
+-- TODO
+-- https://github.com/MordechaiHadad/bob
+-- add highlighted checkboxes to the todos
+-- https://www.reddit.com/r/vim/comments/c2h28r/a_small_markdown_mapping_for_checkboxes/erkmwp5/
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
+-- https://this-week-in-neovim.org/2023/Jan/30#new-mini-basics
+-- https://this-week-in-neovim.org/2023/Jan/30#telescope-lazy.nvim
+-- https://this-week-in-neovim.org/2023/Jan/30#nvim-possession
+-- this? https://strdr4605.com/typescript-errors-into-vim-quickfix
+-- https://stackoverflow.com/questions/1272007/refresh-all-files-in-buffer-from-disk-in-vim
+-- https://www.reddit.com/r/neovim/comments/10cigze/minimove_move_any_selection_in_any_direction/
+-- https://github.com/m4xshen/smartcolumn.nvim
+
+-- -- more specific typescript highlighting support
+-- use({ "leafgarland/typescript-vim" })
+-- use({ "peitalin/vim-jsx-typescript" })
+-- -- {"leafgarland/typescript-vim"},
+-- -- {"peitalin/vim-jsx-typescript",
+-- --   init = function()
+-- --     vim.cmd([[
+-- --     " dark red
+-- --     hi tsxTagName guifg=#E06C75
+-- --     hi tsxComponentName guifg=#E06C75
+-- --     hi tsxCloseComponentName guifg=#E06C75
+-- --
+-- --     " orange
+-- --     hi tsxCloseString guifg=#F99575
+-- --     hi tsxCloseTag guifg=#F99575
+-- --     hi tsxCloseTagName guifg=#F99575
+-- --     hi tsxAttributeBraces guifg=#F99575
+-- --     hi tsxEqual guifg=#F99575
+-- --
+-- --     " yellow
+-- --     hi tsxAttrib guifg=#F8BD7F cterm=italic
+-- --
+-- --     hi ReactState guifg=#C176A7
+-- --     hi ReactProps guifg=#D19A66
+-- --     hi ApolloGraphQL guifg=#CB886B
+-- --     hi Events ctermfg=204 guifg=#56B6C2
+-- --     hi ReduxKeywords ctermfg=204 guifg=#C678DD
+-- --     hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
+-- --     hi WebBrowser ctermfg=204 guifg=#56B6C2
+-- --     hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
+-- --     ]])
+-- --   end
+-- -- },
+--
+-- -- autocompletion
+-- use("L3MON4D3/LuaSnip") -- snippet engine (required)
+-- use("onsails/lspkind-nvim") -- pictograms
+-- use("hrsh7th/cmp-buffer") -- get suggestions from other variables in current buffer
+-- use("hrsh7th/cmp-nvim-lsp") -- get suggestions from language servers
+-- use("hrsh7th/nvim-cmp") -- core plugin
+--
+-- -- LSP UIs
+-- use({
+-- 	"glepnir/lspsaga.nvim",
+-- 	branch = "main",
+-- })
+--
+-- -- Prettier
+-- use("jose-elias-alvarez/null-ls.nvim")
+-- use("MunifTanjim/prettier.nvim")
+--
+-- -- markdown preview `:MarkdownPreviewToggle`
+-- use({
+-- 	"iamcco/markdown-preview.nvim",
+-- 	run = function()
+-- 		vim.fn["mkdp#util#install"]()
+-- 	end,
+-- })
+--
+-- -- git
+-- use({ "tpope/vim-fugitive" })
+--
+--
+-- use({
+-- 	"lewis6991/satellite.nvim",
+-- })
+--
+-- -- help for coding Lua Neovim
+-- use("folke/neodev.nvim")
+--
+-- -- use "lukas-reineke/lsp-format.nvim"
