@@ -27,8 +27,7 @@ alias q='tmux kill-server'
 alias e='explorer.exe'
 
 # edit config files
-alias sv='current_dir=$PWD;cd $HOME/.config/nvim;v .;cd $current_dir;'
-alias sb='current_dir=$PWD;cd $HOME/.config/bash;v .;cd $current_dir;'
+alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
 
 # restart terminal
 alias rs='exec bash'
