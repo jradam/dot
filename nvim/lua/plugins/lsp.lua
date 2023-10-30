@@ -2,10 +2,11 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "williamboman/mason.nvim" },
-		{ "williamboman/mason-lspconfig.nvim" },
-		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "jose-elias-alvarez/typescript.nvim" },
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"jose-elias-alvarez/typescript.nvim",
+		"folke/neodev.nvim",
+		{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 	},
 	opts = {
 		diagnostics = {

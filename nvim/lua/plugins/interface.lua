@@ -48,17 +48,5 @@ return {
       })
     end,
   },
-  -- {
-  --   "m4xshen/smartcolumn.nvim",
-  --   opts = {
-  --     colorcolumn = "100",
-  --   },
-  -- },
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    config = function()
-      require("fidget").setup({})
-    end,
-  },
+  -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 }

@@ -8,7 +8,6 @@ return {
     "hrsh7th/cmp-buffer",
     "onsails/lspkind.nvim",
     "saadparwaiz1/cmp_luasnip", -- adds snippets to cmp menu
-    "folke/neodev.nvim",
     "zbirenbaum/copilot.lua",
     "zbirenbaum/copilot-cmp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
