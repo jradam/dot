@@ -41,11 +41,20 @@ printColors() {
   for x in 0 1 4 5 7 8; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";
 }
 
+printGit() {
+  CMD="$@"
+  print "info" "git $@"
+
+  if ! git "$@"; then
+    print "error" "FAILED: $@"
+    return 1
+  fi
+}
+
 # Sync repo
 g() {
   if [ -z "$1" ]; then
-    print "info" "git diff --stat"
-    git diff --stat
+    printGit diff --stat
     print "read" "Commit message:" MESSAGE
     if [ -z "$MESSAGE" ]; then
       print "error" "Commit message required"
@@ -55,24 +64,13 @@ g() {
     MESSAGE="$@"
   fi
 
-  print "info" "git fetch -p"
-  if ! git fetch -p; then
-    print "error" "Fetch failed"
-    return 1
-  fi
-  print "info" "git pull"
-  if ! git pull; then
-    print "error" "Pull failed"
-    return 1
-  fi
-  print "info" "git add -A"
-  git add -A
-  print "info" "git commit -m \"$MESSAGE\""
-  git commit -m "$MESSAGE"
-  print "info" "git push"
-  git push
+  printGit fetch -p;
+  printGit pull;
+  printGit add -A
+  printGit commit -m "$MESSAGE"
+  printGit push
 }
 
 function gd() {
-  git diff "$@" | diff-so-fancy | less -RFX
+  printGit diff "$@" | diff-so-fancy | less -RFX
 }
