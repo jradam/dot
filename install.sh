@@ -10,6 +10,9 @@ print "info" "Updating package registry"
 sudo apt update 
 yes | sudo add-apt-repository ppa:neovim-ppa/unstable
 
+print "info" "Setting browser"
+link $(which wslview) /usr/local/bin/xdg-open
+
 print "title" "INSTALLING"
 
 print "info" "Install common dependencies"
