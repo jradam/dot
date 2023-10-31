@@ -43,8 +43,8 @@ printColors() {
 
 # Print and run git commands
 gp() {
-  print "info" "git $@"
-  if ! git "$@"; then print "error" "FAILED: $@"; return 1; fi
+  print "info" "git $*"
+  if ! git "$@"; then print "error" "FAILED: git $@"; return 1; fi
 }
 
 gd() {
