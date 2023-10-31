@@ -59,6 +59,10 @@ g() {
   # If no arguments, show status/diff info and ask for commit message
   if [ -z "$1" ]; then
     if ! gp status; then return 1; fi
+
+    git diff-index --quiet HEAD --
+    if [ ! $? -ne 0 ]; then return 1; fi
+
     gp diff --stat
     print "read" "Add message to commit:" MESSAGE
     if [ -z "$MESSAGE" ]; then return 1; fi
