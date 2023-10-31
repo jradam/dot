@@ -74,7 +74,6 @@ print "info" "Getting NPM token"
 npm login
 
 print "info" "Adding NPM token to secrets"
-NPM_TOKEN=awk -F= '{print $2}' $HOME/.npmrc
 echo "export NPM_TOKEN=$(awk -F= '{print $2}' $HOME/.npmrc)" >> $HOME/dotfiles/.env
 
 print "title" "USER ACTIONS"
