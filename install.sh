@@ -56,7 +56,7 @@ npm install --global yarn
 print "info" "Diff so fancy"
 npm i -g diff-so-fancy
 
-print "title" "CLEANUP"
+print "title" "CONFIGURING"
 
 print "info" "Silencing login message"
 touch $HOME/.hushlogin
@@ -64,12 +64,15 @@ touch $HOME/.hushlogin
 print "info" "Generating ssh key for Gitlab"  
 yes '' | ssh-keygen -oq -t rsa -C "gitlab-ssh-key"
 
+print "info" "Creating secrets file"  
+touch $HOME/dotfiles/.env
+
 print "title" "USER ACTIONS"
 
 print "echo" "This needs to be copied into Gitlab:"
 cat $HOME/.ssh/id_rsa.pub
 
-print "echo" "Add file at ~/dotfiles/.env with any secrets"
+print "echo" "Add any secrets to ~/dotfiles/.env"
 
 print "read" "Press enter to restart" RESTART 
 if [ -z $RESTART ]; then
