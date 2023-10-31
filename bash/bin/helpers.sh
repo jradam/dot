@@ -37,27 +37,24 @@ link() {
   ln -sf $1 $2
 }
 
-# Sync dotfiles repo
-sync() {
-  print "read" "Commit message: " MESSAGE
-  
-  # -C: Run command in specified directory
-  # -p: Prune remote branches 
-  if git -C $HOME/dotfiles fetch -p; then
-    if git -C $HOME/dotfiles pull; then
-      # -A: Add all changes
-      git -C $HOME/dotfiles add -A
-      # -m: Commit with provided message 
-      git -C $HOME/dotfiles commit -m "$MESSAGE"
-      git -C $HOME/dotfiles push
-    else
-      echo "Pull failed. Aborting."
-      exit 1
-    fi
-  else
-    echo "Fetch failed. Aborting."
-    exit 1
+# Sync repo
+g() {
+  print "read" "Commit message:" MESSAGE
+  if [ -z $MESSAGE ]; then
+    print "error" "Commit message required"
+    return 1
   fi
+  if ! git fetch -p; then
+    print "error" "Fetch failed"
+    return 1
+  fi
+  if ! git pull; then
+    print "error" "Pull failed"
+    return 1
+  fi
+  git add -A
+  git commit -m "$MESSAGE"
+  git push
 }
 
 # Print all colors
