@@ -62,7 +62,10 @@ g() {
 
     # if no changes, return here
     git diff-index --quiet HEAD --
-    if [ ! $? -ne 0 ]; then return 1; fi
+    if [ ! $? -ne 0 ]; then 
+      print "title" "No changes"
+      return 1
+    fi
 
     gp diff --stat
     print "read" "Add message to commit:" MESSAGE
