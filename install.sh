@@ -70,6 +70,9 @@ yes '' | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" > /dev/null
 print "info" "Creating secrets file"  
 touch $HOME/dotfiles/.env
 
+print "info" "Login to npm"
+npm login
+
 print "title" "USER ACTIONS"
 
 print "echo" "This needs to be copied into Gitlab (https://gitlab.com/-/profile/keys):"
