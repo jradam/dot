@@ -40,7 +40,7 @@ link() {
 # Sync repo
 g() {
   print "read" "Commit message:" MESSAGE
-  if [ -z $MESSAGE ]; then
+  if [ -z "$MESSAGE" ]; then
     print "error" "Commit message required"
     return 1
   fi
