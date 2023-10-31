@@ -1,3 +1,5 @@
+-- TODO copy from here stuff that might be useful
+
 require("lazy").setup({
   -- Git related plugins
   "tpope/vim-fugitive",
