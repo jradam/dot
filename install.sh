@@ -11,7 +11,7 @@ sudo apt update
 yes | sudo add-apt-repository ppa:neovim-ppa/unstable
 
 print "info" "Setting browser"
-link $(which wslview) /usr/local/bin/xdg-open
+export BROWSER="powershell.exe /C start"
 
 print "title" "INSTALLING"
 
@@ -65,7 +65,7 @@ print "info" "Silencing login message"
 touch $HOME/.hushlogin
 
 print "info" "Generating ssh key for Gitlab"  
-yes '' | ssh-keygen -oq -t rsa -C "gitlab-ssh-key"
+yes '' | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" > /dev/null
 
 print "info" "Creating secrets file"  
 touch $HOME/dotfiles/.env

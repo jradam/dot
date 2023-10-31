@@ -6,6 +6,9 @@ source $HOME/dotfiles/bash/bin/defaults.sh
 source $HOME/dotfiles/bash/bin/prompt.sh
 source $HOME/dotfiles/.env
 
+# Link Window's browser to WSL2
+export BROWSER="powershell.exe /C start"
+
 # Start in tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
