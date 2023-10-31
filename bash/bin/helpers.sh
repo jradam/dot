@@ -42,29 +42,30 @@ printColors() {
 }
 
 # Print and run git commands
-printGit() {
+gp() {
   print "info" "git $@"
   if ! git "$@"; then print "error" "FAILED: $@"; return 1; fi
-}
-
-# Syncs repo to remote 
-g() {
-  if ! printGit fetch -p; then return 1; fi
-  if ! printGit pull; then return 1; fi
-
-  # If no arguments, show status/diff info and ask for commit message
-  if [ -z "$1" ]; then
-    if ! printGit status; then return 1; fi
-    printGit diff --stat
-    print "read" "Add message to commit:" MESSAGE
-    if [ -z "$MESSAGE" ]; then return 1; fi
-  else MESSAGE="$@"; fi
-
-  if ! printGit add -A; then return 1; fi
-  if ! printGit commit -m "$MESSAGE"; then return 1; fi
-  if ! printGit push; then return 1; fi
 }
 
 gd() {
   git diff "$@" | diff-so-fancy | less -RFX
 }
+
+# Multipurpose git function
+g() {
+  if ! gp fetch -p; then return 1; fi
+  if ! gp pull; then return 1; fi
+
+  # If no arguments, show status/diff info and ask for commit message
+  if [ -z "$1" ]; then
+    if ! gp status; then return 1; fi
+    gp diff --stat
+    print "read" "Add message to commit:" MESSAGE
+    if [ -z "$MESSAGE" ]; then return 1; fi
+  else MESSAGE="$@"; fi
+
+  if ! gp add -A; then return 1; fi
+  if ! gp commit -m "$MESSAGE"; then return 1; fi
+  if ! gp push; then return 1; fi
+}
+
