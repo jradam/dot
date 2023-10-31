@@ -64,14 +64,18 @@ print "title" "CONFIGURING"
 print "info" "Silencing login message"
 touch $HOME/.hushlogin
 
-print "info" "Generating ssh key for Gitlab"  
-yes '' | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" > /dev/null
+print "info" "Generating SSH key for Gitlab"  
+echo | ssh-keygen -oq -t rsa -C "gitlab-ssh-key"
 
 print "info" "Creating secrets file"  
 touch $HOME/dotfiles/.env
 
-print "info" "Login to npm"
+print "info" "Getting NPM token"
 npm login
+
+print "info" "Adding NPM token to secrets"
+NPM_TOKEN=awk -F= '{print $2}' $HOME/.npmrc
+echo "export NPM_TOKEN=$(awk -F= '{print $2}' $HOME/.npmrc)" >> $HOME/dotfiles/.env
 
 print "title" "USER ACTIONS"
 
