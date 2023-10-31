@@ -64,11 +64,11 @@ g() {
     MESSAGE="$@"
   fi
 
-  printGit fetch -p --invalid-option;
-  printGit pull;
-  printGit add -A
-  printGit commit -m "$MESSAGE"
-  printGit push
+  if ! printGit fetch -p; then return 1; fi
+  if ! printGit pull; then return 1; fi
+  if ! printGit add -A; then return 1; fi
+  if ! printGit commit -m "$MESSAGE"; then return 1; fi
+  if ! printGit push; then return 1; fi
 }
 
 function gd() {
