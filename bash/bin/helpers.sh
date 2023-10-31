@@ -63,7 +63,7 @@ g() {
     # if no changes, return here
     git diff-index --quiet HEAD
     if [ ! $? -ne 0 ]; then 
-      print "title" "No changes (git diff-index --quiet HEAD)"
+      print "title" "No changes (git diff-index HEAD)"
       return 1
     fi
 
