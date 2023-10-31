@@ -64,7 +64,7 @@ g() {
     MESSAGE="$@"
   fi
 
-  printGit fetch -p;
+  printGit fetch -p --invalid-option;
   printGit pull;
   printGit add -A
   printGit commit -m "$MESSAGE"
