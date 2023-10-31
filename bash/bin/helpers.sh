@@ -51,16 +51,13 @@ printGit() {
 g() {
   if ! printGit fetch -p; then return 1; fi
   if ! printGit pull; then return 1; fi
-  if ! printGit status; then return 1; fi
 
-  # If no arguments, ask for commit message
+  # If no arguments, show status/diff info and ask for commit message
   if [ -z "$1" ]; then
+    if ! printGit status; then return 1; fi
     printGit diff --stat
     print "read" "Add message to commit:" MESSAGE
-    if [ -z "$MESSAGE" ]; then
-      print "error" "Commit message required"
-      return 1
-    fi
+    if [ -z "$MESSAGE" ]; then return 1; fi
   else MESSAGE="$@"; fi
 
   if ! printGit add -A; then return 1; fi
