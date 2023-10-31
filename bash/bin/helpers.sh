@@ -60,6 +60,7 @@ g() {
   if [ -z "$1" ]; then
     if ! gp status; then return 1; fi
 
+    # if no changes, return here
     git diff-index --quiet HEAD --
     if [ ! $? -ne 0 ]; then return 1; fi
 
