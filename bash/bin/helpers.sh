@@ -61,8 +61,9 @@ g() {
     if ! gp status; then return 1; fi
 
     # if no changes, return here
-    git diff-index --quiet HEAD --
+    git diff-index --quiet HEAD
     if [ ! $? -ne 0 ]; then 
+      print "info" "git diff-index --quiet HEAD"
       print "title" "No changes"
       return 1
     fi
