@@ -37,13 +37,24 @@ link() {
   ln -sf $1 $2
 }
 
+printColors() {
+  for x in 0 1 4 5 7 8; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";
+}
+
 # Sync repo
 g() {
-  print "read" "Commit message:" MESSAGE
-  if [ -z "$MESSAGE" ]; then
-    print "error" "Commit message required"
-    return 1
+  if [ -z "$@" ]; then
+    print "info" "git diff --stat"
+    git diff --stat
+    print "read" "Commit message:" MESSAGE
+    if [ -z "$MESSAGE" ]; then
+      print "error" "Commit message required"
+      return 1
+    fi
+  else
+    MESSAGE="$@"
   fi
+
   print "info" "git fetch -p"
   if ! git fetch -p; then
     print "error" "Fetch failed"
@@ -62,8 +73,6 @@ g() {
   git push
 }
 
-# Print all colors
-function printColors() {
-  for x in 0 1 4 5 7 8; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";
+function gd() {
+  git diff "$@" | diff-so-fancy | less -RFX
 }
-

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO ----------------------------- Old aliases, remove unused
-
 # auto cd when type dir name
 shopt -s autocd
 
@@ -39,11 +37,3 @@ alias mkdir='mkdir -vp'
 
 # download file from URL
 alias dl='curl -LO'
-
-# git
-function gd() {
-  git diff "$@" | diff-so-fancy | less -RFX
-}
-
-
-
