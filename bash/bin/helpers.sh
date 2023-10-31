@@ -43,7 +43,7 @@ printColors() {
 
 # Sync repo
 g() {
-  if [ -z "$@" ]; then
+  if [ -z "$1" ]; then
     print "info" "git diff --stat"
     git diff --stat
     print "read" "Commit message:" MESSAGE
