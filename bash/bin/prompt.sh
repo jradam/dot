@@ -2,8 +2,6 @@ source $HOME/dotfiles/bash/lib/git-prompt.sh
 
 # TODO -------------------- Tidy this
 
-# TODO can I make this detect changes i.e. not have to clear all the time to get latest git status
-
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=true # staged '+', unstaged '*'
 export GIT_PS1_SHOWUNTRACKEDFILES=true # '%' untracked files

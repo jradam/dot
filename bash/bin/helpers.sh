@@ -8,12 +8,12 @@ print() {
   local color
 
   case $type in
-    "echo") color=$GRAY ;;
+    "echo") color=$PURPLE ;;
     "error") color=$RED ;;
     "info") color=$BLUE ;;
     "read") color=$ORANGE ;;
     "title") color=$GREEN ;;
-    *) color=$GRAY ;;
+    *) color=$PURPLE ;;
   esac
 
   if [ "$type" == "read" ]; then
