@@ -44,16 +44,21 @@ g() {
     print "error" "Commit message required"
     return 1
   fi
+  print "info" "Fetching..."
   if ! git fetch -p; then
     print "error" "Fetch failed"
     return 1
   fi
+  print "info" "Pulling..."
   if ! git pull; then
     print "error" "Pull failed"
     return 1
   fi
+  print "info" "Adding..."
   git add -A
+  print "info" "Committing..."
   git commit -m "$MESSAGE"
+  print "info" "Pushing..."
   git push
 }
 
