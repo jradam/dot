@@ -61,10 +61,13 @@ print "title" "CLEANUP"
 print "info" "Silencing login message"
 touch $HOME/.hushlogin
 
+print "info" "Generating a new ssh key for Gitlab"  
+yes | ssh-keygen -o -t rsa -C "ssh-key"
+
 print "title" "COMPLETE"
 
-print "read" "Press enter to restart" restart
-if [ -z $restart ]; then
+print "read" "Press enter to restart" RESTART 
+if [ -z $RESTART ]; then
   exec bash
 fi
 
