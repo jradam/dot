@@ -4,10 +4,7 @@ source $HOME/dotfiles/bash/bin/helpers.sh
 source $HOME/dotfiles/bash/bin/aliases.sh
 source $HOME/dotfiles/bash/bin/defaults.sh
 source $HOME/dotfiles/bash/bin/prompt.sh
-
-# TODO pass is a nightmare, find alternative
-# export NPM_TOKEN=$(pass npm)
-# export OPENAI_API_KEY=$(pass openai)
+source $HOME/dotfiles/.env
 
 # Start in tmux
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

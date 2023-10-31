@@ -62,9 +62,14 @@ print "info" "Silencing login message"
 touch $HOME/.hushlogin
 
 print "info" "Generating a new ssh key for Gitlab"  
-yes | ssh-keygen -o -t rsa -C "ssh-key"
+yes | ssh-keygen -o -t rsa -C "gitlab-ssh-key"
 
-print "title" "COMPLETE"
+print "title" "USER ACTIONS"
+
+print "echo" "This needs to be copied into Gitlab:"
+cat $HOME/.ssh/id_rsa.pub
+
+print "echo" "You need to add a .env file at ~/dotfiles/.env with any secrets"
 
 print "read" "Press enter to restart" RESTART 
 if [ -z $RESTART ]; then
