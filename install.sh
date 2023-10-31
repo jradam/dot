@@ -72,7 +72,7 @@ touch $HOME/dotfiles/.env
 
 print "title" "USER ACTIONS"
 
-print "echo" "This needs to be copied into Gitlab:"
+print "echo" "This needs to be copied into Gitlab (https://gitlab.com/-/profile/keys):"
 cat $HOME/.ssh/id_rsa.pub
 
 print "echo" "Add any secrets to ~/dotfiles/.env"
