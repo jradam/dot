@@ -41,32 +41,33 @@ printColors() {
   for x in 0 1 4 5 7 8; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";
 }
 
+# Print and run git commands
+printGit() {
+  print "info" "git $@"
+  if ! git "$@"; then print "error" "FAILED: $@"; return 1; fi
+}
 
-# Sync repo
+# Syncs repo to remote 
 g() {
-  # Helper function to print git commands
-  printGit() {
-    print "info" "git $@"
-    if ! git "$@"; then print "error" "FAILED: $@"; fi
-  }
+  if ! printGit fetch -p; then return 1; fi
+  if ! printGit pull; then return 1; fi
+  if ! printGit status; then return 1; fi
 
   # If no arguments, ask for commit message
   if [ -z "$1" ]; then
     printGit diff --stat
-    print "read" "Commit message:" MESSAGE
+    print "read" "Add message to commit:" MESSAGE
     if [ -z "$MESSAGE" ]; then
       print "error" "Commit message required"
       return 1
     fi
   else MESSAGE="$@"; fi
 
-  if ! printGit fetch -p; then return 1; fi
-  if ! printGit pull --invalid-option; then return 1; fi
   if ! printGit add -A; then return 1; fi
   if ! printGit commit -m "$MESSAGE"; then return 1; fi
   if ! printGit push; then return 1; fi
 }
 
-function gd() {
-  printGit diff "$@" | diff-so-fancy | less -RFX
+gd() {
+  git diff "$@" | diff-so-fancy | less -RFX
 }
