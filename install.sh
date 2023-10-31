@@ -65,7 +65,7 @@ print "info" "Silencing login message"
 touch $HOME/.hushlogin
 
 print "info" "Generating SSH key for Gitlab"  
-yes "" | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" -N ""
+yes "" | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" -N "" > /dev/null
 
 print "info" "Creating secrets file"  
 touch $HOME/dotfiles/.env
