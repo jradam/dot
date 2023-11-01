@@ -115,10 +115,15 @@ gb() {
   print "read" "\nType number to checkout, type name to delete:" USER_INPUT
   if [ -z "$USER_INPUT" ]; then return 1; fi
 
-  # If the input is a number, checkout the branch and return
+  # If the input is a number, validate and then checkout the branch
   if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
-    git checkout "${NUMBERED[$USER_INPUT - 1]}"
-    return 0
+    if [ "$USER_INPUT" -ge 1 ] && [ "$USER_INPUT" -le "${#NUMBERED[@]}" ]; then
+      git checkout "${NUMBERED[$USER_INPUT - 1]}"
+      return 0
+    else
+      print "error" "Invalid number. No such branch."
+      return 1
+    fi
   fi
 
   BRANCH="$USER_INPUT"
