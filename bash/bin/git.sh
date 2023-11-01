@@ -102,7 +102,7 @@ gb() {
     fi
   done
 
-  echo -e "\n${GREEN}BRANCHES${ESC}"
+  echo -e "\n${GREEN}BRANCHES${ESC} (${PINK}$(git branch --show-current)${ESC})"
   for i in "${!NUMBERED[@]}"; do
     echo -e " $((i + 1)): ${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
   done
