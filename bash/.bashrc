@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source $HOME/dotfiles/bash/bin/helpers.sh
+source $HOME/dotfiles/bash/bin/git.sh
 source $HOME/dotfiles/bash/bin/aliases.sh
 source $HOME/dotfiles/bash/bin/defaults.sh
 source $HOME/dotfiles/bash/bin/prompt.sh
