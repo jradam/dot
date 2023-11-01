@@ -59,6 +59,7 @@ g() {
 
   # TODO do this on one line...?
   if ! gp fetch -p; then return 1; fi
+  # TODO don't do if merging/conflicts?
   if ! gp pull; then return 1; fi
 
   # If no arguments, show status/diff info and ask for commit message
@@ -97,4 +98,24 @@ gu() {
   gp reset HEAD^
   # Force-push the new HEAD commit
   gp push origin +HEAD
+}
+
+_gdel_completion() {
+  local cur opts
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts=$(git branch --format "%(refname:short)")
+  COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+  return 0
+}
+complete -F _gdel_completion gdel
+
+gdel() {
+  # TODO make colors nicer
+  print "read" "Are you sure you want to delete: $@?" SHOULD_DELETE 
+  if [ ! -z "$SHOULD_DELETE" ]; then return 1; fi
+
+  # TODO only do if have locally
+  git branch -d "$@"
+  # TODO only do if found remote
+  git push origin -d "$@"
 }

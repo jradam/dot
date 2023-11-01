@@ -15,6 +15,7 @@
   "rules": {
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
+    "max-len": ["warn", { "code": 80, "ignoreStrings": true }],
     "unused-imports/no-unused-imports": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "@typescript-eslint/explicit-function-return-type": ["warn"],
