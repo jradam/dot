@@ -118,7 +118,8 @@ gb() {
   # If the input is a number, validate and then checkout the branch
   if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
     if [ "$USER_INPUT" -ge 1 ] && [ "$USER_INPUT" -le "${#NUMBERED[@]}" ]; then
-      git checkout "${NUMBERED[$USER_INPUT - 1]}"
+      # TODO ensure we are printing out the commands like this everywhere 
+      gp checkout "${NUMBERED[$USER_INPUT - 1]}"
       return 0
     else
       print "error" "Invalid number. No such branch."
