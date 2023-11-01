@@ -57,6 +57,7 @@ g() {
   UPSTREAM=$(git for-each-ref --format '%(upstream:short)' $(git symbolic-ref -q HEAD))
   echo -e "On ${PINK}${CURRENT}${ESC}, up to date with ${PINK}${UPSTREAM}${ESC}"
 
+  # TODO do this on one line...?
   if ! gp fetch -p; then return 1; fi
   if ! gp pull; then return 1; fi
 
