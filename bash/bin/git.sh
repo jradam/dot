@@ -63,6 +63,7 @@ gu() {
   gp push origin +HEAD
 }
 
+
 # Multipurpose git branch function
 gb() {
   local SHOULD_DELETE 
@@ -71,6 +72,8 @@ gb() {
   local BRANCH=$@
   local USER_INPUT
   local STRING
+
+  # TODO add numbers before each branch, and make the prompt "Type a number to checkout that branch, or type the branch name to delete"
 
   if [ -z "$1" ]; then
     declare -A BRANCHES
