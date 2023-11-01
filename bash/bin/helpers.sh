@@ -63,15 +63,13 @@ g() {
   # If no arguments, show status/diff info and ask for commit message
   if [ -z "$1" ]; then
     # if no changes, return here
-    git diff-index --quiet HEAD
-    if [ ! $? -ne 0 ]; then 
-      print "info" "git diff-index HEAD"
+    if git diff-index --quiet HEAD && [ -z "$(git ls-files -o --exclude-standard)" ]; then
       print "title" "NO CHANGES"
       return 1
     fi
 
-    print "info" "git ls-files --others --exclude-standard && git diff --stat"
-    git ls-files --others --exclude-standard | xargs -I {} echo -e "${GREEN}New:${ESC} {}" && git diff --stat 
+    print "info" "git ls-files -o --exclude-standard && git diff --stat"
+    git ls-files -o --exclude-standard | xargs -I {} echo -e " ${GREEN}New:${ESC} {}" && git diff --stat 
     print "read" "Add message to commit:" MESSAGE
     if [ -z "$MESSAGE" ]; then return 1; fi
   else MESSAGE="$@"; fi
