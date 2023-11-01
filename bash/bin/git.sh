@@ -1,11 +1,14 @@
 #!/bin/bash
 
-source $HOME/dotfiles/bash/lib/colors.sh
+source "$HOME/dotfiles/bash/lib/colors.sh"
 
 # Print and run git commands
 gp() {
   print "info" "git $*"
-  if ! git "$@"; then print "error" "FAILED: git $@"; return 1; fi
+  if ! git "$@"; then
+    print "error" "FAILED: git $@"
+    return 1
+  fi
 }
 
 gd() {
@@ -28,7 +31,8 @@ g() {
   # If no arguments, show status/diff info and ask for commit message
   if [ -z "$1" ]; then
     # if no changes, return here
-    if git diff-index --quiet HEAD && [ -z "$(git ls-files -o --exclude-standard)" ]; then
+    if git diff-index --quiet HEAD && [ -z "$(git ls-files -o --exclude-standard)" ] 
+    then
       print "title" "NO CHANGES"
       return 1
     fi
@@ -36,7 +40,9 @@ g() {
     NEW=$(git ls-files -o --exclude-standard)
     if [ -n "$NEW" ]; then
       echo -e "\n${GREEN}NEW ${BLUE}git ls-files -o --exclude-standard${ESC}"
-      echo "$NEW" | while read -r line; do echo -e " ${GREEN}● ${ESC}$line"; done
+      echo "$NEW" | while read -r line; do
+        echo -e " ${GREEN}● ${ESC}$line"
+      done
     fi
 
     DIFF=$(git diff --stat --color=always)
@@ -47,8 +53,12 @@ g() {
 
     print "read" "\nAdd message to commit:" MESSAGE
 
-    if [ -z "$MESSAGE" ]; then return 1; fi
-  else MESSAGE="$@"; fi
+    if [ -z "$MESSAGE" ]; then
+      return 1
+    fi
+  else
+    MESSAGE="$@"
+  fi
 
   if ! gp add -A; then return 1; fi
   if ! gp commit -m "$MESSAGE"; then return 1; fi
@@ -63,14 +73,11 @@ gu() {
   gp push origin +HEAD
 }
 
-
 # Multipurpose git branch function
 gb() {
-  local SHOULD_DELETE 
+  local SHOULD_DELETE BRANCH STRING 
   local HAS_LOCAL=false
   local HAS_REMOTE=false
-  local BRANCH
-  local STRING
 
   declare -A BRANCHES
   declare -a NUMBERED
@@ -103,17 +110,21 @@ gb() {
   print "read" "\nType number to checkout, type name to delete:" USER_INPUT
   if [ -z "$USER_INPUT" ]; then return 1; fi
 
-    # If the input is a number, checkout the branch and return
-    if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
-      git checkout "${NUMBERED[$USER_INPUT - 1]}"
-      return 0
-    fi
+  # If the input is a number, checkout the branch and return
+  if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
+    git checkout "${NUMBERED[$USER_INPUT - 1]}"
+    return 0
+  fi
 
   # Check if the branch exists locally
-  if git show-ref --verify --quiet refs/heads/"$BRANCH"; then HAS_LOCAL=true; fi
+  if git show-ref --verify --quiet refs/heads/"$BRANCH"; then
+    HAS_LOCAL=true
+  fi
 
   # Check if the branch exists on the remote
-  if [ -n "$(git ls-remote --heads origin "$BRANCH" 2>/dev/null)" ]; then HAS_REMOTE=true; fi
+  if [ -n "$(git ls-remote --heads origin "$BRANCH" 2>/dev/null)" ]; then
+    HAS_REMOTE=true
+  fi
 
   # Determine where the branch exists
   if [ "$HAS_LOCAL" = true ] && [ "$HAS_REMOTE" = true ]; then
@@ -145,3 +156,4 @@ _gb_completion() {
   return 0
 }
 complete -F _gb_completion gb
+
