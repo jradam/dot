@@ -41,8 +41,8 @@ g() {
     if [ -n "$NEW" ]; then
       echo -e "\n${GREEN}NEW ${BLUE}git ls-files -o --exclude-standard${ESC}"
       echo "$NEW" | while read -r line; do
-        echo -e " ${GREEN}● ${ESC}$line"
-      done
+      echo -e " ${GREEN}● ${ESC}$line"
+    done
     fi
 
     DIFF=$(git diff --stat --color=always)
@@ -58,12 +58,12 @@ g() {
     fi
   else
     MESSAGE="$@"
-  fi
+    fi
 
-  if ! gp add -A; then return 1; fi
-  if ! gp commit -m "$MESSAGE"; then return 1; fi
-  if ! gp push; then return 1; fi
-}
+    if ! gp add -A; then return 1; fi
+    if ! gp commit -m "$MESSAGE"; then return 1; fi
+    if ! gp push; then return 1; fi
+  }
 
 # Undo last commit
 gu() {
@@ -75,7 +75,7 @@ gu() {
 
 # Multipurpose git branch function
 gb() {
-  local SHOULD_DELETE BRANCH STRING 
+  local SHOULD_DELETE BRANCH STRING CURRENT 
   local HAS_LOCAL=false
   local HAS_REMOTE=false
 
@@ -102,9 +102,14 @@ gb() {
     fi
   done
 
-  echo -e "\n${GREEN}BRANCHES${ESC} (${PINK}$(git branch --show-current)${ESC})"
+  CURRENT=$(git branch --show-current)
+  echo -e "\n${GREEN}BRANCHES${ESC}"
   for i in "${!NUMBERED[@]}"; do
-    echo -e " $((i + 1)): ${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
+    local PREFIX=" "
+    if [ "$CURRENT" == "${NUMBERED[$i]}" ]; then
+      PREFIX="${GREEN}${ESC}"
+    fi
+    echo -e " $((i + 1)) $PREFIX${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
   done
 
   print "read" "\nType number to checkout, type name to delete:" USER_INPUT
@@ -116,35 +121,25 @@ gb() {
     return 0
   fi
 
-  # Check if the branch exists locally
+  BRANCH="$USER_INPUT"
+
   if git show-ref --verify --quiet refs/heads/"$BRANCH"; then
     HAS_LOCAL=true
   fi
 
-  # Check if the branch exists on the remote
   if [ -n "$(git ls-remote --heads origin "$BRANCH" 2>/dev/null)" ]; then
     HAS_REMOTE=true
   fi
 
-  # Determine where the branch exists
-  if [ "$HAS_LOCAL" = true ] && [ "$HAS_REMOTE" = true ]; then
-    STRING="local, remote"
-  elif [ "$HAS_LOCAL" = true ]; then
-    STRING="local"
-  elif [ "$HAS_REMOTE" = true ]; then
-    STRING="remote"
-  else
+  if [ "$HAS_LOCAL" = false ] && [ "$HAS_REMOTE" = false ]; then
     print "error" "No local or remote branch named $BRANCH"
     return 1
   fi
 
-  print "read" "Are you sure you want to delete: ${PINK}$BRANCH${ESC} [$STRING]" SHOULD_DELETE 
+  print "read" "Are you sure you want to delete: ${PINK}$BRANCH${ESC}" SHOULD_DELETE 
   if [ ! -z "$SHOULD_DELETE" ]; then return 1; fi
 
-  # Only delete if the branch exists locally
   if [ "$HAS_LOCAL" = true ]; then git branch -d "$BRANCH"; fi
-
-  # Only delete if the branch exists on the remote
   if [ "$HAS_REMOTE" = true ]; then git push origin -d "$BRANCH"; fi
 }
 
