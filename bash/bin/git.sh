@@ -69,50 +69,45 @@ gb() {
   local SHOULD_DELETE 
   local HAS_LOCAL=false
   local HAS_REMOTE=false
-  local BRANCH=$@
-  local USER_INPUT
+  local BRANCH
   local STRING
 
   declare -A BRANCHES
-  declare -A NUMBERED
+  declare -a NUMBERED
 
-  if [ -z "$1" ]; then
-    local i=1
+  local i=0
 
-    for branch in $(git branch --format "%(refname:short)"); do
-      BRANCHES[$branch]="local"
-      NUMBERED[$i]=$branch
-      i=$((i + 1))
-    done
+  for branch in $(git branch --format "%(refname:short)"); do
+    BRANCHES[$branch]="local"
+    NUMBERED[$i]=$branch
+    i=$((i + 1))
+  done
 
-    for branch in $(git branch -r --format "%(refname:short)" | sed 's/origin\///'); do
-      if [[ "$branch" != "HEAD" ]]; then
-        if [ "${BRANCHES[$branch]}" == "local" ]; then
-          BRANCHES[$branch]="local, remote"
-        else
-          BRANCHES[$branch]="remote"
-          NUMBERED[$i]=$branch
-          i=$((i + 1))
-        fi
+  for branch in $(git branch -r --format "%(refname:short)" | sed 's/origin\///'); do
+    if [[ "$branch" != "HEAD" ]]; then
+      if [ "${BRANCHES[$branch]}" == "local" ]; then
+        BRANCHES[$branch]="local, remote"
+      else
+        BRANCHES[$branch]="remote"
+        NUMBERED[$i]=$branch
+        i=$((i + 1))
       fi
-    done
+    fi
+  done
 
-    echo -e "\n${GREEN}BRANCHES${ESC}"
-    for i in "${!NUMBERED[@]}"; do
-      echo -e " $i: ${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
-    done
+  echo -e "\n${GREEN}BRANCHES${ESC}"
+  for i in "${!NUMBERED[@]}"; do
+    echo -e " $((i + 1)): ${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
+  done
 
-    print "read" "\nType number to checkout, type name to delete:" USER_INPUT
-    if [ -z "$USER_INPUT" ]; then return 1; fi
+  print "read" "\nType number to checkout, type name to delete:" USER_INPUT
+  if [ -z "$USER_INPUT" ]; then return 1; fi
 
     # If the input is a number, checkout the branch and return
     if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
-      git checkout "${NUMBERED[$USER_INPUT]}"
+      git checkout "${NUMBERED[$USER_INPUT - 1]}"
       return 0
     fi
-
-    BRANCH=$USER_INPUT
-  fi
 
   # Check if the branch exists locally
   if git show-ref --verify --quiet refs/heads/"$BRANCH"; then HAS_LOCAL=true; fi
