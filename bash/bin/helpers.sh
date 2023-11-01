@@ -70,7 +70,8 @@ g() {
       return 1
     fi
 
-    gp diff --stat
+    print "info" "git ls-files --others --exclude-standard && git diff --stat"
+    git ls-files --others --exclude-standard | xargs -I {} echo -e "${GREEN}New:${ESC} {}" && git diff --stat 
     print "read" "Add message to commit:" MESSAGE
     if [ -z "$MESSAGE" ]; then return 1; fi
   else MESSAGE="$@"; fi
@@ -80,3 +81,10 @@ g() {
   if ! gp push; then return 1; fi
 }
 
+# Undo last commit
+gu() {
+  # Remove commit locally
+  gp reset HEAD^
+  # Force-push the new HEAD commit
+  gp push origin +HEAD
+}
