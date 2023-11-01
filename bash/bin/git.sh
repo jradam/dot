@@ -76,8 +76,6 @@ gb() {
   declare -A BRANCHES
   declare -A NUMBERED
 
-  # TODO add numbers before each branch, and make the prompt "Type a number to checkout that branch, or type the branch name to delete"
-
   if [ -z "$1" ]; then
     local i=1
 
@@ -104,7 +102,7 @@ gb() {
       echo -e " $i: ${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
     done
 
-    print "read" "\nType number to checkout, type name to delete: " USER_INPUT
+    print "read" "\nType number to checkout, type name to delete:" USER_INPUT
     if [ -z "$USER_INPUT" ]; then return 1; fi
 
     # If the input is a number, checkout the branch and return
