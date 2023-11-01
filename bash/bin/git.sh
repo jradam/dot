@@ -73,13 +73,18 @@ gb() {
   local USER_INPUT
   local STRING
 
+  declare -A BRANCHES
+  declare -A NUMBERED
+
   # TODO add numbers before each branch, and make the prompt "Type a number to checkout that branch, or type the branch name to delete"
 
   if [ -z "$1" ]; then
-    declare -A BRANCHES
+    local i=1
 
     for branch in $(git branch --format "%(refname:short)"); do
       BRANCHES[$branch]="local"
+      NUMBERED[$i]=$branch
+      i=$((i + 1))
     done
 
     for branch in $(git branch -r --format "%(refname:short)" | sed 's/origin\///'); do
@@ -88,17 +93,25 @@ gb() {
           BRANCHES[$branch]="local, remote"
         else
           BRANCHES[$branch]="remote"
+          NUMBERED[$i]=$branch
+          i=$((i + 1))
         fi
       fi
     done
 
     echo -e "\n${GREEN}BRANCHES${ESC}"
-    for branch in "${!BRANCHES[@]}"; do
-      echo -e " ${PINK}$branch${ESC} [${BRANCHES[$branch]}]"
+    for i in "${!NUMBERED[@]}"; do
+      echo -e " $i: ${PINK}${NUMBERED[$i]}${ESC} [${BRANCHES[${NUMBERED[$i]}]}]"
     done
 
-    print "read" "\nProvide a branch name to delete:" USER_INPUT
+    print "read" "\nType number to checkout, type name to delete: " USER_INPUT
     if [ -z "$USER_INPUT" ]; then return 1; fi
+
+    # If the input is a number, checkout the branch and return
+    if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
+      git checkout "${NUMBERED[$USER_INPUT]}"
+      return 0
+    fi
 
     BRANCH=$USER_INPUT
   fi
