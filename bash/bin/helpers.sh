@@ -68,9 +68,20 @@ g() {
       return 1
     fi
 
-    print "info" "git ls-files -o --exclude-standard && git diff --stat"
-    git ls-files -o --exclude-standard | xargs -I {} echo -e " ${GREEN}New:${ESC} {}" && git diff --stat 
-    print "read" "Add message to commit:" MESSAGE
+    NEW=$(git ls-files -o --exclude-standard)
+    if [ -n "$NEW" ]; then
+      echo -e "\n${GREEN}NEW ${BLUE}git ls-files -o --exclude-standard${ESC}"
+      echo "$NEW" | while read -r line; do echo -e " ${GREEN}● ${ESC}$line"; done
+    fi
+
+    DIFF=$(git diff --stat --color=always)
+    if [ -n "$DIFF" ]; then
+      echo -e "\n${GREEN}CHANGES ${BLUE}git diff --stat${ESC}"
+      echo "$DIFF"
+    fi
+
+    print "read" "\nAdd message to commit:" MESSAGE
+
     if [ -z "$MESSAGE" ]; then return 1; fi
   else MESSAGE="$@"; fi
 
