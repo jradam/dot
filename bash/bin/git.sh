@@ -165,5 +165,5 @@ complete -F _gb_completion gb
 # TODO add completion to gd() as well
 
 # TODO
-git branch helpers
-git push --set-upstream origin helpers
+# git branch helpers
+# git push --set-upstream origin helpers
