@@ -16,6 +16,7 @@ gd() {
 }
 
 # Multipurpose git status/commit function
+# TODO "On error-reporting, up to date with" when local branch
 g() {
   local CURRENT UPSTREAM NEW DIFF MESSAGE
 
@@ -74,6 +75,8 @@ gu() {
 }
 
 # Multipurpose git branch function
+# TODO do a fetch first to get new branches
+# TODO alpha sorting so consistent branch order? Or can I do it by creation date (better)
 gb() {
   local SHOULD_DELETE BRANCH STRING CURRENT 
   local HAS_LOCAL=false
@@ -158,3 +161,5 @@ _gb_completion() {
 }
 complete -F _gb_completion gb
 
+
+# TODO add completion to gd() as well
