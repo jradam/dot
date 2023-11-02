@@ -69,6 +69,9 @@ return {
           -- IndentBlanklineContextChar = { fg = #44475A },
           Indent = { fg = c.bg },
           IndentScope = { fg = c.selection },
+          -- For git conflicts
+          DiffAdd = { fg = c.green, bg = c.bg },
+          DiffText = { fg = c.orange, bg = c.bg },
         },
       }
     end,
@@ -90,18 +93,17 @@ return {
         char = "│",
         highlight = {
           "Indent",
-        }
+        },
       },
       scope = {
         show_start = false,
         highlight = {
           "IndentScope",
-        }
-      }
+        },
+      },
     },
   },
 }
-
 
 -- https://github.com/Mofiqul/dracula.nvim
 -- https://github.com/Mofiqul/dracula.nvim/blob/main/lua/dracula/groups.lua
