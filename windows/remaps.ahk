@@ -31,6 +31,9 @@ Ctrl & F12::ExitApp
 Hotkey activate, StartRemap
 Hotkey activate " Up", StopRemap
 
+CoordMode "Mouse", "Screen"
+slowMode := 1
+
 StartRemap(ThisHotkey) {
     Send onActivate
 
@@ -61,11 +64,10 @@ StopRemap(ThisHotkey) {
     Hotkey rightClick, ClickRight, "Off"
     Hotkey scrollUp, UpScroll, "Off"
     Hotkey scrollDown, DownScroll, "Off"
-}
 
-CoordMode "Mouse", "Screen"
-slowMode := 1
-isOn := 0
+    global slowMode
+    slowMode := 1
+}
 
 MoveWhileKeyHeld(x, y, key) {
     global slowMode

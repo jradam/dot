@@ -6,11 +6,11 @@ return {
       jump = {
         autojump = true,
       },
+      label = {
+        uppercase = false,
+        current = true,
+      },
       highlight = {
-        label = {
-          uppercase = false,
-          current = true,
-        },
         backdrop = true,
       },
       modes = {
