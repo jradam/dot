@@ -32,6 +32,8 @@ k("n", "<Tab>", ":bn<CR>", { desc = "next buffer", silent = true })
 k("n", "<S-Tab>", ":bp<CR>", { desc = "prev buffer", silent = true })
 k("n", "<leader>x", ":bd<CR>", { desc = "close buffer" })
 k("n", "<leader>j", "<C-]>", { desc = "jump to tag" })
+k("n", "j", "gj", { desc = "Visual move up" })
+k("n", "k", "gk", { desc = "Visual move down" })
 
 -- in-buffer navigation
 k("n", "<C-d>", "<C-d>zz", { desc = "jump down" })
