@@ -41,7 +41,6 @@ k("n", "<C-u>", "<C-u>zz", { desc = "jump up" })
 
 -- select / copy / delete
 k("n", "<leader>a", "ggVG", { desc = "select all" })
--- TODO make case sensitive
 k("v", "<leader>r", [[:s/\%V//g<Left><Left><Left>]], { desc = "replace" })
 k("v", "<c-c>", [["+y]], { desc = "system clip" })
 k("v", "<leader>d", [["_d]], { desc = "black hole" })
