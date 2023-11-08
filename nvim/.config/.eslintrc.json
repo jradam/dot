@@ -3,8 +3,7 @@
     "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks-unreliable-deps/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["unused-imports", "no-type-assertion", "react-hooks"],
