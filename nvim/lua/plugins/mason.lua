@@ -9,6 +9,7 @@ return {
         "stylua",
         "prettierd",
         "eslint_d",
+        "tailwindcss-language-server",
       },
     },
     config = function(_, opts)

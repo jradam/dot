@@ -1,4 +1,11 @@
-return {}
+return {
+  {
+    "laytan/tailwind-sorter.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+    build = "cd formatter && npm i && npm run build",
+    config = { on_save_enabled = true },
+  },
+}
 -- return {
 --   "neovim/nvim-lspconfig",
 --   config = function()
