@@ -23,7 +23,7 @@ o.showmode = false
 
 -- line breaks
 o.linebreak = true
-o.showbreak = "↪ "
+-- o.showbreak = "↪ "
 
 -- no swapfiles
 o.swapfile = false
