@@ -2,11 +2,13 @@
 
 ; TODO how can we auto-install/sync the windows stuff? Want to edit files in here, then run something to sync over perhaps?
 
+; TODO possibly rewrite in AHK1
+
 ; TODO add key for `alt + space` then `m`
 
 ; -------------------- Settings
 activate := "CapsLock"
-; TODO Esc is sent many times, how to make it only send once? Does it mean StartRemap is being called multiple times?
+; TODO Esc is sent many times, how to make it only send once? Does it mean StartRemap is being called multiple times? 
 onActivate := "{Esc}"
 
 up := "k"
