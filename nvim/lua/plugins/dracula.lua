@@ -8,7 +8,6 @@ return {
       italic_comment = true,
       overrides = {
 	Normal = { bg = darkBg },
-	-- Floats
 	FloatBorder = { fg = c.comment, bg = c.bg },
       }
     }

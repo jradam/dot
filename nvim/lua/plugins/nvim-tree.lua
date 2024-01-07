@@ -86,8 +86,16 @@ return {
       renderer = {
 	highlight_git = true,
 	icons = {
+	  -- Hides the git icons, as `signcolumn` is not shown
 	  git_placement = "signcolumn",
 	},
+      },
+      filters = {
+	-- Don't show git files in the tree
+	custom = { "^.git$" },
+      },
+      git = {
+	show_on_open_dirs = false,
       },
     }
   end,

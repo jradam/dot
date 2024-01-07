@@ -10,17 +10,23 @@ return {
     return {
       {
 	"<leader>f",
-	function()
-	  builtin.find_files()
-	end,
-	desc = "Find files",
+	function() builtin.find_files({ initial_mode = "insert" }) end,
+	desc = "Find file",
       },
       {
 	"<leader>s",
-	function()
-	  builtin.live_grep()
-	end,
+	function() builtin.live_grep({ initial_mode = "insert" }) end,
 	desc = "Find string",
+      },
+      {
+	"<leader>t",
+	":TodoTelescope<CR>",       
+	desc = "Find todo" 
+      },
+      {
+	"<leader>r",
+	function() builtin.resume({ initial_mode = "normal" }) end,
+	desc = "Resume find",
       },
     }
   end,
@@ -29,6 +35,7 @@ return {
 
     return {
       defaults = {
+	initial_mode = "normal",
 	layout_strategy = "vertical",
 	layout_config = {
 	  height = 100,

@@ -6,7 +6,8 @@ k("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 
 -- Text manipulation
 k("n", "<leader>a", "ggVG", { desc = "Select all" })
-k("v", "<c-c>", [["+y]], { desc = "System clip" })
+k("v", "<C-c>", [["+y]], { desc = "System clip" })
+k("v", "<leader>r", [[:s/\%V//g<Left><Left><Left>]], { desc = "Replace" })
 
 -- Navigation
 k("n", "<Tab>", ":bn<CR>", { desc = "Next buffer", silent = true })
