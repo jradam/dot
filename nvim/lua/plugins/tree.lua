@@ -36,6 +36,8 @@ return {
 	return { desc = desc, buffer = bufnr }
       end
 
+      -- TODO Close on ESC
+
       -- Custom
       vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))
       vim.keymap.set("n", "e", function() 

@@ -1,5 +1,5 @@
 return {
-  -- TODO https://youtu.be/NL8D8EkphUw?si=8gNzyEyfrxbn2s94&t=968
+  -- FIXME https://youtu.be/NL8D8EkphUw?si=8gNzyEyfrxbn2s94&t=968
   "neovim/nvim-lspconfig",
   opts = { diagnostics = { virtual_text = false } },
   config = function(_, opts)
