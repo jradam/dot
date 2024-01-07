@@ -56,6 +56,7 @@ return {
       view = {
 	relativenumber = true,
 	signcolumn = "no",
+	adaptive_size = true,
 	float = {
 	  enable = true,
 	  open_win_config = {

@@ -18,6 +18,9 @@ vim.api.nvim_create_autocmd("FileType", {
   command = [[ setlocal formatoptions-=cro ]],
 })
 
+-- Appearance
+o.signcolumn = "number"
+
 -- Other 
 o.scrolloff = 12
 

@@ -9,6 +9,12 @@ return {
       overrides = {
 	Normal = { bg = darkBg },
 	FloatBorder = { fg = c.comment, bg = c.bg },
+
+	-- Completion menu, remove incorrect backgrounds from words
+	Pmenu = { bg = "NONE" },
+	CmpItemAbbrMatch = { bg = "NONE", fg = c.cyan },
+	CmpItemAbbr = { bg = "NONE", fg = c.fg },
+	CmpItemAbbrDeprecated = { bg = "NONE", fg = c.comment },
       }
     }
 
