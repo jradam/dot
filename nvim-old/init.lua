@@ -1,4 +1,4 @@
--- Bootstrap lazy plugin manager
+-- bootstrap lazy plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -12,19 +12,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Disable netrw
+-- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Leader keymap
+-- leader keymap
 vim.g.mapleader = ";"
 vim.g.maplocalleader = " "
 
--- Load plugins
+-- plugins
 require("lazy").setup("plugins", {
+  defaults = { lazy = false },
+  install = { colorscheme = { "dracula" } },
+  checker = { enabled = true, notify = false },
   change_detection = { notify = false },
 })
+vim.keymap.set("n", "<leader>cp", ":Lazy<CR>", { desc = "plugins" })
 
--- Setup
-require("settings")
-require("keymaps")
+-- other
+require("sets")
+require("keys")
