@@ -11,16 +11,16 @@ return {
       {
 	"<leader>f",
 	function()
-	  builtin.find_files({ initial_mode = "insert" })
+	  builtin.find_files()
 	end,
-	desc = "find files",
+	desc = "Find files",
       },
       {
 	"<leader>s",
 	function()
-	  builtin.live_grep(ins)
+	  builtin.live_grep()
 	end,
-	desc = "find string",
+	desc = "Find string",
       },
     }
   end,
@@ -29,7 +29,6 @@ return {
 
     return {
       defaults = {
-	initial_mode = "normal",
 	layout_strategy = "vertical",
 	layout_config = {
 	  height = 100,
