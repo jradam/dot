@@ -22,9 +22,12 @@ vim.g.maplocalleader = " "
 
 -- Load plugins
 require("lazy").setup("plugins", {
+  install = { colorscheme = { "dracula" } },
   change_detection = { notify = false },
 })
 
 -- Setup
 require("settings")
 require("keymaps")
+
+

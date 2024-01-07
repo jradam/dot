@@ -2,7 +2,7 @@ return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<leader>e", ":NvimTreeToggle<CR>", desc = "explorer" },
+    { "<leader>e", ":NvimTreeToggle<CR>", desc = "explorer", silent = true },
   },
   opts = function()
     local api = require("nvim-tree.api")
@@ -54,7 +54,17 @@ return {
     return { 
       on_attach = on_attach,
       view = {
+	relativenumber = true,
 	signcolumn = "no",
+	float = {
+	  enable = true,
+	  open_win_config = {
+	    height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 2,
+	    row = 0,
+	    col = 0,
+	  },
+	},
+
       },
       actions = {
 	expand_all = {
@@ -73,6 +83,38 @@ return {
 	change_dir = { restrict_above_cwd = true },
 	open_file = { quit_on_open = true },
       },
+      renderer = {
+	highlight_git = true,
+	icons = {
+	  git_placement = "signcolumn",
+	},
+      },
     }
+  end,
+  init = function()
+    local function open_on_startup(data)
+      -- If we are starting in a file, do not open the tree
+      if not vim.fn.isdirectory(data.file) == 1 then
+	return
+      end
+
+      -- If a float is open on startup, do not open the tree
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+	local config = vim.api.nvim_win_get_config(win)
+	if config.relative ~= "" then
+	  return 
+	end
+      end
+
+      for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+	if vim.api.nvim_win_get_config(winid).zindex then
+	  return
+	end
+      end
+
+      require("nvim-tree.api").tree.open()
+    end
+
+    vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_on_startup })
   end,
 }
