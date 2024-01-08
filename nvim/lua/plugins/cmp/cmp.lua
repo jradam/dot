@@ -17,6 +17,7 @@ return {
       snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
       sources = cmp.config.sources({
 	{ name = "luasnip" },
+	{ name = "nvim_lsp" },
 	{ name = "buffer" },
 	{ name = "path" },
       }),

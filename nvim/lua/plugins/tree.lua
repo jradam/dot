@@ -36,7 +36,7 @@ return {
 	return { desc = desc, buffer = bufnr }
       end
 
-      -- TODO Close on ESC
+      -- TODO Close on `<Esc>`
 
       -- Custom
       vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))

@@ -21,7 +21,11 @@ vim.g.mapleader = ";"
 vim.g.maplocalleader = " "
 
 -- Load plugins
-require("lazy").setup("plugins", {
+require("lazy").setup({
+    { import = "plugins" },
+    { import = "plugins.cmp" },
+    { import = "plugins.lsp" },
+}, {
   install = { colorscheme = { "dracula" } },
   change_detection = { notify = false },
 })
