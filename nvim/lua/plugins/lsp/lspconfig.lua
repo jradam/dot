@@ -46,5 +46,9 @@ return {
 		lspconfig["tailwindcss"].setup({
 			capabilities = capabilities,
 		})
+
+		lspconfig["eslint"].setup({
+			capabilities = capabilities,
+		})
 	end,
 }

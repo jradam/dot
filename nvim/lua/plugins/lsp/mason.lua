@@ -7,13 +7,17 @@ return {
 	config = function()
 		require("mason").setup()
 		require("mason-lspconfig").setup({
+			-- Language servers
 			ensure_installed = {
+				"eslint",
 				"lua_ls",
 				"tailwindcss",
 			},
 		})
 		require("mason-tool-installer").setup({
+			-- Formatters
 			ensure_installed = {
+				"eslint_d",
 				"prettierd",
 				"stylua",
 			},
