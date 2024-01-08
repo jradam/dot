@@ -38,6 +38,7 @@ return {
 
 			-- TODO Close on `<Esc>`
 			-- TODO Git colours don't update/reset to white after commit etc
+			-- FIXME Error when git opens commit message buffer (opens the tree)
 
 			-- Custom
 			vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))
