@@ -11,8 +11,7 @@ return {
 				scroll_speed = 9,
 				mirror = true,
 				preview_height = 0.7,
-				-- If window is too small, don't show preview section
-				preview_cutoff = 30,
+				preview_cutoff = 30, -- If window too small, don't show preview section
 			},
 			file_ignore_patterns = { "node_modules", "yarn.lock" },
 		},
@@ -22,6 +21,8 @@ return {
 		if not status then
 			return
 		end
+
+		-- TODO Menu for LSP actions/TSTools - maybe https://github.com/octarect/telescope-menu.nvim
 
 		return {
 			{
