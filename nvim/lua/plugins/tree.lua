@@ -37,6 +37,7 @@ return {
 			end
 
 			-- TODO Close on `<Esc>`
+			-- TODO Git colours don't update/reset to white after commit etc
 
 			-- Custom
 			vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))
@@ -67,7 +68,6 @@ return {
 						col = 0,
 					},
 				},
-
 			},
 			actions = {
 				expand_all = {
@@ -105,12 +105,16 @@ return {
 	init = function()
 		local function open_on_startup(data)
 			-- If we are starting in a file, do not open the tree
-			if not vim.fn.isdirectory(data.file) == 1 then return end
+			if not vim.fn.isdirectory(data.file) == 1 then
+				return
+			end
 
 			-- If a float is open on startup, do not open the tree
 			for _, win in ipairs(vim.api.nvim_list_wins()) do
 				local config = vim.api.nvim_win_get_config(win)
-				if config.relative ~= "" then return end
+				if config.relative ~= "" then
+					return
+				end
 			end
 
 			require("nvim-tree.api").tree.open()
