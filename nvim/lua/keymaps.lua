@@ -18,16 +18,24 @@ k("n", "j", "gj", { desc = "Visual move up" })
 k("n", "k", "gk", { desc = "Visual move down" })
 
 -- Close all buffers except the current one (and terminals)
-vim.api.nvim_create_user_command(
-'BufCurOnly',
-function()
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if buf ~= vim.api.nvim_get_current_buf() and vim.api.nvim_buf_is_loaded(buf) then
-      local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-      if buftype ~= "terminal" then vim.api.nvim_buf_delete(buf, {force = false}) end
-    end
-  end
-end,
-{}
-)
-k('n', '<leader>z', ':BufCurOnly<CR>', { desc = "Close all others", silent = true })
+vim.api.nvim_create_user_command("BufCurOnly", function()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if buf ~= vim.api.nvim_get_current_buf() and vim.api.nvim_buf_is_loaded(buf) then
+			local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
+			if buftype ~= "terminal" then
+				vim.api.nvim_buf_delete(buf, { force = false })
+			end
+		end
+	end
+end, {})
+k("n", "<leader>z", ":BufCurOnly<CR>", { desc = "Close all others", silent = true })
+
+-- Close floating windows with `<Esc>`
+vim.api.nvim_create_user_command("CloseFloats", function()
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		if vim.api.nvim_win_get_config(win).relative == "win" then
+			vim.api.nvim_win_close(win, false)
+		end
+	end
+end, {})
+k("n", "<Esc>", ":CloseFloats<CR>", { desc = "Close floats", silent = true })
