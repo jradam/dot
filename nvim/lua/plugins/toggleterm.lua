@@ -2,7 +2,9 @@ return {
 	"akinsho/toggleterm.nvim",
 	opts = function()
 		return {
-			on_open = function() vim.cmd("startinsert!") end,
+			on_open = function()
+				vim.cmd("startinsert!")
+			end,
 			direction = "float",
 			float_opts = {
 				border = "curved",
@@ -17,6 +19,8 @@ return {
 		local darkBg = "#15161C"
 		local Terminal = require("toggleterm.terminal").Terminal
 
+		-- FIXME Error when opening terminal over tree when first starting nvim in directory
+
 		local terminal_one = Terminal:new({
 			highlights = {
 				NormalFloat = { guibg = darkBg },
@@ -30,9 +34,12 @@ return {
 			},
 		})
 
-		function Toggle_terminal_one() terminal_one:toggle() end
-
-		function Toggle_terminal_two() terminal_two:toggle() end
+		function Toggle_terminal_one()
+			terminal_one:toggle()
+		end
+		function Toggle_terminal_two()
+			terminal_two:toggle()
+		end
 
 		vim.keymap.set({ "n", "t" }, "<C-t>", "<cmd>lua Toggle_terminal_one()<CR>", {
 			desc = "Terminal one",
