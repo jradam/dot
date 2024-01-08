@@ -19,6 +19,9 @@ return {
 			{ "<localleader>r", vim.lsp.buf.rename, desc = "Rename" },
 			{ "<localleader>p", vim.diagnostic.goto_prev, desc = "Go to previous" },
 			{ "<localleader>n", vim.diagnostic.goto_next, desc = "Go to next" },
+			-- TODO Need to implement these. Here, or in a telescope table?
+			-- TSToolsRenameFile - allow to rename current file
+			-- TSToolsFileReferences - find files that reference the current file
 		}
 	end,
 	config = function(_, opts)
