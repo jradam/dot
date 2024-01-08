@@ -6,7 +6,8 @@ return {
     diagnostics = {
       virtual_text = false,
       float = { border = "rounded" },
-    }
+    },
+    hover = { border = "rounded" },
   },
   keys = function()
     return {
@@ -27,7 +28,9 @@ return {
       vim.fn.sign_define(hl, { text="", numhl = hl })
     end
 
+    -- Add our styling options  
     vim.diagnostic.config(opts.diagnostics)
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, opts.hover)
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -35,6 +38,10 @@ return {
       capabilities = capabilities,
       -- Make language server recognize "vim" global
       settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+    })
+
+    lspconfig["tailwindcss"].setup({
+      capabilities = capabilities,
     })
   end
 }

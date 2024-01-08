@@ -1,12 +1,12 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  config = function () 
+  config = function ()
     local configs = require("nvim-treesitter.configs")
 
     configs.setup({
-      ensure_installed = { 
-	"bash", 
+      ensure_installed = {
+	"bash",
 	"css",
 	"html",
 	"javascript",
@@ -15,8 +15,8 @@ return {
 	"markdown",
 	"markdown_inline",
 	"tsx",
-	"typescript", 
-	"vimdoc", 
+	"typescript",
+	"vimdoc",
 	"yaml",
       },
     })
