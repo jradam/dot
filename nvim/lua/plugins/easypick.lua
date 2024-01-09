@@ -6,6 +6,7 @@ return {
 	},
 	opts = function()
 		local easypick = require("easypick")
+		local u = require("utilities")
 
 		local git_toplevel = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
 		local current_dir = vim.fn.getcwd()
@@ -19,16 +20,17 @@ return {
 				{
 					name = "Local changes",
 					command = "git diff --name-only",
-					previewer = easypick.previewers.branch_diff({}),
+					previewer = u.diff_preview(),
 				},
 				{
 					name = "Changed from main",
 					command = "git diff --name-only main",
-					previewer = easypick.previewers.branch_diff({ base_branch = "main" }),
+					previewer = u.diff_preview({ base_branch = "main" }),
 				},
 				{
 					name = "Conflicts",
 					command = "git diff --name-only --diff-filter=U --relative",
+					-- TODO implement git conflict stuff and check this
 					previewer = easypick.previewers.file_diff(),
 				},
 			},
