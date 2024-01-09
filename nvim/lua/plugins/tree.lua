@@ -36,11 +36,10 @@ return {
 				return { desc = desc, buffer = bufnr }
 			end
 
-			-- TODO Close on `<Esc>`
 			-- TODO Git colours don't update/reset to white after commit etc
-			-- FIXME Error when git opens commit message buffer (opens the tree)
 
 			-- Custom
+			vim.keymap.set("n", "<Esc>", api.tree.close, opts("Close"))
 			vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))
 			vim.keymap.set("n", "e", function()
 				multi(api.tree.get_node_under_cursor())
@@ -62,6 +61,8 @@ return {
 				signcolumn = "no",
 				adaptive_size = true,
 				float = {
+					-- FIXME decide on this and startup below
+					-- quit_on_focus_loss = false,
 					enable = true,
 					open_win_config = {
 						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 2,
@@ -104,28 +105,28 @@ return {
 		}
 	end,
 	init = function()
-		local function open_on_startup(data)
-			-- If we are not starting in a directory, do not open the tree
-			if not vim.fn.isdirectory(data.file) == 1 then
-				return
-			end
-
-			-- If we are in a git commit, do not open the tree
-			if vim.bo.filetype == "gitcommit" then
-				return
-			end
-
-			-- If a float is open on startup, do not open the tree
-			for _, win in ipairs(vim.api.nvim_list_wins()) do
-				local config = vim.api.nvim_win_get_config(win)
-				if config.relative ~= "" then
-					return
-				end
-			end
-
-			require("nvim-tree.api").tree.open()
-		end
-
-		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_on_startup })
+		-- local function open_on_startup(data)
+		-- 	-- If we are not starting in a directory, do not open the tree
+		-- 	if not vim.fn.isdirectory(data.file) == 1 then
+		-- 		return
+		-- 	end
+		--
+		-- 	-- If we are in a git commit, do not open the tree
+		-- 	if vim.bo.filetype == "gitcommit" then
+		-- 		return
+		-- 	end
+		--
+		-- 	-- If a float is open on startup, do not open the tree
+		-- 	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		-- 		local config = vim.api.nvim_win_get_config(win)
+		-- 		if config.relative ~= "" then
+		-- 			return
+		-- 		end
+		-- 	end
+		--
+		-- 	require("nvim-tree.api").tree.open()
+		-- end
+		--
+		-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_on_startup })
 	end,
 }
