@@ -36,6 +36,8 @@ return {
 
 		-- TODO Menu for LSP actions/TSTools - maybe https://github.com/octarect/telescope-menu.nvim
 
+		-- TODO Open list of Buffers with Git changes
+
 		return {
 			{
 				"<leader>f",
