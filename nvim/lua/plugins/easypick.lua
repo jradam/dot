@@ -7,6 +7,13 @@ return {
 	opts = function()
 		local easypick = require("easypick")
 
+		local git_toplevel = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+		local current_dir = vim.fn.getcwd()
+
+		if git_toplevel == nil or git_toplevel ~= current_dir then
+			return { pickers = { { name = "Not in top level of a Git repository", command = "" } } }
+		end
+
 		return {
 			pickers = {
 				{

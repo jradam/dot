@@ -26,6 +26,7 @@ return {
 				{ name = "path" },
 			}),
 			mapping = {
+				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()

@@ -2,9 +2,8 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
-		-- TODO Git colours don't update/reset to white after commit etc
-		-- FIXME this Refresh is a bit of a hack for the above
-		{ "<leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", desc = "explorer", silent = true },
+		-- Refresh ensures that git highlighting is up-to-date
+		{ "<leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", desc = "Explorer", silent = true },
 	},
 	opts = function()
 		local api = require("nvim-tree.api")
@@ -61,9 +60,9 @@ return {
 				signcolumn = "no",
 				adaptive_size = true,
 				float = {
+					enable = true,
 					-- Avoids startup crash when running Terminal or Telescope
 					quit_on_focus_loss = false,
-					enable = true,
 					open_win_config = {
 						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 2,
 						row = 0,

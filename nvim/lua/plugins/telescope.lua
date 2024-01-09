@@ -18,7 +18,7 @@ return {
 					width = 100,
 					scroll_speed = 9,
 					mirror = true,
-					preview_height = 0.6,
+					preview_height = 0.65,
 					preview_cutoff = 30, -- If window too small, don't show preview
 				},
 				file_ignore_patterns = { "node_modules", "yarn.lock" },
@@ -34,8 +34,6 @@ return {
 		if not status then
 			return
 		end
-
-		-- TODO Open list of Buffers with Git changes
 
 		return {
 			{

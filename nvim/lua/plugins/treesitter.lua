@@ -4,6 +4,8 @@ return {
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 
+		-- TODO styles-components highlighting
+
 		configs.setup({
 			highlight = { enable = true },
 			ensure_installed = {

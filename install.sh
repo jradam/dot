@@ -57,7 +57,10 @@ print "info" "Yarn"
 npm install --global yarn
 
 print "info" "Diff so fancy"
-npm i -g diff-so-fancy
+npm install --global diff-so-fancy
+
+print "info" "TypeScript styled-components support"
+npm install --global @styled/typescript-styled-plugin
 
 print "title" "CONFIGURING"
 
