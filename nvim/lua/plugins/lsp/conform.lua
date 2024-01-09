@@ -12,8 +12,9 @@ return {
 		end
 
 		local function typescript()
-			vim.cmd("TSToolsAddMissingImports")
-			vim.cmd("TSToolsOrganizeImports")
+			-- FIXME
+			-- vim.cmd("TSToolsAddMissingImports")
+			-- vim.cmd("TSToolsOrganizeImports")
 
 			-- TODO add TSToolsFixAll to this?
 
