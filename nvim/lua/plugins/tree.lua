@@ -101,6 +101,7 @@ return {
 			},
 			git = {
 				show_on_open_dirs = false,
+				timeout = 1000,
 			},
 		}
 	end,
