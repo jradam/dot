@@ -19,8 +19,6 @@ return {
 		local darkBg = "#15161C"
 		local Terminal = require("toggleterm.terminal").Terminal
 
-		-- FIXME Error when opening terminal over tree when first starting nvim in directory
-
 		local terminal_one = Terminal:new({
 			highlights = {
 				NormalFloat = { guibg = darkBg },

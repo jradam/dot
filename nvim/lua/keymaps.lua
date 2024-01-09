@@ -7,6 +7,7 @@ k("n", "q", "<Nop>", { desc = "Disable recording" })
 -- Actions
 k("n", "<leader>w", ":w<CR>", { desc = "Write" })
 k("n", "<leader>q", ":q<CR>", { desc = "Quit" })
+k("n", "<leader>m", ":messages<CR>", { desc = "Show messages" })
 
 -- Text manipulation
 k("n", "<leader>a", "ggVG", { desc = "Select all" })

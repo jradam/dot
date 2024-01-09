@@ -1,6 +1,17 @@
 return {
 	"stevearc/conform.nvim",
 	opts = function()
+		-- Fixes issue with default XDG_RUNTIME_DIR being inaccessible
+		local XDG_RUNTIME_DIR = os.getenv("HOME") .. "/.temp-conform"
+
+		-- Toggle formatting on save
+		vim.g.should_format = true
+		vim.keymap.set("n", "<leader>W", function()
+			vim.g.should_format = not vim.g.should_format
+			print("Formatting set to " .. tostring(vim.g.should_format))
+		end, { desc = "Toggle format" })
+
+		-- JavaScript formatting function
 		local function javascript()
 			local eslintrc_files = vim.fn.glob(vim.fn.getcwd() .. "/.eslintrc*", false, true)
 
@@ -11,18 +22,11 @@ return {
 			end
 		end
 
+		-- TypeScript formatting function
 		local function typescript()
-			-- FIXME
-			-- vim.cmd("TSToolsAddMissingImports")
-			-- vim.cmd("TSToolsOrganizeImports")
-
-			-- TODO add TSToolsFixAll to this?
-
+			vim.cmd("TSToolsOrganizeImports")
 			return javascript()
 		end
-
-		-- Fixes issue with default XDG_RUNTIME_DIR being inaccessible
-		local XDG_RUNTIME_DIR = os.getenv("HOME") .. "/.temp-conform"
 
 		return {
 			formatters_by_ft = {
@@ -32,9 +36,11 @@ return {
 				typescript = typescript,
 				typescriptreact = typescript,
 			},
-			format_on_save = {
-				lsp_fallback = true, -- Attempt LSP formatting if no formatters available
-			},
+			format_on_save = function()
+				if vim.g.should_format then
+					return { lsp_fallback = true } -- Attempt LSP format if no formatters available
+				end
+			end,
 			formatters = {
 				prettierd = {
 					env = {
