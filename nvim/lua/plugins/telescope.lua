@@ -1,38 +1,38 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim" },
-	opts = {
-		defaults = {
-			initial_mode = "normal",
-			layout_strategy = "vertical",
-			layout_config = {
-				height = 100,
-				width = 100,
-				scroll_speed = 9,
-				mirror = true,
-				preview_height = 0.6,
-				preview_cutoff = 30, -- If window too small, don't show preview section
+	opts = function()
+		local function on_enter(bufnr)
+			-- Close floats to avoid files being opened in small windows
+			require("helpers").close_floats()
+			require("telescope.actions").select_default(bufnr)
+		end
+
+		return {
+			defaults = {
+				initial_mode = "normal",
+				layout_strategy = "vertical",
+				layout_config = {
+					height = 100,
+					width = 100,
+					scroll_speed = 9,
+					mirror = true,
+					preview_height = 0.6,
+					preview_cutoff = 30, -- If window too small, don't show preview
+				},
+				file_ignore_patterns = { "node_modules", "yarn.lock" },
+				mappings = {
+					i = { ["<CR>"] = on_enter },
+					n = { ["<CR>"] = on_enter },
+				},
 			},
-			file_ignore_patterns = { "node_modules", "yarn.lock" },
-		},
-	},
+		}
+	end,
 	keys = function()
 		local status, builtin = pcall(require, "telescope.builtin")
 		if not status then
 			return
 		end
-
-		-- Close floats to avoid files being opened in small windows
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "TelescopeFindPre",
-			callback = function()
-				for _, win in pairs(vim.api.nvim_list_wins()) do
-					if vim.api.nvim_win_get_config(win).relative ~= "" then
-						vim.api.nvim_win_close(win, false)
-					end
-				end
-			end,
-		})
 
 		-- TODO Menu for LSP actions/TSTools - maybe https://github.com/octarect/telescope-menu.nvim
 

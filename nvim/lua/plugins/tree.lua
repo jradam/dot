@@ -61,6 +61,7 @@ return {
 				signcolumn = "no",
 				adaptive_size = true,
 				float = {
+					-- Avoids startup crash when running Terminal or Telescope
 					quit_on_focus_loss = false,
 					enable = true,
 					open_win_config = {
@@ -98,9 +99,7 @@ return {
 				-- Don't show git files in the tree
 				custom = { "^.git$" },
 			},
-			git = {
-				show_on_open_dirs = false,
-			},
+			git = { show_on_open_dirs = false },
 		}
 	end,
 	init = function()

@@ -1,4 +1,5 @@
 local k = vim.keymap.set
+local h = require("helpers")
 
 -- Disable
 k("n", "q", "<Nop>", { desc = "Disable recording" })
@@ -19,26 +20,15 @@ k("n", "<leader>x", ":bd<CR>", { desc = "Close buffer" })
 k("n", "<leader>j", "<C-]>", { desc = "Jump to tag" })
 k("n", "j", "gj", { desc = "Visual move up" })
 k("n", "k", "gk", { desc = "Visual move down" })
+k("n", "<C-d>", "<C-d>zz", { desc = "Jump down" })
+k("n", "<C-u>", "<C-u>zz", { desc = "Jump up" })
 
--- Close all buffers except the current one (and terminals)
-vim.api.nvim_create_user_command("BufCurOnly", function()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= vim.api.nvim_get_current_buf() and vim.api.nvim_buf_is_loaded(buf) then
-			local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-			if buftype ~= "terminal" then
-				vim.api.nvim_buf_delete(buf, { force = false })
-			end
-		end
-	end
-end, {})
-k("n", "<leader>z", ":BufCurOnly<CR>", { desc = "Close all others", silent = true })
+-- Close all non-terminal buffers except the current one
+k("n", "<leader>z", function()
+	h.close_all_else()
+end, { desc = "Close all else", silent = true })
 
 -- Close floating windows with `<Esc>`
-vim.api.nvim_create_user_command("CloseFloats", function()
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		if vim.api.nvim_win_get_config(win).relative == "win" then
-			vim.api.nvim_win_close(win, false)
-		end
-	end
-end, {})
-k("n", "<Esc>", ":CloseFloats<CR>", { desc = "Close floats", silent = true })
+k("n", "<Esc>", function()
+	h.close_floats()
+end, { desc = "Close floats", silent = true })
