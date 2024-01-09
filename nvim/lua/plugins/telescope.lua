@@ -22,6 +22,8 @@ return {
 			return
 		end
 
+		-- TODO Telescope should close nvim-tree (or all floats?) when opening
+
 		-- TODO Menu for LSP actions/TSTools - maybe https://github.com/octarect/telescope-menu.nvim
 
 		return {
