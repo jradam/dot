@@ -3,7 +3,6 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	opts = {
 		-- FIXME opts not working
-		-- TODO implement a menu with all the tools/or setup shortcuts
 		tsserver_plugins = {
 			"@styled/typescript-styled-plugin",
 		},
