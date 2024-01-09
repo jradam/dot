@@ -2,6 +2,8 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
+		-- TODO Git colours don't update/reset to white after commit etc
+		-- FIXME this Refresh is a bit of a hack for the above
 		{ "<leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", desc = "explorer", silent = true },
 	},
 	opts = function()
@@ -35,8 +37,6 @@ return {
 			local function opts(desc)
 				return { desc = desc, buffer = bufnr }
 			end
-
-			-- TODO Git colours don't update/reset to white after commit etc
 
 			-- Custom
 			vim.keymap.set("n", "<Esc>", api.tree.close, opts("Close"))
