@@ -10,7 +10,7 @@ return {
 				width = 100,
 				scroll_speed = 9,
 				mirror = true,
-				preview_height = 0.7,
+				preview_height = 0.6,
 				preview_cutoff = 30, -- If window too small, don't show preview section
 			},
 			file_ignore_patterns = { "node_modules", "yarn.lock" },

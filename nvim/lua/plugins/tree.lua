@@ -62,6 +62,8 @@ return {
 				signcolumn = "no",
 				adaptive_size = true,
 				float = {
+					-- Avoids startup crash when running Terminal or Telescope
+					quit_on_focus_loss = false,
 					enable = true,
 					open_win_config = {
 						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 2,
@@ -105,7 +107,7 @@ return {
 	end,
 	init = function()
 		local function open_on_startup(data)
-			-- If we are starting in a file, do not open the tree
+			-- If we are not starting in a directory, do not open the tree
 			if not vim.fn.isdirectory(data.file) == 1 then
 				return
 			end
