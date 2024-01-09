@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "j-hui/fidget.nvim", opts = {} }, -- Shows LSP loading status
+		{ "folke/neodev.nvim", opts = {} }, -- Modifies lua_ls with Neovim development help
 	},
 	opts = {
 		diagnostics = {
@@ -43,8 +44,12 @@ return {
 
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
-			-- Make language server recognize "vim" global
-			settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+			settings = {
+				Lua = {
+					completion = { callSnippet = "Replace" }, -- Completion for function params
+					diagnostics = { globals = { "vim" } }, -- Make lsp recognize "vim" global
+				},
+			},
 		})
 
 		lspconfig["tailwindcss"].setup({
