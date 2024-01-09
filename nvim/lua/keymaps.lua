@@ -1,5 +1,8 @@
 local k = vim.keymap.set
 
+-- Disable
+k("n", "q", "<Nop>", { desc = "Disable recording" })
+
 -- Actions
 k("n", "<leader>w", ":w<CR>", { desc = "Write" })
 k("n", "<leader>q", ":q<CR>", { desc = "Quit" })
