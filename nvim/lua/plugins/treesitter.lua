@@ -4,6 +4,8 @@ return {
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 
+		-- TODO the errors here and throughout the project
+
 		configs.setup({
 			highlight = { enable = true },
 			ensure_installed = {

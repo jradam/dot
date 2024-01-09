@@ -13,6 +13,7 @@ k("n", "<leader>m", ":messages<CR>", { desc = "Show messages" })
 k("n", "<leader>a", "ggVG", { desc = "Select all" })
 k("v", "<C-c>", [["+y]], { desc = "System clip" })
 k("v", "<leader>r", [[:s/\%V//g<Left><Left><Left>]], { desc = "Replace" })
+k("n", "K", "i<space><left>", { desc = "Insert space" })
 
 -- Navigation
 k("n", "<Tab>", ":bn<CR>", { desc = "Next buffer", silent = true })

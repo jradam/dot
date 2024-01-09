@@ -11,7 +11,7 @@ o.shiftwidth = 2
 o.expandtab = true
 
 -- Persistent undo
-o.undodir = os.getenv("HOME") .. "/.nvim-undodir"
+o.undodir = { os.getenv("HOME") .. "/.nvim-undodir" }
 o.undofile = true
 
 -- Appearance

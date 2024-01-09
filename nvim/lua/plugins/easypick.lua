@@ -15,6 +15,8 @@ return {
 			return { pickers = { { name = "Not in top level of a Git repository", command = "" } } }
 		end
 
+		-- TODO deleted files can show as green until scrolled past and back again. diff_preview issue? Affects both local and main versions.
+
 		return {
 			pickers = {
 				{

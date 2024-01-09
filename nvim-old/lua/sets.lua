@@ -43,32 +43,31 @@ o.smartcase = true
 
 -- no comment continuation on `enter`
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  command = [[ setlocal formatoptions-=cro ]],
+	pattern = "*",
+	command = [[ setlocal formatoptions-=cro ]],
 })
 
 -- enter normal mode on focus loss, unless we are in a terminal
 vim.api.nvim_create_autocmd("FocusLost", {
-  pattern = "*",
-  command =
-  "lua (function() if vim.api.nvim_buf_get_option(0, 'buftype') ~= 'terminal' then vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true) end end)()",
+	pattern = "*",
+	command = "lua (function() if vim.api.nvim_buf_get_option(0, 'buftype') ~= 'terminal' then vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true) end end)()",
 })
 
 -- spelling for markdown files
 vim.api.nvim_create_autocmd("BufRead", {
-  pattern = "*.md",
-  command = [[ setlocal spell ]],
+	pattern = "*.md",
+	command = [[ setlocal spell ]],
 })
 
 -- open help in new buffer
 vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = "*",
-  callback = function(event)
-    local type = vim.bo[event.buf].filetype
+	pattern = "*",
+	callback = function(event)
+		local type = vim.bo[event.buf].filetype
 
-    if type == "help" or type == "markdown" then
-      vim.bo.buflisted = true -- unhide help from buffer list
-      vim.cmd.only()       -- put in new buffer
-    end
-  end,
+		if type == "help" or type == "markdown" then
+			vim.bo.buflisted = true -- unhide help from buffer list
+			vim.cmd.only() -- put in new buffer
+		end
+	end,
 })

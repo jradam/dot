@@ -56,8 +56,9 @@ return {
 					},
 				},
 
-				-- TODO Set up eslint formatting (and LSP?) to use own config if none found in project
+				-- TODO Set up eslint formatting and LSP to use own config if none found in project
 				-- https://github.com/3rd/linter
+				-- NOTE refine elsintrc as part of this
 			},
 		}
 	end,

@@ -47,6 +47,7 @@ return {
 			-- Defaults
 			vim.keymap.set("n", "a", api.fs.create, opts("Create"))
 			vim.keymap.set("n", "c", api.fs.copy.node, opts("Copy"))
+			-- TODO close the buffer first if open to avoid error
 			vim.keymap.set("n", "d", api.fs.remove, opts("Delete"))
 			vim.keymap.set("n", "p", api.fs.paste, opts("Paste"))
 			vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
