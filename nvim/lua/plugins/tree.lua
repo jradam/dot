@@ -132,7 +132,6 @@ return {
 		-- Autocommand to refresh NvimTree when it becomes the focused buffer
 		vim.api.nvim_create_autocmd("BufEnter", {
 			group = "NvimTreeAutoCmds",
-			pattern = "NvimTree_*",
 			callback = function()
 				-- Check if the current buffer is NvimTree
 				if vim.bo.filetype == "NvimTree" then
