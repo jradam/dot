@@ -30,7 +30,6 @@ return {
 				{
 					name = "Conflicts",
 					command = "git diff --name-only --diff-filter=U --relative",
-					-- TODO implement git conflict stuff and check this
 					previewer = easypick.previewers.file_diff(),
 				},
 			},
