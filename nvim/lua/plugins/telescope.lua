@@ -22,7 +22,17 @@ return {
 			return
 		end
 
-		-- TODO Telescope should close nvim-tree (or all floats?) when opening
+		-- Close floats to avoid files being opened in small windows
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "TelescopeFindPre",
+			callback = function()
+				for _, win in pairs(vim.api.nvim_list_wins()) do
+					if vim.api.nvim_win_get_config(win).relative ~= "" then
+						vim.api.nvim_win_close(win, false)
+					end
+				end
+			end,
+		})
 
 		-- TODO Menu for LSP actions/TSTools - maybe https://github.com/octarect/telescope-menu.nvim
 
