@@ -2,7 +2,7 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
-		{ "<leader>e", ":NvimTreeToggle<CR>", desc = "explorer", silent = true },
+		{ "<leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", desc = "explorer", silent = true },
 	},
 	opts = function()
 		local api = require("nvim-tree.api")
@@ -125,20 +125,6 @@ return {
 
 			require("nvim-tree.api").tree.open()
 		end
-
-		-- Create a new autocommand group for NvimTree, if not already created
-		vim.api.nvim_create_augroup("NvimTreeAutoCmds", { clear = true })
-
-		-- Autocommand to refresh NvimTree when it becomes the focused buffer
-		vim.api.nvim_create_autocmd("BufEnter", {
-			group = "NvimTreeAutoCmds",
-			callback = function()
-				-- Check if the current buffer is NvimTree
-				if vim.bo.filetype == "NvimTree" then
-					require("nvim-tree.api").tree.refresh()
-				end
-			end,
-		})
 
 		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_on_startup })
 	end,
