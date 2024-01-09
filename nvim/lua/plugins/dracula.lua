@@ -28,6 +28,10 @@ return {
 				-- Indent-blankline
 				Indent = { fg = c.bg },
 				IndentScope = { fg = c.selection },
+
+				-- Git-conflict
+				DiffCurrent = { bg = "#254C35" },
+				DiffIncoming = { bg = "#423857" },
 			},
 		}
 	end,
