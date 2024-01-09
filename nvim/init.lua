@@ -32,5 +32,6 @@ require("lazy").setup({
 
 -- Setup
 require("helpers")
-require("settings")
 require("keymaps")
+require("settings")
+require("utilities")

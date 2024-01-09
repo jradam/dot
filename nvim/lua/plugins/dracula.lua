@@ -24,6 +24,10 @@ return {
 				FlashCurrent = { fg = c.green },
 				FlashBackdrop = { fg = c.comment },
 				FlashLabel = { bg = c.selection, fg = c.orange },
+
+				-- Indent-blankline
+				Indent = { fg = c.bg },
+				IndentScope = { fg = c.selection },
 			},
 		}
 	end,

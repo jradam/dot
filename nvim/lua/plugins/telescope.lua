@@ -1,6 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	cmd = "Telescope", -- Needed for calling this from other plugins
+	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-symbols.nvim" },
 	opts = function()
 		local function on_enter(bufnr)
 			-- Close floats to avoid files being opened in small windows
@@ -64,6 +65,21 @@ return {
 					builtin.resume({ initial_mode = "normal" })
 				end,
 				desc = "Resume find",
+			},
+			{
+				"<leader>n",
+				function()
+					builtin.symbols({ initial_mode = "insert" })
+				end,
+				desc = "Insert symbol",
+			},
+			{
+				"<localleader>k",
+				function()
+					require("utilities").ts_quickfix()
+					builtin.quickfix()
+				end,
+				desc = "TS issue list",
 			},
 		}
 	end,
