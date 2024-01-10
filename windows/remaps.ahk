@@ -1,10 +1,10 @@
-; TODO this needs simplifying/tidying. Can we split into a few scripts?
+; TODO Rewrite in python or node.js
+; https://stackoverflow.com/questions/33863921/detecting-a-keypress-in-python-while-in-the-background
+; NOTE if not possible, at least rewrite in AHK1
 
 ; TODO how can we auto-install/sync the windows stuff? Want to edit files in here, then run something to sync over perhaps?
 
-; TODO possibly rewrite in AHK1
-
-; TODO add key for `alt + space` then `m`
+; TODO add key for `alt + space` then `m` for moving windows
 
 ; -------------------- Settings
 activate := "CapsLock"

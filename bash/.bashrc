@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO re-write bash scripts in python
+
 source $HOME/dotfiles/bash/bin/helpers.sh
 source $HOME/dotfiles/bash/bin/git.sh
 source $HOME/dotfiles/bash/bin/aliases.sh
