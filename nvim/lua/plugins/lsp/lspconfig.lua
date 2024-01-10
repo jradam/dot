@@ -38,6 +38,7 @@ return {
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local u = require("utilities")
 
 		-- Change the numberline error icons to colour highlights
 		for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
@@ -51,26 +52,13 @@ return {
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- TODO Set up eslint formatting and LSP to use own config if none found in project
-		-- NOTE refine elsintrc
-
-		-- TODO add a `yarn` in the `env/` dir to the bash install script
-		-- NOTE very useful https://github.com/3rd/linter
-
 		local servers = {
 			eslint = { -- Check `:LspLog` to debug
-				-- capabilities = vim.tbl_deep_extend("force", capabilities, {
-				-- 	workspace = { didChangeWorkspaceFolders = { dynamicRegistration = true } },
-				-- }),
-				-- settings = {
-				-- 	nodePath = vim.fn.stdpath("config") .. "/env/node_modules",
-				-- 	options = {
-				-- 		overrideConfigFile = vim.fn.stdpath("config") .. "/env/.eslintrc.json",
-				-- 		resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules",
-				-- 		-- NOTE maybe toggle this to true if found eslintrc in project?
-				-- 		useEslintrc = false, -- This prevents project-specific config
-				-- 	},
-				-- },
+				on_attach = u.eslint_setup,
+				capabilities = vim.tbl_deep_extend("force", capabilities, {
+					workspace = { didChangeWorkspaceFolders = { dynamicRegistration = true } },
+				}),
+				root_dir = lspconfig.util.root_pattern(".git", "package.json"),
 			},
 			jsonls = { capabilities = capabilities },
 			lua_ls = {

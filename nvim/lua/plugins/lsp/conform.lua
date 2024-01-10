@@ -14,15 +14,16 @@ return {
 		return {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "prettierd", "eslint_d" },
-				javascriptreact = { "prettierd", "eslint_d" },
-				typescript = { "prettierd", "eslint_d" },
-				typescriptreact = { "prettierd", "eslint_d" },
+				javascript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescript = { "prettierd" },
+				typescriptreact = { "prettierd" },
 				json = { "prettierd" },
 			},
 			format_on_save = function()
 				if vim.g.should_format then
-					return { lsp_fallback = true } -- Attempt LSP format if no formatters available
+					-- So LSP formatting (including eslint formatting) always runs
+					return { lsp_fallback = "always" }
 				end
 			end,
 			formatters = {
@@ -32,7 +33,6 @@ return {
 						PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/env/.prettierrc.json",
 					},
 				},
-				eslint_d = { env = { XDG_RUNTIME_DIR = XDG_RUNTIME_DIR } },
 			},
 		}
 	end,

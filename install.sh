@@ -79,6 +79,10 @@ npm login
 print "info" "Adding NPM token to secrets"
 echo "export NPM_TOKEN=$(awk -F= '{print $2}' $HOME/.npmrc)" >> $HOME/dotfiles/.env
 
+# FIXME untested
+print "info" "Initialising development environment"
+yarn --cwd $HOME/dotfiles/nvim/env/
+
 print "title" "USER ACTIONS"
 
 print "echo" "This needs to be copied into Gitlab (https://gitlab.com/-/profile/keys):"

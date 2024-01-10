@@ -18,7 +18,6 @@ return {
 		require("mason-tool-installer").setup({
 			-- Formatters
 			ensure_installed = {
-				"eslint_d",
 				"prettierd",
 				"stylua",
 			},

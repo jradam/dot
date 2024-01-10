@@ -56,4 +56,30 @@ function M.diff_preview(opts)
 	})
 end
 
+-- TODO add a `yarn` in the `env/` dir to the bash install script
+-- NOTE very useful https://github.com/3rd/linter
+-- https://github.com/3rd/config/blob/master/home/dotfiles/nvim/lua/modules/language-support/lsp.lua
+-- TODO tidy/simplify if possible eslint file
+
+function M.eslint_setup(client)
+	local sets = client.config.settings
+	local util = require("lspconfig").util
+
+	if sets.options == nil then
+		sets.options = {}
+	end
+
+	local local_eslint = util.root_pattern(".eslintrc.js", ".eslintrc.json")(vim.fn.getcwd())
+	if local_eslint then
+		sets.useEslintrc = true
+		sets.options.resolvePluginsRelativeTo = local_eslint
+	else
+		sets.useEslintrc = false
+		sets.options.overrideConfigFile = vim.fn.stdpath("config") .. "/env/.eslintrc.json"
+		sets.options.resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules"
+		-- TODO do we need this?
+		-- sets.nodePath = vim.fn.stdpath("config") .. "/env/node_modules"
+	end
+end
+
 return M
