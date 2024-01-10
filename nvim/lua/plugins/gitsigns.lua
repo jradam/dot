@@ -3,6 +3,7 @@ return {
 	opts = function()
 		local k = vim.keymap.set
 
+		-- TODO make Easypick for these. Can make it say, e.g. "Turn number highlighting off" when on, and "Turn number highlighting on" when off?
 		k("n", "<localleader>gg", ":Gitsigns toggle_numhl<CR>", { desc = "Toggle gitsigns" })
 		k("n", "<localleader>gc", ":Gitsigns change_base ", { desc = "Change gitsigns base" })
 		k("n", "<localleader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle blame" })
