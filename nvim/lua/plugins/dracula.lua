@@ -34,6 +34,9 @@ return {
 				-- Git-conflict
 				DiffCurrent = { bg = "#254C35" },
 				DiffIncoming = { bg = "#423857" },
+
+				-- Cmp
+				CompletionGhostText = { fg = c.selection },
 			},
 		}
 	end,

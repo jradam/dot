@@ -3,7 +3,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
 		-- Refresh ensures that git highlighting is up-to-date
-		{ "<leader>e", ":NvimTreeToggle<CR>:NvimTreeRefresh<CR>", desc = "Explorer", silent = true },
+		{ "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", silent = true },
 	},
 	opts = function()
 		local api = require("nvim-tree.api")
@@ -92,6 +92,7 @@ return {
 					git_placement = "signcolumn", -- Hides git icons, as `signcolumn` is not shown
 				},
 			},
+			update_focused_file = { enable = true }, -- Ensure current buffer is highlighted
 			filters = {
 				custom = { "^.git$" }, -- Don't show git files in the tree
 			},
