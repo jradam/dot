@@ -6,7 +6,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["unused-imports", "no-type-assertion", "react-hooks"],
+  "plugins": ["no-type-assertion", "react-hooks"],
   "settings": {
     "import/resolver": {
       "typescript": {},
@@ -17,7 +17,6 @@
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "max-len": ["warn", { "code": 95, "ignoreStrings": true, "ignoreTemplateLiterals": true }],
-    "unused-imports/no-unused-imports": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "@typescript-eslint/explicit-function-return-type": ["warn"],
     "@typescript-eslint/no-unnecessary-type-constraint": "off",
@@ -37,15 +36,6 @@
     "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "warn"
   }
