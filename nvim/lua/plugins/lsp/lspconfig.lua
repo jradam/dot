@@ -44,44 +44,42 @@ return {
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					completion = { callSnippet = "Replace" }, -- Completion for function params
-					diagnostics = { globals = { "vim" } }, -- Make lsp recognize "vim" global
-				},
-			},
-		})
-
-		lspconfig["tailwindcss"].setup({
-			capabilities = capabilities,
-		})
-
 		-- TODO Set up eslint formatting and LSP to use own config if none found in project
 		-- NOTE refine elsintrc
 
 		-- TODO add a `yarn` in the `env/` dir to the bash install script
 		-- NOTE very useful https://github.com/3rd/linter
-		-- TODO make notes yellow
-		lspconfig["eslint"].setup({ -- Check `:LspLog` to debug
-			-- capabilities = vim.tbl_deep_extend("force", capabilities, {
-			-- 	workspace = {
-			-- 		didChangeWorkspaceFolders = { dynamicRegistration = true },
-			-- 	},
-			-- }),
-			-- settings = {
-			-- 	nodePath = vim.fn.stdpath("config") .. "/env/node_modules",
-			-- 	options = {
-			-- 		overrideConfigFile = vim.fn.stdpath("config") .. "/env/.eslintrc.json",
-			-- 		resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules",
-			-- 		useEslintrc = false, -- This prevents project-specific config
-			-- 	},
-			-- },
-		})
 
-		lspconfig["jsonls"].setup({
-			capabilities = capabilities,
-		})
+		local servers = {
+			eslint = { -- Check `:LspLog` to debug
+				-- capabilities = vim.tbl_deep_extend("force", capabilities, {
+				-- 	workspace = { didChangeWorkspaceFolders = { dynamicRegistration = true } },
+				-- }),
+				-- settings = {
+				-- 	nodePath = vim.fn.stdpath("config") .. "/env/node_modules",
+				-- 	options = {
+				-- 		overrideConfigFile = vim.fn.stdpath("config") .. "/env/.eslintrc.json",
+				-- 		resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules",
+				-- 		-- NOTE maybe toggle this to true if found eslintrc in project?
+				-- 		useEslintrc = false, -- This prevents project-specific config
+				-- 	},
+				-- },
+			},
+			jsonls = { capabilities = capabilities },
+			lua_ls = {
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						completion = { callSnippet = "Replace" }, -- Completion for function params
+						diagnostics = { globals = { "vim" } }, -- Make lsp recognize "vim" global
+					},
+				},
+			},
+			tailwindcss = { capabilities = capabilities },
+		}
+
+		for server, config in pairs(servers) do
+			lspconfig[server].setup(config)
+		end
 	end,
 }
