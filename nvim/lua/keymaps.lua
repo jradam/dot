@@ -8,6 +8,8 @@ k("n", "q", "<Nop>", { desc = "Disable recording" })
 k("n", "<leader>w", ":w<CR>", { desc = "Write" })
 k("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 k("n", "<leader>m", ":messages<CR>", { desc = "Show messages" })
+k("n", "c", ":noh<cr>", { desc = "Clear highlights" })
+k("n", "C", ":edit<cr>:LspRestart<cr>", { desc = "Restart buffer" })
 
 -- Text manipulation
 k("n", "<leader>a", "ggVG", { desc = "Select all" })

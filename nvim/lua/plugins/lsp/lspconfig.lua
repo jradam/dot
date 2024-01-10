@@ -14,12 +14,19 @@ return {
 		hover = { border = "rounded" },
 	},
 	keys = function()
+		local go_prev = function()
+			vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+		end
+		local go_next = function()
+			vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+		end
+
 		return {
 			{ "<localleader>i", vim.lsp.buf.hover, desc = "Show info" },
 			{ "<localleader>e", vim.diagnostic.open_float, desc = "Show errors" },
 			{ "<localleader>r", vim.lsp.buf.rename, desc = "Rename" },
-			{ "<localleader>p", vim.diagnostic.goto_prev, desc = "Go to previous" },
-			{ "<localleader>n", vim.diagnostic.goto_next, desc = "Go to next" },
+			{ "<localleader>p", go_prev, desc = "Go to previous" },
+			{ "<localleader>n", go_next, desc = "Go to next" },
 			{ "<localleader>u", "<cmd>Telescope lsp_references<CR>", desc = "List references" },
 			-- TODO make these an Easypick
 			{ "<localleader>d", "<cmd>TSToolsAddMissingImports<CR>", desc = "TS add imports" },
