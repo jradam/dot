@@ -13,6 +13,7 @@ return {
 
 		return {
 			disable_diagnostics = true,
+			list_opener = "Telescope",
 			highlights = {
 				current = "DiffCurrent",
 				incoming = "DiffIncoming",
