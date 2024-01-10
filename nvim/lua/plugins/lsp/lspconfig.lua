@@ -25,6 +25,7 @@ return {
 			{ "<localleader>i", vim.lsp.buf.hover, desc = "Show info" },
 			{ "<localleader>e", vim.diagnostic.open_float, desc = "Show errors" },
 			{ "<localleader>r", vim.lsp.buf.rename, desc = "Rename" },
+			{ "<localleader>a", vim.lsp.buf.code_action, desc = "Code actions" },
 			{ "<localleader>p", go_prev, desc = "Go to previous" },
 			{ "<localleader>n", go_next, desc = "Go to next" },
 			{ "<localleader>u", "<cmd>Telescope lsp_references<CR>", desc = "List references" },
