@@ -11,30 +11,14 @@ return {
 			print("Formatting set to " .. tostring(vim.g.should_format))
 		end, { desc = "Toggle format" })
 
-		-- JavaScript formatting function
-		local function javascript()
-			local eslintrc_files = vim.fn.glob(vim.fn.getcwd() .. "/.eslintrc*", false, true)
-
-			if #eslintrc_files > 0 then
-				return { "prettierd", "eslint_d" }
-			else
-				return { "prettierd" }
-			end
-		end
-
-		-- TypeScript formatting function
-		local function typescript()
-			vim.cmd("TSToolsOrganizeImports")
-			return javascript()
-		end
-
 		return {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = javascript,
-				javascriptreact = javascript,
-				typescript = typescript,
-				typescriptreact = typescript,
+				javascript = { "prettierd", "eslint_d" },
+				javascriptreact = { "prettierd", "eslint_d" },
+				typescript = { "prettierd", "eslint_d" },
+				typescriptreact = { "prettierd", "eslint_d" },
+				json = { "prettierd" },
 			},
 			format_on_save = function()
 				if vim.g.should_format then
@@ -45,20 +29,10 @@ return {
 				prettierd = {
 					env = {
 						XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
-						PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(
-							os.getenv("HOME") .. "/.config/nvim/.config/.prettierrc.json"
-						),
+						PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/env/.prettierrc.json",
 					},
 				},
-				eslint_d = {
-					env = {
-						XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
-					},
-				},
-
-				-- TODO Set up eslint formatting and LSP to use own config if none found in project
-				-- https://github.com/3rd/linter
-				-- NOTE refine elsintrc as part of this
+				eslint_d = { env = { XDG_RUNTIME_DIR = XDG_RUNTIME_DIR } },
 			},
 		}
 	end,

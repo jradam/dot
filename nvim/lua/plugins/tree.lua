@@ -82,7 +82,6 @@ return {
 						"dist",
 						"build",
 						".local",
-						".config",
 					},
 				},
 				change_dir = { restrict_above_cwd = true },
@@ -104,6 +103,8 @@ return {
 	end,
 	init = function()
 		local function open_on_startup(data)
+			-- TODO this still opens when opening single file, presumably if we fix then we can remove git commit one below too
+
 			-- If we are not starting in a directory, do not open the tree
 			if not vim.fn.isdirectory(data.file) == 1 then
 				return

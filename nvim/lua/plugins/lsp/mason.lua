@@ -12,6 +12,7 @@ return {
 				"eslint",
 				"lua_ls",
 				"tailwindcss",
+				"jsonls",
 			},
 		})
 		require("mason-tool-installer").setup({

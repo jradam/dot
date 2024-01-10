@@ -21,9 +21,11 @@ return {
 			{ "<localleader>p", vim.diagnostic.goto_prev, desc = "Go to previous" },
 			{ "<localleader>n", vim.diagnostic.goto_next, desc = "Go to next" },
 			{ "<localleader>u", "<cmd>Telescope lsp_references<CR>", desc = "List references" },
+			-- TODO make these an Easypick
 			{ "<localleader>d", "<cmd>TSToolsAddMissingImports<CR>", desc = "TS add imports" },
 			{ "<localleader>R", "<cmd>TSToolsRenameFile<CR>", desc = "TS rename file" },
 			{ "<localleader>f", "<cmd>TSToolsFixAll<CR>", desc = "TS fix all" },
+			{ "<localleader>o", "<cmd>TSToolsOrganizeImports<CR>", desc = "TS organise imports" },
 		}
 	end,
 	config = function(_, opts)
@@ -56,7 +58,29 @@ return {
 			capabilities = capabilities,
 		})
 
-		lspconfig["eslint"].setup({
+		-- TODO Set up eslint formatting and LSP to use own config if none found in project
+		-- NOTE refine elsintrc
+
+		-- TODO add a `yarn` in the `env/` dir to the bash install script
+		-- NOTE very useful https://github.com/3rd/linter
+		-- TODO make notes yellow
+		lspconfig["eslint"].setup({ -- Check `:LspLog` to debug
+			-- capabilities = vim.tbl_deep_extend("force", capabilities, {
+			-- 	workspace = {
+			-- 		didChangeWorkspaceFolders = { dynamicRegistration = true },
+			-- 	},
+			-- }),
+			-- settings = {
+			-- 	nodePath = vim.fn.stdpath("config") .. "/env/node_modules",
+			-- 	options = {
+			-- 		overrideConfigFile = vim.fn.stdpath("config") .. "/env/.eslintrc.json",
+			-- 		resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules",
+			-- 		useEslintrc = false, -- This prevents project-specific config
+			-- 	},
+			-- },
+		})
+
+		lspconfig["jsonls"].setup({
 			capabilities = capabilities,
 		})
 	end,
