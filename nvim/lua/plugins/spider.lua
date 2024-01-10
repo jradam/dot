@@ -1,0 +1,23 @@
+return {
+	-- TODO do we want this? Old config below
+	-- "chrisgrieser/nvim-spider",
+	-- config = function()
+	-- 	local k = vim.keymap.set
+	--
+	-- 	k({ "n", "o", "x" }, "w", function()
+	-- 		require("spider").motion("w")
+	-- 	end, { desc = "Spider-w" })
+	--
+	-- 	k({ "n", "o", "x" }, "e", function()
+	-- 		require("spider").motion("e")
+	-- 	end, { desc = "Spider-e" })
+	--
+	-- 	k({ "n", "o", "x" }, "b", function()
+	-- 		require("spider").motion("b")
+	-- 	end, { desc = "Spider-b" })
+	--
+	-- 	k({ "n", "o", "x" }, "ge", function()
+	-- 		require("spider").motion("ge")
+	-- 	end, { desc = "Spider-ge" })
+	-- end,
+}

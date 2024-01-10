@@ -35,5 +35,3 @@ require("helpers")
 require("keymaps")
 require("settings")
 require("utilities")
-
--- TODO Review old repo before removing completely

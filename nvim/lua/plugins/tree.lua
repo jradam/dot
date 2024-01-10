@@ -36,7 +36,7 @@ return {
 
 			-- Custom
 			vim.keymap.set("n", "<Esc>", api.tree.close, opts("Close"))
-			vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))
+			vim.keymap.set("n", "<CR>", open_in_same, opts("Open")) -- TODO this not working?
 			vim.keymap.set("n", "e", function()
 				multi(api.tree.get_node_under_cursor())
 			end, opts("Multi"))

@@ -8,6 +8,8 @@ return {
 
 		configs.setup({
 			highlight = { enable = true },
+			-- TODO can try turning this on if tsx file indentation is going wrong
+			-- indent = { enable = true },
 			ensure_installed = {
 				"bash",
 				"css",
@@ -17,8 +19,10 @@ return {
 				"lua",
 				"markdown",
 				"markdown_inline",
+				"regex",
 				"tsx",
 				"typescript",
+				"vim",
 				"vimdoc",
 				"yaml",
 			},

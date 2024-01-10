@@ -9,7 +9,16 @@ return {
 			require("telescope.actions").select_default(bufnr)
 		end
 
+		-- TODO should there be a key to quit telescope immediately, even in insert mode?
+
 		return {
+			pickers = {
+				find_files = {
+					-- Search hidden/dotfiles but not git files
+					find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+				},
+			},
+
 			defaults = {
 				initial_mode = "normal",
 				layout_strategy = "vertical",
@@ -22,6 +31,12 @@ return {
 					preview_cutoff = 30, -- If window too small, don't show preview
 				},
 				file_ignore_patterns = { "node_modules", "yarn.lock" },
+				-- TODO make enter replace buffer and e open in new like the tree?
+				-- ["<cr>"] = actions.select_default,
+				-- ["e"] = actions.select_default,
+				-- ["d"] = actions.delete_buffer,
+				-- ["q"] = actions.close,
+
 				mappings = {
 					i = { ["<CR>"] = on_enter },
 					n = { ["<CR>"] = on_enter },
@@ -54,6 +69,30 @@ return {
 				"<leader>t",
 				":TodoTelescope<CR>",
 				desc = "Find todo",
+			},
+			{ "<leader>l", ":TodoTelescope keywords=", desc = "Filter todo" },
+			{
+				"<leader>b",
+				function()
+					builtin.buffers()
+				end,
+				desc = "View buffers",
+			},
+			{
+				"<leader>d",
+				function()
+					builtin.diagnostics({
+						severity = { min = vim.diagnostic.severity.WARN },
+					})
+				end,
+				desc = "Diagnostics",
+			},
+			{
+				"<leader>h",
+				function()
+					builtin.help_tags({ initial_mode = "insert" })
+				end,
+				desc = "Get help",
 			},
 			{
 				"<leader>r",
