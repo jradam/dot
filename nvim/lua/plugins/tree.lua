@@ -62,8 +62,7 @@ return {
 				adaptive_size = true,
 				float = {
 					enable = true,
-					-- Avoids startup crash when running Terminal or Telescope
-					quit_on_focus_loss = false,
+					quit_on_focus_loss = false, -- Avoids a startup crash when opening a float
 					open_win_config = {
 						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 2,
 						row = 0,
@@ -90,15 +89,16 @@ return {
 			renderer = {
 				highlight_git = true,
 				icons = {
-					-- Hides the git icons, as `signcolumn` is not shown
-					git_placement = "signcolumn",
+					git_placement = "signcolumn", -- Hides git icons, as `signcolumn` is not shown
 				},
 			},
 			filters = {
-				-- Don't show git files in the tree
-				custom = { "^.git$" },
+				custom = { "^.git$" }, -- Don't show git files in the tree
 			},
-			git = { show_on_open_dirs = false },
+			git = {
+				show_on_open_dirs = false,
+				ignore = false, -- Stop gitignored files and folders from being hidden
+			},
 		}
 	end,
 	init = function()
