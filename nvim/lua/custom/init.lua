@@ -1,12 +1,27 @@
--- Buff Captain
+-- Buf Captain
 -- A NeoVim plugin to manage your buffers
 
+-- TODO turn this into a proper plugin
+-- TODO make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
+-- TODO add diagnostic colors
+-- TODO make ESC also trigger buf_cpt?
+-- TODO add in path bit before / if this buffer has same name as another buffer
+
+-- TODO sorting
+-- make new buffers always open at end of list (or, optionally at start of list)
+-- add shortcuts for moving selected buffer left or right in list
+-- add option to keep buffers sorted alphabetically
+-- add option to keep buffers sorted by time open
+
 -- User options
-local MAX_NAME_LENGTH = 10
+local MAX_NAME_LENGTH = 15
 local SHOW_EXTENSIONS = false
 local CURRENT_HIGHLIGHT = "#FFFFA5"
 local OTHER_HIGHLIGHT = "#FFB86C"
-local COMPENSATION = 12 -- Reduce until no "..." in message when running test funtion
+local COMPENSATION = 12 -- Run the included test function to find out what this should be
+local MAX_STRING = " ... "
+local LEFT_BRACKET = "["
+local RIGHT_BRACKET = "]"
 
 -- User keymaps
 local NEXT_BUFFER = "<Tab>"
@@ -21,38 +36,44 @@ vim.cmd([[ highlight BufCptCurrent guifg=]] .. CURRENT_HIGHLIGHT .. [[ ]])
 vim.cmd([[ highlight BufCptOther guifg=]] .. OTHER_HIGHLIGHT .. [[ ]])
 
 -- Main function
-local function buf_cmd()
-	local buf_list = vim.api.nvim_list_bufs()
-	local buf_table = {}
-	local buf_current = vim.api.nvim_get_current_buf()
-	local total_length = 0
-	local at_max_buf = false
+local function buf_cpt()
 	local cmd_max = vim.o.columns - COMPENSATION
+	local buf_table = {}
+	local total_length = 0
+	local reached_max = false
 
-	for _, buf in ipairs(buf_list) do
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.bo[buf].buflisted then
 			local name_modifier = SHOW_EXTENSIONS and ":t" or ":t:r"
-			local this_buf = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), name_modifier)
+			local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), name_modifier)
+
+			-- Use a dash for unnamed buffers
+			buf_name = buf_name == "" and "-" or buf_name
 
 			-- Limit name length to MAX_NAME_LENGTH
-			if this_buf and #this_buf > MAX_NAME_LENGTH then
-				this_buf = string.sub(this_buf, 1, MAX_NAME_LENGTH - 1)
-				this_buf = this_buf .. "…"
+			if buf_name and #buf_name > MAX_NAME_LENGTH then
+				buf_name = string.sub(buf_name, 1, MAX_NAME_LENGTH - 1)
+				buf_name = buf_name .. "…"
 			end
 
-			if this_buf then
-				local this_buffer = buf == buf_current and "[" .. this_buf .. "]" or " " .. this_buf .. " "
-				local display_length = #this_buffer
+			-- Find out if this is the current buf, add characters if so
+			local is_current = buf == vim.api.nvim_get_current_buf()
+			if is_current then
+				buf_name = LEFT_BRACKET .. buf_name .. RIGHT_BRACKET
+			else
+				buf_name = string.rep(" ", #LEFT_BRACKET) .. buf_name .. string.rep(" ", #RIGHT_BRACKET)
+			end
 
-				local new_length = total_length + display_length
+			-- Keep track of our length
+			local new_length = total_length + #buf_name
 
-				if new_length < (cmd_max - 9) and not at_max_buf then
-					table.insert(buf_table, { this_buffer, buf == buf_current and "BufCptCurrent" or "BufCptOther" })
-					total_length = new_length
-				else
-					if at_max_buf == false then
-						table.insert(buf_table, { " ... ", "BufCmdOther" })
-					end
+			if new_length < (cmd_max - #MAX_STRING) then
+				table.insert(buf_table, { buf_name, is_current and "BufCptCurrent" or "BufCptOther" })
+				total_length = new_length
+			else
+				if not reached_max then
+					table.insert(buf_table, { MAX_STRING, "BufCptOther" })
+					reached_max = true
 				end
 			end
 		end
@@ -61,25 +82,25 @@ local function buf_cmd()
 	vim.api.nvim_echo(buf_table, false, {})
 end
 
-vim.api.nvim_create_autocmd({ "CursorMoved" }, { pattern = "*", callback = buf_cmd })
+-- Listen for cursor moves and update
+vim.api.nvim_create_autocmd({ "CursorMoved" }, { pattern = "*", callback = buf_cpt })
 
 -- Controls
-
 local function next()
 	vim.cmd(":bn")
-	buf_cmd()
+	buf_cpt()
 end
 k("n", NEXT_BUFFER, next, { desc = "Next buffer", silent = true })
 
 local function previous()
 	vim.cmd(":bp")
-	buf_cmd()
+	buf_cpt()
 end
 k("n", PREV_BUFFER, previous, { desc = "Prev buffer", silent = true })
 
 local function close()
 	vim.cmd(":bd")
-	buf_cmd()
+	buf_cpt()
 end
 k("n", CLOSE_BUFFER, close, { desc = "Close buffer", silent = true })
 
@@ -92,10 +113,13 @@ k("n", CLOSE_OTHERS, function()
 			end
 		end
 	end
-	buf_cmd()
+	buf_cpt()
 end, { desc = "Close others", silent = true })
 
 -- Testing
+-- This test finds the max message length Buf Captain can send to this particular user's command line before triggering the "Press ENTER to continue" prompt.
+-- Starting at full width minus some big number (vim.o.columns - NUMBER), we decrease the size of NUMBER until the prompt triggers.
+-- The final value plus one (since we want the one just before the prompt was triggered) becomes the recommended COMPENSATION setting for the user.
 local function test_compensation()
 	local function test_echo(number)
 		local description = "DO NOT press ENTER. You should set COMPENSATION to: "
@@ -106,7 +130,7 @@ local function test_compensation()
 	end
 
 	local function process_test(number)
-		if number < 1 then
+		if number < 0 then
 			return
 		end
 
@@ -114,7 +138,7 @@ local function test_compensation()
 		process_test(number - 1)
 	end
 
-	process_test(50)
+	process_test(500)
 end
 
 k("n", RUN_COMPENSATION_TEST, test_compensation, { desc = "Test", silent = true })
