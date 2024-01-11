@@ -1,4 +1,4 @@
--- Buf Captain
+-- Buf Captain: a minimalist's alternative to bufferline
 -- A NeoVim plugin to manage your buffers
 
 -- TODO turn this into a proper plugin
