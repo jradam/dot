@@ -42,32 +42,32 @@ o.updatetime = 1000
 
 -- Remove comment continuation
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  command = [[ setlocal formatoptions-=cro ]],
+	pattern = "*",
+	command = [[ setlocal formatoptions-=cro ]],
 })
 
 -- Send `<Esc>` on focus loss to enter normal mode
 vim.api.nvim_create_autocmd("FocusLost", {
-  pattern = "*",
-  command = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)",
+	pattern = "*",
+	command = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)",
 })
 
 -- Open help files in a new buffer
 vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = "*",
-  callback = function(event)
-    local type = vim.bo[event.buf].filetype
+	pattern = "*",
+	callback = function(event)
+		local type = vim.bo[event.buf].filetype
 
-    if type == "help" or type == "markdown" then
-      -- Unhide and put in own buffer
-      vim.bo.buflisted = true
-      vim.cmd.only()
-    end
-  end,
+		if type == "help" or type == "markdown" then
+			-- Unhide and put in own buffer
+			vim.bo.buflisted = true
+			vim.cmd.only()
+		end
+	end,
 })
 
 -- Spelling for markdown files
 vim.api.nvim_create_autocmd("BufRead", {
-  pattern = "*.md",
-  command = [[ setlocal spell ]],
+	pattern = "*.md",
+	command = [[ setlocal spell ]],
 })
