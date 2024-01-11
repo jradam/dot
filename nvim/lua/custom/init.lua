@@ -19,7 +19,6 @@ local RUN_COMPENSATION_TEST = "<leader>i"
 local k = vim.keymap.set
 vim.cmd([[ highlight BufCptCurrent guifg=]] .. CURRENT_HIGHLIGHT .. [[ ]])
 vim.cmd([[ highlight BufCptOther guifg=]] .. OTHER_HIGHLIGHT .. [[ ]])
-vim.cmd([[ highlight BufCptTestHighlight guifg=#F1FA8C guibg=#282A36 ]])
 
 -- Main function
 local function buf_cmd()
@@ -96,104 +95,26 @@ k("n", CLOSE_OTHERS, function()
 	buf_cmd()
 end, { desc = "Close others", silent = true })
 
+-- Testing
 local function test_compensation()
-	local function spin_echo(string)
-		vim.api.nvim_echo({ { " " .. string .. " ", "BufCptTestHighlight" } }, false, {})
-	end
-
 	local function test_echo(number)
-		local description = "[ Compensation: " .. number .. " ] -> "
-		local characters = string.rep("X", vim.o.columns - number - #description)
-		spin_echo(description .. characters)
+		local description = "DO NOT press ENTER. You should set COMPENSATION to: "
+			.. (number + 1)
+			.. ". Press ESC to close."
+		local characters = string.rep(" ", vim.o.columns - number - #description)
+		vim.api.nvim_echo({ { (description .. characters) } }, false, {})
 	end
 
-	local user_info = {
-		"This test will only take a few seconds",
-		-- "We will print a few lines of characters",
-		-- 'As soon as "..." disappears from the characters',
-		-- "Make a note of your compensation number",
-	}
-
-	local test_numbers = {}
-	for i = 10, 15 do
-		table.insert(test_numbers, i)
-	end
-
-	local function spin(string, callback)
-		local spinner = { "[  ]", "[- ]", "[--]" }
-		local spinner_index = 1
-		local spinner_timer = vim.loop.new_timer()
-		local speed_ms = 1000
-		local expiry_ms = vim.loop.now() + 3000
-
-		spinner_timer:start(
-			0,
-			speed_ms,
-			vim.schedule_wrap(function()
-				if vim.loop.now() >= expiry_ms then
-					spinner_timer:stop()
-					spinner_timer:close()
-					if callback then
-						callback()
-					end
-					return
-				end
-				spin_echo(spinner[spinner_index] .. " " .. string)
-				vim.cmd("redraw")
-				spinner_index = (spinner_index % #spinner) + 1
-			end)
-		)
-	end
-
-	local function test(number, callback)
-		local testing_timer = vim.loop.new_timer()
-		local delay_ms = 1500
-
-		testing_timer:start(
-			delay_ms,
-			0,
-			vim.schedule_wrap(function()
-				test_echo(number)
-				testing_timer:stop()
-				testing_timer:close()
-				if callback then
-					callback()
-				end
-			end)
-		)
-	end
-
-	local function process_spin(messages, process_callback, index)
-		index = index or 1
-		if index > #messages then
-			if process_callback then
-				process_callback()
-				return
-			else
-				return
-			end
-		end
-
-		spin(messages[index], function()
-			process_spin(messages, process_callback, index + 1)
-		end)
-	end
-
-	local function process_test(messages, index)
-		index = index or 1
-		if index > #messages then
-			print("Test complete")
+	local function process_test(number)
+		if number < 1 then
 			return
 		end
 
-		test(messages[index], function()
-			process_test(messages, index + 1)
-		end)
+		test_echo(number)
+		process_test(number - 1)
 	end
 
-	process_spin(user_info, function()
-		process_test(test_numbers)
-	end)
+	process_test(50)
 end
 
 k("n", RUN_COMPENSATION_TEST, test_compensation, { desc = "Test", silent = true })
