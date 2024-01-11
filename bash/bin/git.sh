@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO don't allow commits less than two words
+
 source "$HOME/dotfiles/bash/lib/colors.sh"
 
 # Print and run git commands
