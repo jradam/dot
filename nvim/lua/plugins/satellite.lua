@@ -1,4 +1,5 @@
 return {
-	"lewis6991/satellite.nvim",
-	opts = { handlers = { cursor = { enable = false } } }, -- Mouse clicks cause crash
+	-- TODO the below does not fix the crashes
+	-- "lewis6991/satellite.nvim",
+	-- opts = { handlers = { cursor = { enable = false } } }, -- Mouse clicks cause crash
 }
