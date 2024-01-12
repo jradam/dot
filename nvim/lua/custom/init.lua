@@ -6,6 +6,7 @@
 -- TODO add diagnostic colors
 -- TODO make ESC also trigger buf_cpt?
 -- TODO add in path bit before / if this buffer has same name as another buffer
+-- TODO add indicator or color to indicate changes in buffer
 
 -- TODO sorting
 -- make new buffers always open at end of list (or, optionally at start of list)

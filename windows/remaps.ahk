@@ -1,6 +1,6 @@
 ; TODO Rewrite in python or node.js
+; if not possible, at least rewrite in AHK1
 ; https://stackoverflow.com/questions/33863921/detecting-a-keypress-in-python-while-in-the-background
-; NOTE if not possible, at least rewrite in AHK1
 
 ; TODO how can we auto-install/sync the windows stuff? Want to edit files in here, then run something to sync over perhaps?
 

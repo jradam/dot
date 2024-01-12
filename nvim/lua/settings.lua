@@ -5,6 +5,7 @@ o.number = true
 o.relativenumber = true
 o.numberwidth = 3
 
+-- TODO add tpope/vim-sleuth?
 -- Indentation
 o.tabstop = 2
 o.shiftwidth = 2
@@ -70,4 +71,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 vim.api.nvim_create_autocmd("BufRead", {
 	pattern = "*.md",
 	command = [[ setlocal spell ]],
+})
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	pattern = "*",
 })

@@ -17,6 +17,8 @@ return {
 
 		-- TODO deleted files can show as green until scrolled past and back again. diff_preview issue? Affects both local and main versions.
 
+		-- TODO make an Easypick with the output of :highlight
+
 		return {
 			pickers = {
 				{
