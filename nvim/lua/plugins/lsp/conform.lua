@@ -4,8 +4,6 @@ return {
 		-- Fixes issue with default XDG_RUNTIME_DIR being inaccessible
 		local XDG_RUNTIME_DIR = os.getenv("HOME") .. "/.temp-conform"
 
-		-- TODO make it so errors dont stop workflow with a required Enter keypress!
-
 		-- Toggle formatting on save
 		vim.g.should_format = true
 		vim.keymap.set("n", "<leader>W", function()
@@ -40,6 +38,7 @@ return {
 		return {
 			formatters_by_ft = formatters_by_ft,
 			format_on_save = format_on_save,
+			notify_on_error = false,
 			formatters = {
 				prettierd = {
 					env = {
