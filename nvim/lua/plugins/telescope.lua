@@ -27,8 +27,7 @@ return {
 					width = 100,
 					scroll_speed = 9,
 					mirror = true,
-					-- TODO: Causes crashing with Easypick, but want to remove Easypick anyway
-					-- preview_height = 0.65,
+					preview_height = 0.65,
 					preview_cutoff = 30, -- If window too small, don't show preview
 				},
 				file_ignore_patterns = { "node_modules", "yarn.lock" },
@@ -113,6 +112,7 @@ return {
 				"<localleader>k",
 				function()
 					require("utilities").ts_quickfix()
+					-- TODO if no results, tell user
 					builtin.quickfix()
 				end,
 				desc = "TS issue list",
