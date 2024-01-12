@@ -27,7 +27,8 @@ return {
 					width = 100,
 					scroll_speed = 9,
 					mirror = true,
-					preview_height = 0.65,
+					-- TODO: Causes crashing with Easypick, but want to remove Easypick anyway
+					-- preview_height = 0.65,
 					preview_cutoff = 30, -- If window too small, don't show preview
 				},
 				file_ignore_patterns = { "node_modules", "yarn.lock" },

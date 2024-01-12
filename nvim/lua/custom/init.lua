@@ -13,8 +13,12 @@
 -- add option to keep buffers sorted by time open
 -- add option to show hidden buffers on right side?
 
+-- TODO: Add loader so can reload quickly when developing...
+-- local loader = require("lazy.core.loader")
+-- loader.reload("easypick.nvim")
+
 -- User options
-local MAX_NAME_LENGTH = 15
+local MAX_NAME_LENGTH = 20
 local SHOW_EXTENSIONS = false
 local CURRENT_HIGHLIGHT = "#FFFFA5"
 local OTHER_HIGHLIGHT = "#FFB86C"
