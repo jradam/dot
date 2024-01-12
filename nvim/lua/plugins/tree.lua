@@ -86,7 +86,7 @@ return {
 				end
 			end
 
-			-- -- If we are starting in a git commit, do not open the tree
+			-- If we are starting in a git commit, do not open the tree
 			-- if vim.bo.filetype == "gitcommit" then
 			-- 	return
 			-- end
