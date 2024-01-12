@@ -4,56 +4,7 @@ return {
 	keys = { { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", silent = true } },
 	opts = function()
 		local api = require("nvim-tree.api")
-		local toggle = 0
-
-		local function multi(node)
-			if node.type == nil then
-				if toggle == 0 then
-					api.tree.expand_all()
-					toggle = 1
-				else
-					api.tree.collapse_all()
-					toggle = 0
-				end
-			else
-				api.node.open.edit()
-			end
-		end
-
-		local function open_in_same()
-			local node = api.tree.get_node_under_cursor()
-			if node and node.type == "file" then
-				api.tree.close()
-				local current_buf = vim.api.nvim_get_current_buf()
-				vim.api.nvim_command("bdelete " .. current_buf)
-				vim.api.nvim_command("edit " .. node.absolute_path)
-			end
-		end
-
-		local function close_unless_last()
-			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-				if vim.bo[buf].buflisted then
-					api.tree.close()
-					break
-				end
-			end
-		end
-
-		-- FIXME
-		local function safe_delete()
-			local node = api.tree.get_node_under_cursor()
-			if node then
-				local confirm_msg = "Are you sure you want to delete '" .. node.name .. "'? (y/n)"
-				if vim.fn.confirm(confirm_msg, "&Yes\n&No", 2) == 1 then
-					local success, err = pcall(api.fs.remove, { node = node })
-					if not success then
-						vim.notify("Error deleting file: " .. err, vim.log.levels.ERROR)
-					else
-						api.tree.refresh()
-					end
-				end
-			end
-		end
+		local u = require("utilities")
 
 		local function on_attach(bufnr)
 			local function opts(desc)
@@ -61,14 +12,13 @@ return {
 			end
 
 			-- Custom
-			vim.keymap.set("n", "<Tab>", close_unless_last, opts("Close"))
-			vim.keymap.set("n", "<Esc>", close_unless_last, opts("Close"))
-			vim.keymap.set("n", "<CR>", open_in_same, opts("Open"))
+			vim.keymap.set("n", "<Tab>", u.close_unless_last, opts("Close"))
+			vim.keymap.set("n", "<Esc>", u.close_unless_last, opts("Close"))
+			vim.keymap.set("n", "<CR>", u.open_in_same, opts("Open"))
 			vim.keymap.set("n", "e", function()
-				multi(api.tree.get_node_under_cursor())
+				u.multi(api.tree.get_node_under_cursor())
 			end, opts("Multi"))
-			-- TODO close the buffer first if open to avoid error
-			vim.keymap.set("n", "d", safe_delete, opts("Delete"))
+			vim.keymap.set("n", "d", u.safe_delete, opts("Delete"))
 
 			-- Defaults
 			vim.keymap.set("n", "a", api.fs.create, opts("Create"))

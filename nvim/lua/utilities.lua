@@ -26,7 +26,7 @@ function M.ts_quickfix()
 	vim.fn.setqflist(ts_errors)
 end
 
--- Custom diff preview for Easypick
+-- Easypick custom diff preview
 function M.diff_preview(opts)
 	local previewers = require("telescope.previewers")
 	local putils = require("telescope.previewers.utils")
@@ -79,6 +79,81 @@ function M.eslint_setup(client)
 		sets.options.resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules"
 		-- TODO do we need this?
 		-- sets.nodePath = vim.fn.stdpath("config") .. "/env/node_modules"
+	end
+end
+
+-- Nvim-tree helpers
+local api = require("nvim-tree.api")
+local toggle = 0
+
+-- Nvim-tree multifunction for expanding folders and opening files
+function M.multi(node)
+	if node.type == nil then
+		if toggle == 0 then
+			api.tree.expand_all()
+			toggle = 1
+		else
+			api.tree.collapse_all()
+			toggle = 0
+		end
+	else
+		api.node.open.edit()
+	end
+end
+
+-- Nvim-tree replace the open buffer with the one we are opening
+function M.open_in_same()
+	local node = api.tree.get_node_under_cursor()
+	if node and node.type == "file" then
+		api.tree.close()
+		local current_buf = vim.api.nvim_get_current_buf()
+		vim.api.nvim_command("bdelete " .. current_buf)
+		vim.api.nvim_command("edit " .. node.absolute_path)
+	end
+end
+
+-- Nvim-tree do not close the tree if it is the last thing open
+function M.close_unless_last()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.bo[buf].buflisted then
+			api.tree.close()
+			break
+		end
+	end
+end
+
+-- Nvim-tree if we try to delete an open buffer, close it first to avoid an error
+function M.safe_delete()
+	local node = api.tree.get_node_under_cursor()
+
+	if node and node.type == "file" then
+		local open_buffers = vim.api.nvim_list_bufs()
+		local node_path = node.absolute_path
+		local buffer_to_close = nil
+		local listed_buffer_count = 0
+
+		for _, buf in ipairs(open_buffers) do
+			if vim.bo[buf].buflisted then
+				listed_buffer_count = listed_buffer_count + 1
+			end
+			if vim.api.nvim_buf_get_name(buf) == node_path then
+				buffer_to_close = buf
+			end
+		end
+
+		if listed_buffer_count == 1 and buffer_to_close then
+			vim.notify("Cannot delete last open file", vim.log.levels.ERROR)
+			return
+		end
+
+		if buffer_to_close then
+			vim.api.nvim_buf_delete(buffer_to_close, { force = true })
+		end
+
+		local success, err = pcall(api.fs.remove, node)
+		if not success then
+			vim.notify("Error deleting file: " .. err, vim.log.levels.ERROR)
+		end
 	end
 end
 
