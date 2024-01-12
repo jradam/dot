@@ -4,7 +4,7 @@ return {
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 
-		-- TODO the errors here and throughout the project
+		-- TODO: the errors here and throughout the project
 
 		configs.setup({
 			highlight = { enable = true },
@@ -33,7 +33,7 @@ return {
 					node_decremental = "<BS>",
 				},
 			},
-			-- TODO add nvim-treesitter-textobjects
+			-- TODO: add nvim-treesitter-textobjects
 			-- Do we want any of this from Kickstart? Or does it have defaults?
 			--
 			-- textobjects = {

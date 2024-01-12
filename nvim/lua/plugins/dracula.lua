@@ -44,7 +44,7 @@ return {
 	end,
 }
 
--- TODO audit all of this
+-- TODO: audit all of this
 
 -- overrides = {
 -- 	-- high contrast

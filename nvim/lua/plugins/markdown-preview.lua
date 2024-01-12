@@ -1,5 +1,5 @@
 return {
-	-- TODO do we want this? Old config below
+	-- TODO: do we want this? Old config below
 	-- {
 	-- 	"iamcco/markdown-preview.nvim",
 	-- 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

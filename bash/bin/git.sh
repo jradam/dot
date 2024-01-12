@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# TODO don't allow commits less than two words
+# TODO: don't allow commits less than two words
 
 source "$HOME/dotfiles/bash/lib/colors.sh"
 
@@ -18,7 +18,7 @@ gd() {
 }
 
 # Multipurpose git status/commit function
-# TODO "On error-reporting, up to date with" when local branch
+# TODO: "On error-reporting, up to date with" when local branch
 g() {
   local CURRENT UPSTREAM NEW DIFF MESSAGE
 
@@ -26,9 +26,9 @@ g() {
   UPSTREAM=$(git for-each-ref --format '%(upstream:short)' $(git symbolic-ref -q HEAD))
   echo -e "On ${PINK}${CURRENT}${ESC}, up to date with ${PINK}${UPSTREAM}${ESC}"
 
-  # TODO do this on one line...?
+  # TODO: do this on one line...?
   if ! gp fetch -p; then return 1; fi
-  # TODO don't do if merging/conflicts?
+  # TODO: don't do if merging/conflicts?
   if ! gp pull; then return 1; fi
 
   # If no arguments, show status/diff info and ask for commit message
@@ -77,8 +77,8 @@ gu() {
 }
 
 # Multipurpose git branch function
-# TODO do a fetch first to get new branches
-# TODO alpha sorting so consistent branch order? Or can I do it by creation date (better)
+# TODO: do a fetch first to get new branches
+# TODO: alpha sorting so consistent branch order? Or can I do it by creation date (better)
 gb() {
   local SHOULD_DELETE BRANCH STRING CURRENT 
   local HAS_LOCAL=false
@@ -123,7 +123,7 @@ gb() {
   # If the input is a number, validate and then checkout the branch
   if [[ "$USER_INPUT" =~ ^[0-9]+$ ]]; then
     if [ "$USER_INPUT" -ge 1 ] && [ "$USER_INPUT" -le "${#NUMBERED[@]}" ]; then
-      # TODO ensure we are printing out the commands like this everywhere 
+      # TODO: ensure we are printing out the commands like this everywhere 
       gp checkout "${NUMBERED[$USER_INPUT - 1]}"
       return 0
     else
@@ -164,8 +164,8 @@ _gb_completion() {
 complete -F _gb_completion gb
 
 
-# TODO add completion to gd() as well
+# TODO: add completion to gd() as well
 
-# TODO
+# TODO:
 # git branch helpers
 # git push --set-upstream origin helpers

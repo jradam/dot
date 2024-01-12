@@ -21,7 +21,7 @@ return {
 			vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
 		end
 
-		-- TODO want any of this from kickstart?
+		-- TODO: want any of this from kickstart?
 		--    	nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 		-- nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 		-- nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
@@ -45,7 +45,7 @@ return {
 			{ "<localleader>p", go_prev, desc = "Go to previous" },
 			{ "<localleader>n", go_next, desc = "Go to next" },
 			{ "<localleader>u", "<cmd>Telescope lsp_references<CR>", desc = "List references" },
-			-- TODO make these an Easypick
+			-- TODO: make these an Easypick
 			{ "<localleader>d", "<cmd>TSToolsAddMissingImports<CR>", desc = "TS add imports" },
 			{ "<localleader>R", "<cmd>TSToolsRenameFile<CR>", desc = "TS rename file" },
 			{ "<localleader>f", "<cmd>TSToolsFixAll<CR>", desc = "TS fix all" },

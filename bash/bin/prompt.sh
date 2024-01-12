@@ -1,7 +1,7 @@
 source $HOME/dotfiles/bash/lib/git-prompt.sh
 
-# TODO -------------------- Tidy this
-# TODO or just implement starship.rs ??
+# TODO: -------------------- Tidy this
+# or just implement starship.rs ??
 
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=true # staged '+', unstaged '*'

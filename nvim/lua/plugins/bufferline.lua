@@ -1,5 +1,5 @@
 return {
-	-- TODO rewrite in lua
+	-- TODO: rewrite in lua
 	-- dir = "~/.config/nvim/.local/bufcmd",
 	-- config = function()
 	-- 	vim.cmd([[

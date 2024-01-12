@@ -7,7 +7,7 @@ return {
 			pattern = [[.*<(KEYWORDS)\s*:]],
 		},
 		search = {
-			pattern = [[\b(KEYWORDS)\b]],
+			pattern = [[\b(KEYWORDS):]],
 			-- TODO: what was this for?
 			-- args = {
 			-- 	"--color=never",

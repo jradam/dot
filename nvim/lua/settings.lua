@@ -5,7 +5,7 @@ o.number = true
 o.relativenumber = true
 o.numberwidth = 3
 
--- TODO add tpope/vim-sleuth?
+-- TODO: add tpope/vim-sleuth?
 -- Indentation
 o.tabstop = 2
 o.shiftwidth = 2
