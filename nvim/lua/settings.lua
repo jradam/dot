@@ -80,3 +80,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 	pattern = "*",
 })
+
+-- Enter git commits in insert mode
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gitcommit",
+	callback = function()
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				vim.cmd("startinsert")
+			end,
+		})
+	end,
+})

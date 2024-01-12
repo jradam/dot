@@ -86,11 +86,6 @@ return {
 				end
 			end
 
-			-- If we are starting in a git commit, do not open the tree
-			-- if vim.bo.filetype == "gitcommit" then
-			-- 	return
-			-- end
-
 			-- If a float is open on startup, do not open the tree
 			for _, win in ipairs(vim.api.nvim_list_wins()) do
 				local config = vim.api.nvim_win_get_config(win)
