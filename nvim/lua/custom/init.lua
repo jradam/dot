@@ -49,7 +49,7 @@ local function buf_cpt()
 	local reached_max = false
 	local name_modifier = SHOW_EXTENSIONS and ":t" or ":t:r"
 
-	-- Fill our name_counts so we can check against it latet
+	-- Fill our name_counts so we can check against it later
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.bo[buf].buflisted then
 			local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), name_modifier)
@@ -63,7 +63,7 @@ local function buf_cpt()
 		if vim.bo[buf].buflisted then
 			local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), name_modifier)
 
-			-- Check if this buffer has the same name as another
+			-- Add path if this buffer has the same name as another
 			if name_counts[buf_name] > 1 then
 				local path_fragment = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":p:h:t")
 				buf_name = path_fragment .. "/" .. buf_name
