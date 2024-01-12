@@ -1,14 +1,14 @@
 -- Buf Captain: a minimalist's alternative to bufferline
 -- A NeoVim plugin to manage your buffers
 
--- TODO turn this into a proper plugin
--- TODO make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
--- TODO add diagnostic colors
--- TODO make ESC also trigger buf_cpt?
--- TODO add in path bit before / if this buffer has same name as another buffer
--- TODO add indicator or color to indicate changes in buffer
+-- TODO: turn this into a proper plugin
+-- TODO: make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
+-- TODO: add diagnostic colors
+-- TODO: make ESC also trigger buf_cpt?
+-- TODO: add in path bit before / if this buffer has same name as another buffer
+-- TODO: add indicator or color to indicate changes in buffer
 
--- TODO sorting
+-- TODO: sorting
 -- make new buffers always open at end of list (or, optionally at start of list)
 -- add shortcuts for moving selected buffer left or right in list
 -- add option to keep buffers sorted alphabetically

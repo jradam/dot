@@ -8,7 +8,7 @@ source "$HOME/dotfiles/bash/lib/colors.sh"
 gp() {
   print "info" "git $*"
   if ! git "$@"; then
-    print "error" "FAILED: git $@"
+    print "error" "FAILED git $@"
     return 1
   fi
 }

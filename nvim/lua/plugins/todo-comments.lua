@@ -4,12 +4,11 @@ return {
 	opts = {
 		signs = false,
 		highlight = {
-			keyword = "bg",
-			pattern = [[.*<(KEYWORDS)\s*]],
+			pattern = [[.*<(KEYWORDS)\s*:]],
 		},
 		search = {
 			pattern = [[\b(KEYWORDS)\b]],
-			-- TODO what was this for?
+			-- TODO: what was this for?
 			-- args = {
 			-- 	"--color=never",
 			-- 	"--no-heading",

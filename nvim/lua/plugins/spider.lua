@@ -1,5 +1,5 @@
 return {
-	-- TODO do we want this? Old config below
+	-- TODO: do we want this? Old config below
 	-- "chrisgrieser/nvim-spider",
 	-- config = function()
 	-- 	local k = vim.keymap.set

@@ -9,7 +9,7 @@ return {
 			require("telescope.actions").select_default(bufnr)
 		end
 
-		-- TODO should there be a key to quit telescope immediately, even in insert mode?
+		-- TODO: should there be a key to quit telescope immediately, even in insert mode?
 
 		return {
 			pickers = {
@@ -31,7 +31,7 @@ return {
 					preview_cutoff = 30, -- If window too small, don't show preview
 				},
 				file_ignore_patterns = { "node_modules", "yarn.lock" },
-				-- TODO make enter replace buffer and e open in new like the tree?
+				-- TODO: make enter replace buffer and e open in new like the tree?
 				-- ["<cr>"] = actions.select_default,
 				-- ["e"] = actions.select_default,
 				-- ["d"] = actions.delete_buffer,
