@@ -1,12 +1,10 @@
 -- Buf Captain: a minimalist's alternative to bufferline
 -- A NeoVim plugin to manage your buffers
 
--- TODO: turn this into a proper plugin
+-- TODO: turn this into a proper NeoVim plugin
 -- TODO: make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
 -- TODO: add diagnostic colors
 -- TODO: make ESC also trigger buf_cpt?
--- TODO: add in path bit before / if this buffer has same name as another buffer
--- TODO: add indicator or color to indicate changes in buffer
 
 -- TODO: sorting
 -- make new buffers always open at end of list (or, optionally at start of list)
@@ -19,10 +17,14 @@ local MAX_NAME_LENGTH = 15
 local SHOW_EXTENSIONS = false
 local CURRENT_HIGHLIGHT = "#FFFFA5"
 local OTHER_HIGHLIGHT = "#FFB86C"
+local MODIFIED_HIGHLIGHT = "#8BE9FD"
+local CURRENT_MODIFIED_HIGHLIGHT = "#A4FFFF"
 local COMPENSATION = 12 -- Run the included test function to find out what this should be
 local MAX_STRING = " ... "
-local LEFT_BRACKET = "["
-local RIGHT_BRACKET = "]"
+local LEFT_BRACE = "["
+local RIGHT_BRACE = "]"
+local MODIFIED_LEFT_CHAR = ""
+local MODIFIED_RIGHT_CHAR = "+"
 
 -- User keymaps
 local NEXT_BUFFER = "<Tab>"
@@ -35,18 +37,37 @@ local RUN_COMPENSATION_TEST = "<leader>i"
 local k = vim.keymap.set
 vim.cmd([[ highlight BufCptCurrent guifg=]] .. CURRENT_HIGHLIGHT .. [[ ]])
 vim.cmd([[ highlight BufCptOther guifg=]] .. OTHER_HIGHLIGHT .. [[ ]])
+vim.cmd([[ highlight BufCptModified guifg=]] .. MODIFIED_HIGHLIGHT .. [[ ]])
+vim.cmd([[ highlight BufCptCurrentModified guifg=]] .. CURRENT_MODIFIED_HIGHLIGHT .. [[ ]])
 
 -- Main function
 local function buf_cpt()
 	local cmd_max = vim.o.columns - COMPENSATION
+	local name_counts = {}
 	local buf_table = {}
 	local total_length = 0
 	local reached_max = false
+	local name_modifier = SHOW_EXTENSIONS and ":t" or ":t:r"
+
+	-- Fill our name_counts so we can check against it latet
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.bo[buf].buflisted then
+			local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), name_modifier)
+			if buf_name then
+				name_counts[buf_name] = (name_counts[buf_name] or 0) + 1
+			end
+		end
+	end
 
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.bo[buf].buflisted then
-			local name_modifier = SHOW_EXTENSIONS and ":t" or ":t:r"
 			local buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), name_modifier)
+
+			-- Check if this buffer has the same name as another
+			if name_counts[buf_name] > 1 then
+				local path_fragment = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":p:h:t")
+				buf_name = path_fragment .. "/" .. buf_name
+			end
 
 			-- Use a dash for unnamed buffers
 			buf_name = buf_name == "" and "-" or buf_name
@@ -57,19 +78,34 @@ local function buf_cpt()
 				buf_name = buf_name .. "…"
 			end
 
-			-- Find out if this is the current buf, add characters if so
 			local is_current = buf == vim.api.nvim_get_current_buf()
+			local is_modified = vim.bo[buf].modified
+
+			-- Add characters
+			if is_modified then
+				buf_name = MODIFIED_LEFT_CHAR .. buf_name .. MODIFIED_RIGHT_CHAR
+			end
 			if is_current then
-				buf_name = LEFT_BRACKET .. buf_name .. RIGHT_BRACKET
+				buf_name = LEFT_BRACE .. buf_name .. RIGHT_BRACE
 			else
-				buf_name = string.rep(" ", #LEFT_BRACKET) .. buf_name .. string.rep(" ", #RIGHT_BRACKET)
+				buf_name = string.rep(" ", #LEFT_BRACE) .. buf_name .. string.rep(" ", #RIGHT_BRACE)
+			end
+
+			-- Apply styling
+			local highlight = "BufCptOther"
+			if is_current and is_modified then
+				highlight = "BufCptCurrentModified"
+			elseif is_current then
+				highlight = "BufCptCurrent"
+			elseif vim.bo[buf].modified then
+				highlight = "BufCptModified"
 			end
 
 			-- Keep track of our length
 			local new_length = total_length + #buf_name
 
 			if new_length < (cmd_max - #MAX_STRING) then
-				table.insert(buf_table, { buf_name, is_current and "BufCptCurrent" or "BufCptOther" })
+				table.insert(buf_table, { buf_name, highlight })
 				total_length = new_length
 			else
 				if not reached_max then
@@ -83,8 +119,11 @@ local function buf_cpt()
 	vim.api.nvim_echo(buf_table, false, {})
 end
 
--- Listen for cursor moves and update
-vim.api.nvim_create_autocmd({ "CursorMoved" }, { pattern = "*", callback = buf_cpt })
+-- Listen for cursor moves or typing and update
+vim.api.nvim_create_autocmd({
+	"CursorMoved",
+	"InsertCharPre",
+}, { pattern = "*", callback = buf_cpt })
 
 -- Controls
 local function next()

@@ -84,7 +84,9 @@ return {
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" }, -- Completion for function params
-						diagnostics = { globals = { "vim" } }, -- Make lsp recognize "vim" global
+						diagnostics = {
+							globals = { "vim" }, -- Make lsp recognize "vim" global
+						},
 					},
 				},
 			},

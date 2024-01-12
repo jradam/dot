@@ -2,11 +2,8 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
-		local configs = require("nvim-treesitter.configs")
-
-		-- TODO: the errors here and throughout the project
-
-		configs.setup({
+		---@diagnostic disable-next-line: missing-fields
+		require("nvim-treesitter.configs").setup({
 			highlight = { enable = true },
 			indent = { enable = true },
 			ensure_installed = {
