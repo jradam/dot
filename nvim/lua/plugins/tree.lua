@@ -78,18 +78,18 @@ return {
 		}
 	end,
 	init = function()
-		local function open_on_startup(data)
-			-- TODO this still opens when opening single file, presumably if we fix then we can remove git commit one below too
-
-			-- If we are not starting in a directory, do not open the tree
-			if not vim.fn.isdirectory(data.file) == 1 then
-				return
+		local function open_on_startup()
+			-- If nvim is starting with buffers open, do not open the tree
+			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+				if vim.bo[buf].buflisted then
+					return
+				end
 			end
 
-			-- If we are starting in a git commit, do not open the tree
-			if vim.bo.filetype == "gitcommit" then
-				return
-			end
+			-- -- If we are starting in a git commit, do not open the tree
+			-- if vim.bo.filetype == "gitcommit" then
+			-- 	return
+			-- end
 
 			-- If a float is open on startup, do not open the tree
 			for _, win in ipairs(vim.api.nvim_list_wins()) do
