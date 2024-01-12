@@ -11,6 +11,7 @@
 -- add shortcuts for moving selected buffer left or right in list
 -- add option to keep buffers sorted alphabetically
 -- add option to keep buffers sorted by time open
+-- add option to show hidden buffers on right side?
 
 -- User options
 local MAX_NAME_LENGTH = 15

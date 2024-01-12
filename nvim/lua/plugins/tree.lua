@@ -38,7 +38,7 @@ return {
 					enable = true,
 					quit_on_focus_loss = false, -- Avoids a startup crash when opening a float
 					open_win_config = {
-						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 2,
+						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 1,
 						row = 0,
 						col = 0,
 					},

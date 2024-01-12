@@ -19,6 +19,8 @@ return {
 
 		-- TODO: make an Easypick with the output of :highlight
 
+		-- TODO: Make an Easypick for basic git commands on <C-g>
+
 		return {
 			pickers = {
 				{

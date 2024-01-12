@@ -7,5 +7,6 @@ return {
 			lualine_c = { "diagnostics" },
 			lualine_x = { "filetype" },
 		},
+		extensions = { "nvim-tree" },
 	},
 }
