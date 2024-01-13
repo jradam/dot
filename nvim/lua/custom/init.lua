@@ -30,6 +30,7 @@ local LEFT_BRACE = "["
 local RIGHT_BRACE = "]"
 local MODIFIED_LEFT_CHAR = ""
 local MODIFIED_RIGHT_CHAR = "+"
+local NAMELESS_BUFFER_CHAR = "-"
 
 -- User keymaps
 local NEXT_BUFFER = "<Tab>"
@@ -75,7 +76,7 @@ local function buf_cpt()
 			end
 
 			-- Use a dash for unnamed buffers
-			buf_name = buf_name == "" and "-" or buf_name
+			buf_name = buf_name == "" and NAMELESS_BUFFER_CHAR or buf_name
 
 			-- Limit name length to MAX_NAME_LENGTH
 			if buf_name and #buf_name > MAX_NAME_LENGTH then
