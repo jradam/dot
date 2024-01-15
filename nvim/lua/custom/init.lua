@@ -48,13 +48,13 @@ vim.cmd([[ highlight BufCptCurrentModified guifg=]] .. CURRENT_MODIFIED_HIGHLIGH
 
 -- Main function
 local function buf_cpt()
+	local bufs = vim.api.nvim_list_bufs()
 	local cmd_max = vim.o.columns - COMPENSATION
 	local name_counts = {}
 	local buf_table = {}
 	local total_length = 0
 	local reached_max = false
 	local name_modifier = SHOW_EXTENSIONS and ":t" or ":t:r"
-	local bufs = vim.api.nvim_list_bufs()
 
 	-- Fill our name_counts so we can check against it later
 	for _, buf in ipairs(bufs) do
@@ -152,7 +152,7 @@ end
 k("n", CLOSE_BUFFER, close, { desc = "Close buffer", silent = true })
 
 k("n", CLOSE_OTHERS, function()
-	for _, buf in ipairs(bufs) do
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if buf ~= vim.api.nvim_get_current_buf() and vim.api.nvim_buf_is_loaded(buf) then
 			local buftype = vim.bo[buf].buftype
 			if buftype ~= "terminal" then

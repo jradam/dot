@@ -23,7 +23,11 @@ function M.ts_quickfix()
 	end
 
 	-- Send the now combined list to quickfix
-	vim.fn.setqflist(ts_errors)
+	if #ts_errors > 0 then
+		vim.fn.setqflist(ts_errors)
+	else
+		vim.api.nvim_command("echo 'No errors found.'")
+	end
 end
 
 -- Easypick custom diff preview
