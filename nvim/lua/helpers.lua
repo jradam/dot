@@ -34,7 +34,8 @@ end
 
 -- Determine if a string looks like a file path
 function M.is_file_path(string)
-	return string:match("^.+/.+$") ~= nil
+	-- Either contain '/' or end with a typical file extension
+	return string:match("^.+/.+$") or string:match("%.%a+$") ~= nil
 end
 
 -- Check if a buffer exists

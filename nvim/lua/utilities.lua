@@ -146,12 +146,12 @@ function M.safe_delete()
 			end
 		end
 
-		if listed_buffer_count == 1 and vim.bo[buffer_to_close].buflisted then
-			vim.notify("Cannot delete last open file", vim.log.levels.ERROR)
-			return
-		end
-
 		if buffer_to_close then
+			if listed_buffer_count == 1 and vim.bo[buffer_to_close].buflisted then
+				vim.notify("Cannot delete last open file", vim.log.levels.ERROR)
+				return
+			end
+
 			vim.api.nvim_buf_delete(buffer_to_close, { force = true })
 		end
 
@@ -159,6 +159,9 @@ function M.safe_delete()
 		if not success then
 			vim.notify("Error deleting file: " .. err, vim.log.levels.ERROR)
 		end
+	else
+		-- Use default method if directory
+		api.fs.remove()
 	end
 end
 
@@ -168,8 +171,10 @@ function M.on_enter(telescope)
 	local state = require("telescope.actions.state")
 
 	local filepath = state.get_selected_entry().value
+	-- Only match up to the first colon for when the filepath has more data
+	local file_only_path = filepath:match("^[^:]+")
 
-	if h.is_file_path(filepath) and not h.is_file_open(filepath) then
+	if file_only_path and h.is_file_path(file_only_path) and not h.is_file_open(file_only_path) then
 		-- Close floats to avoid files being opened in small windows
 		h.close_floats()
 		actions.close(telescope)
@@ -178,7 +183,7 @@ function M.on_enter(telescope)
 		local existing_buf = vim.api.nvim_get_current_buf()
 
 		-- Open new file
-		vim.api.nvim_command("edit " .. filepath)
+		vim.api.nvim_command("edit " .. vim.fn.fnameescape(file_only_path))
 
 		-- Close that old current buffer afterwards
 		if h.buf_exists(existing_buf) then

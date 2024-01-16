@@ -54,7 +54,6 @@ return {
 						".storybook",
 						"dist",
 						"build",
-						".local",
 					},
 				},
 				change_dir = { restrict_above_cwd = true },

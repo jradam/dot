@@ -16,7 +16,10 @@
   "rules": {
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "max-len": ["warn", { "code": 95, "ignoreStrings": true, "ignoreTemplateLiterals": true }],
+    "max-len": [
+      "warn",
+      { "code": 95, "ignoreStrings": true, "ignoreTemplateLiterals": true }
+    ],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "@typescript-eslint/explicit-function-return-type": ["warn"],
     "@typescript-eslint/no-unnecessary-type-constraint": "off",
