@@ -17,6 +17,8 @@
 -- local loader = require("lazy.core.loader")
 -- loader.reload("easypick.nvim")
 
+-- TODO: Licence info
+
 -- User options
 local MAX_NAME_LENGTH = 20
 local SHOW_EXTENSIONS = false

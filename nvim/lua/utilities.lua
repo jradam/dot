@@ -161,4 +161,30 @@ function M.safe_delete()
 	end
 end
 
+-- Telescope function to replace files on `<CR>`, or run default action when not opening files
+function M.on_enter(telescope)
+	local actions = require("telescope.actions")
+	local state = require("telescope.actions.state")
+	local h = require("helpers")
+
+	local filepath = state.get_selected_entry().value
+
+	if h.is_file_path(filepath) then
+		-- Close floats to avoid files being opened in small windows
+		h.close_floats()
+		actions.close(telescope)
+
+		-- Save the current buffer to close
+		local current_buf = vim.api.nvim_get_current_buf()
+
+		-- Open new file
+		vim.api.nvim_command("edit " .. filepath)
+
+		-- Close that old current buffer afterwards
+		vim.api.nvim_command("bdelete " .. current_buf)
+	else
+		actions.select_default(telescope)
+	end
+end
+
 return M

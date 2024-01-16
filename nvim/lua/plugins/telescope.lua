@@ -3,13 +3,15 @@ return {
 	cmd = "Telescope", -- Needed for calling this from other plugins
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-symbols.nvim" },
 	opts = function()
-		local function on_enter(bufnr)
-			-- Close floats to avoid files being opened in small windows
-			require("helpers").close_floats()
-			require("telescope.actions").select_default(bufnr)
-		end
+		local actions = require("telescope.actions")
+		local h = require("helpers")
+		local u = require("utilities")
 
-		-- TODO: should there be a key to quit telescope immediately, even in insert mode?
+		local function on_e(prompt)
+			-- Close floats to avoid files being opened in small windows
+			h.close_floats()
+			actions.select_default(prompt)
+		end
 
 		return {
 			pickers = {
@@ -31,15 +33,9 @@ return {
 					preview_cutoff = 30, -- If window too small, don't show preview
 				},
 				file_ignore_patterns = { "node_modules", "yarn.lock" },
-				-- TODO: make enter replace buffer and e open in new like the tree?
-				-- ["<cr>"] = actions.select_default,
-				-- ["e"] = actions.select_default,
-				-- ["d"] = actions.delete_buffer,
-				-- ["q"] = actions.close,
-
 				mappings = {
-					i = { ["<CR>"] = on_enter },
-					n = { ["<CR>"] = on_enter },
+					i = { ["<CR>"] = u.on_enter },
+					n = { ["<CR>"] = u.on_enter, ["e"] = on_e },
 				},
 			},
 		}
@@ -112,7 +108,6 @@ return {
 				"<localleader>k",
 				function()
 					require("utilities").ts_quickfix()
-					-- TODO if no results, tell user
 					builtin.quickfix()
 				end,
 				desc = "TS issue list",

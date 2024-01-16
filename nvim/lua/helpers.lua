@@ -25,4 +25,16 @@ function M.close_all_else()
 	end
 end
 
+-- Print a table
+function M.print_table(table)
+	for key, value in pairs(table) do
+		print(key, value)
+	end
+end
+
+-- Determine if a string looks like a file path
+function M.is_file_path(string)
+	return string:match("^.+/.+$") ~= nil
+end
+
 return M
