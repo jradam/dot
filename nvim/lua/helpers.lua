@@ -37,4 +37,29 @@ function M.is_file_path(string)
 	return string:match("^.+/.+$") ~= nil
 end
 
+-- Check if a buffer exists
+function M.buf_exists(buf_id)
+	return vim.api.nvim_buf_is_valid(buf_id) and vim.api.nvim_buf_is_loaded(buf_id)
+end
+
+-- Converts a long filepath (e.g. /folder1/folder2/folder3/file.ext) to "folder3/file.ext"
+function M.simplify_path(filepath)
+	local parent = vim.fn.fnamemodify(filepath, ":h:t")
+	local filename = vim.fn.fnamemodify(filepath, ":t")
+	return parent .. "/" .. filename
+end
+
+-- Check if a file is already open
+function M.is_file_open(filepath)
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if M.buf_exists(buf) then
+			local buf_path = vim.api.nvim_buf_get_name(buf)
+			if M.simplify_path(buf_path) == M.simplify_path(filepath) then
+				return true
+			end
+		end
+	end
+	return false
+end
+
 return M

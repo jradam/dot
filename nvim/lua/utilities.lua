@@ -1,4 +1,5 @@
 local M = {}
+local h = require("helpers")
 
 -- Run tsc and eslint and put all results in one quickfix list
 function M.ts_quickfix()
@@ -165,23 +166,24 @@ end
 function M.on_enter(telescope)
 	local actions = require("telescope.actions")
 	local state = require("telescope.actions.state")
-	local h = require("helpers")
 
 	local filepath = state.get_selected_entry().value
 
-	if h.is_file_path(filepath) then
+	if h.is_file_path(filepath) and not h.is_file_open(filepath) then
 		-- Close floats to avoid files being opened in small windows
 		h.close_floats()
 		actions.close(telescope)
 
 		-- Save the current buffer to close
-		local current_buf = vim.api.nvim_get_current_buf()
+		local existing_buf = vim.api.nvim_get_current_buf()
 
 		-- Open new file
 		vim.api.nvim_command("edit " .. filepath)
 
 		-- Close that old current buffer afterwards
-		vim.api.nvim_command("bdelete " .. current_buf)
+		if h.buf_exists(existing_buf) then
+			vim.api.nvim_command("bdelete " .. existing_buf)
+		end
 	else
 		actions.select_default(telescope)
 	end
