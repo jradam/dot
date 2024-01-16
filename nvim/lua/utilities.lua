@@ -128,11 +128,10 @@ end
 
 -- Nvim-tree if we try to delete an open buffer, close it first to avoid an error
 function M.safe_delete()
-	local node = api.tree.get_node_under_cursor()
+	local file_to_delete = api.tree.get_node_under_cursor()
 
-	if node and node.type == "file" then
+	if file_to_delete and file_to_delete.type == "file" then
 		local open_buffers = vim.api.nvim_list_bufs()
-		local node_path = node.absolute_path
 		local buffer_to_close = nil
 		local listed_buffer_count = 0
 
@@ -140,12 +139,13 @@ function M.safe_delete()
 			if vim.bo[buf].buflisted then
 				listed_buffer_count = listed_buffer_count + 1
 			end
-			if vim.api.nvim_buf_get_name(buf) == node_path then
+
+			if vim.api.nvim_buf_get_name(buf) == file_to_delete.absolute_path then
 				buffer_to_close = buf
 			end
 		end
 
-		if listed_buffer_count == 1 and buffer_to_close then
+		if listed_buffer_count == 1 and vim.bo[buffer_to_close].buflisted then
 			vim.notify("Cannot delete last open file", vim.log.levels.ERROR)
 			return
 		end
@@ -154,7 +154,7 @@ function M.safe_delete()
 			vim.api.nvim_buf_delete(buffer_to_close, { force = true })
 		end
 
-		local success, err = pcall(api.fs.remove, node)
+		local success, err = pcall(api.fs.remove, file_to_delete)
 		if not success then
 			vim.notify("Error deleting file: " .. err, vim.log.levels.ERROR)
 		end
