@@ -75,6 +75,7 @@ function M.eslint_setup(client)
 	end
 
 	local local_eslint = util.root_pattern(".eslintrc.js", ".eslintrc.json")(vim.fn.getcwd())
+
 	if local_eslint then
 		sets.useEslintrc = true
 		sets.options.resolvePluginsRelativeTo = local_eslint
@@ -82,8 +83,7 @@ function M.eslint_setup(client)
 		sets.useEslintrc = false
 		sets.options.overrideConfigFile = vim.fn.stdpath("config") .. "/env/.eslintrc.json"
 		sets.options.resolvePluginsRelativeTo = vim.fn.stdpath("config") .. "/env/node_modules"
-		-- TODO: do we need this?
-		-- sets.nodePath = vim.fn.stdpath("config") .. "/env/node_modules"
+		sets.nodePath = vim.fn.stdpath("config") .. "/env/node_modules"
 	end
 end
 
