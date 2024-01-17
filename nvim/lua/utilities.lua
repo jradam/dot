@@ -147,9 +147,10 @@ function M.safe_delete()
 		end
 
 		if buffer_to_close then
+			-- If trying to delete last open buffer, open empty new one first
 			if listed_buffer_count == 1 and vim.bo[buffer_to_close].buflisted then
-				vim.notify("Cannot delete last open file", vim.log.levels.ERROR)
-				return
+				h.close_floats()
+				vim.api.nvim_command("enew")
 			end
 
 			vim.api.nvim_buf_delete(buffer_to_close, { force = true })

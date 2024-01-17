@@ -56,7 +56,7 @@ return {
 			},
 			formatting = {
 				fields = { "kind", "abbr" },
-				format = lspkind.cmp_format({ mode = "symbol" }),
+				format = lspkind.cmp_format({ mode = "symbol", maxwidth = 30 }),
 			},
 			window = {
 				completion = {
