@@ -8,7 +8,7 @@ return {
 
 		local function on_attach(bufnr)
 			local function opts(desc)
-				return { desc = desc, buffer = bufnr }
+				return { desc = desc, buffer = bufnr, silent = true }
 			end
 
 			-- Custom
