@@ -172,27 +172,36 @@ function M.on_enter(telescope)
 	local state = require("telescope.actions.state")
 
 	local filepath = state.get_selected_entry().value
-	-- Only match up to the first colon for when the filepath has more data
-	local file_only_path = filepath:match("^[^:]+")
 
-	if file_only_path and h.is_file_path(file_only_path) and not h.is_file_open(file_only_path) then
-		-- Close floats to avoid files being opened in small windows
-		h.close_floats()
-		actions.close(telescope)
+	-- If filepath is a string
+	if type(filepath) == "string" then
+		-- Only match up to the first colon for when the filepath has more data
+		local file_only_path = filepath:match("^[^:]+")
 
-		-- Save the current buffer to close
-		local existing_buf = vim.api.nvim_get_current_buf()
+		-- Check if file_only_path is a valid path and the file is not already open
+		if h.is_file_path(file_only_path) and not h.is_file_open(file_only_path) then
+			-- Close floats to avoid files being opened in small windows
+			h.close_floats()
+			actions.close(telescope)
 
-		-- Open new file
-		vim.api.nvim_command("edit " .. vim.fn.fnameescape(file_only_path))
+			-- Save the current buffer to close
+			local existing_buf = vim.api.nvim_get_current_buf()
 
-		-- Close that old current buffer afterwards
-		if h.buf_exists(existing_buf) then
-			vim.api.nvim_command("bdelete " .. existing_buf)
+			-- Open new file
+			vim.api.nvim_command("edit " .. vim.fn.fnameescape(file_only_path))
+
+			-- Close that old current buffer afterwards
+			if h.buf_exists(existing_buf) then
+				vim.api.nvim_command("bdelete " .. existing_buf)
+			end
+
+			-- Exit if handled
+			return
 		end
-	else
-		actions.select_default(telescope)
 	end
+
+	-- Default action if conditions not met
+	actions.select_default(telescope)
 end
 
 return M

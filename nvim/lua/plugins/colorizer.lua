@@ -6,8 +6,6 @@ return {
 				names = false,
 				css = true,
 				tailwind = "lsp",
-				mode = "virtualtext",
-				virtualtext = "",
 			},
 		})
 	end,

@@ -20,7 +20,6 @@ return {
 					find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
 				},
 			},
-
 			defaults = {
 				initial_mode = "normal",
 				layout_strategy = "vertical",
