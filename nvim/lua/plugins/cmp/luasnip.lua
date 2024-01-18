@@ -13,6 +13,8 @@ return {
 		end
 
 		ls.add_snippets("all", {
+			s("c", { t('className="'), i(1), t('"') }),
+			s("cn", { t("className={cn('"), i(1), t("')}") }),
 			s("cs", { t("console.log("), i(1), t(")") }),
 			s("rc", {
 				t({
