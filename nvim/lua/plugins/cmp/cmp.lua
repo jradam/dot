@@ -52,7 +52,10 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-				["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
+				["<CR>"] = cmp.mapping.confirm({
+					behavior = cmp.ConfirmBehavior.Replace,
+					select = true, -- auto-select the first option, without needing to "Tab"
+				}),
 			},
 			formatting = {
 				fields = { "kind", "abbr" },
