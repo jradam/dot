@@ -9,8 +9,8 @@ return {
 			float_opts = {
 				border = "curved",
 				winblend = 5,
-				width = math.floor(vim.api.nvim_win_get_width(0) * 1),
-				height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 1,
+				width = math.floor(vim.api.nvim_win_get_width(0)),
+				height = math.floor(vim.api.nvim_win_get_height(0)) - 1,
 			},
 		}
 	end,
