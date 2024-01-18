@@ -1,23 +1,10 @@
 return {
-	-- TODO: do we want this? Old config below
-	-- "chrisgrieser/nvim-spider",
-	-- config = function()
-	-- 	local k = vim.keymap.set
-	--
-	-- 	k({ "n", "o", "x" }, "w", function()
-	-- 		require("spider").motion("w")
-	-- 	end, { desc = "Spider-w" })
-	--
-	-- 	k({ "n", "o", "x" }, "e", function()
-	-- 		require("spider").motion("e")
-	-- 	end, { desc = "Spider-e" })
-	--
-	-- 	k({ "n", "o", "x" }, "b", function()
-	-- 		require("spider").motion("b")
-	-- 	end, { desc = "Spider-b" })
-	--
-	-- 	k({ "n", "o", "x" }, "ge", function()
-	-- 		require("spider").motion("ge")
-	-- 	end, { desc = "Spider-ge" })
-	-- end,
+	"chrisgrieser/nvim-spider",
+	config = function()
+		local k = vim.keymap.set
+		-- Must be Ex-commands like this for dot-repeatability to work
+		k({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+		k({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+		k({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+	end,
 }

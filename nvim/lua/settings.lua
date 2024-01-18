@@ -59,10 +59,17 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	callback = function(event)
 		local not_floating = vim.api.nvim_win_get_config(0).relative == ""
 
-		-- If not a floating window, unhide and put in own buffer
+		-- If not a floating window
 		if not_floating then
-			vim.bo.buflisted = true
-			vim.cmd.only()
+			vim.defer_fn(function()
+				-- Unhide the buffer
+				vim.bo.buflisted = true
+
+				-- If we have more than one window (split) open, put this in its own buffer instead
+				if #vim.api.nvim_list_wins() > 1 then
+					vim.cmd.only()
+				end
+			end, 10) -- Delay allows state to stabilise after entering buffer. Fixes first buffer open bug
 		end
 
 		local tabs_open = vim.fn.tabpagenr("$")
@@ -73,7 +80,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			vim.defer_fn(function()
 				vim.cmd("tabclose")
 				vim.cmd("edit " .. file_path)
-			end, 10) -- Delay to allow state to stabilise after tab open. Fixes bug where all buffers unfocus.
+			end, 10) -- Delay allows state to stabilise after tab open. Fixes bug where all buffers unfocus.
 		end
 	end,
 })
