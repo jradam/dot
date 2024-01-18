@@ -70,8 +70,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- If a tab has appeared, close it and re-open the file normally
 		if tabs_open > 1 then
-			vim.cmd("tabclose")
-			vim.cmd("edit " .. file_path)
+			vim.defer_fn(function()
+				vim.cmd("tabclose")
+				vim.cmd("edit " .. file_path)
+			end, 10) -- Delay to allow state to stabilise after tab open. Fixes bug where all buffers unfocus.
 		end
 	end,
 })
