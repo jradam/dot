@@ -52,16 +52,26 @@ vim.api.nvim_create_autocmd("FocusLost", {
 	command = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)",
 })
 
--- Open help files in a new buffer
+-- TODO: make own small plugin
+-- No more splits. Useful for helpfiles. No more tabs either.
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*",
 	callback = function(event)
-		local type = vim.bo[event.buf].filetype
+		local not_floating = vim.api.nvim_win_get_config(0).relative == ""
 
-		if type == "help" or type == "markdown" then
-			-- Unhide and put in own buffer
+		-- If not a floating window, unhide and put in own buffer
+		if not_floating then
 			vim.bo.buflisted = true
 			vim.cmd.only()
+		end
+
+		local tabs_open = vim.fn.tabpagenr("$")
+		local file_path = vim.fn.bufname(event.buf)
+
+		-- If a tab has appeared, close it and re-open the file normally
+		if tabs_open > 1 then
+			vim.cmd("tabclose")
+			vim.cmd("edit " .. file_path)
 		end
 	end,
 })
