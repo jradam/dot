@@ -1,10 +1,10 @@
--- Buf Captain: a minimalist's alternative to bufferline
+-- Buf Command: a minimalist's alternative to bufferline
 -- A NeoVim plugin to manage your buffers
 
 -- TODO: turn this into a proper NeoVim plugin
 -- TODO: make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
 -- TODO: add diagnostic colors
--- TODO: make ESC also trigger buf_cpt?
+-- TODO: make ESC also trigger buf_cmd?
 
 -- TODO: sorting
 -- make new buffers always open at end of list (or, optionally at start of list)
@@ -18,6 +18,9 @@
 -- loader.reload("easypick.nvim")
 
 -- TODO: Licence info
+
+-- TODO: this https://m4xshen.dev/posts/develop-a-neovim-plugin-in-lua/
+-- https://youtu.be/PdaObkGazoU?si=6fURh5M_OZEpjfoL
 
 -- User options
 local MAX_NAME_LENGTH = 20
@@ -43,13 +46,13 @@ local RUN_COMPENSATION_TEST = "<leader>i"
 
 -- Setup
 local k = vim.keymap.set
-vim.cmd([[ highlight BufCptCurrent guifg=]] .. CURRENT_HIGHLIGHT .. [[ ]])
-vim.cmd([[ highlight BufCptOther guifg=]] .. OTHER_HIGHLIGHT .. [[ ]])
-vim.cmd([[ highlight BufCptModified guifg=]] .. MODIFIED_HIGHLIGHT .. [[ ]])
-vim.cmd([[ highlight BufCptCurrentModified guifg=]] .. CURRENT_MODIFIED_HIGHLIGHT .. [[ ]])
+vim.cmd([[ highlight BufCmdCurrent guifg=]] .. CURRENT_HIGHLIGHT .. [[ ]])
+vim.cmd([[ highlight BufCmdOther guifg=]] .. OTHER_HIGHLIGHT .. [[ ]])
+vim.cmd([[ highlight BufCmdModified guifg=]] .. MODIFIED_HIGHLIGHT .. [[ ]])
+vim.cmd([[ highlight BufCmdCurrentModified guifg=]] .. CURRENT_MODIFIED_HIGHLIGHT .. [[ ]])
 
 -- Main function
-local function buf_cpt()
+local function bufcmd()
 	local bufs = vim.api.nvim_list_bufs()
 	local cmd_max = vim.o.columns - COMPENSATION
 	local name_counts = {}
@@ -101,13 +104,13 @@ local function buf_cpt()
 			end
 
 			-- Apply styling
-			local highlight = "BufCptOther"
+			local highlight = "BufCmdOther"
 			if is_current and is_modified then
-				highlight = "BufCptCurrentModified"
+				highlight = "BufCmdCurrentModified"
 			elseif is_current then
-				highlight = "BufCptCurrent"
+				highlight = "BufCmdCurrent"
 			elseif vim.bo[buf].modified then
-				highlight = "BufCptModified"
+				highlight = "BufCmdModified"
 			end
 
 			-- Keep track of our length
@@ -118,7 +121,7 @@ local function buf_cpt()
 				total_length = new_length
 			else
 				if not reached_max then
-					table.insert(buf_table, { MAX_STRING, "BufCptOther" })
+					table.insert(buf_table, { MAX_STRING, "BufCmdOther" })
 					reached_max = true
 				end
 			end
@@ -132,24 +135,24 @@ end
 vim.api.nvim_create_autocmd({
 	"CursorMoved",
 	"InsertCharPre",
-}, { pattern = "*", callback = buf_cpt })
+}, { pattern = "*", callback = bufcmd })
 
 -- Controls
 local function next()
 	vim.cmd(":bn")
-	buf_cpt()
+	bufcmd()
 end
 k("n", NEXT_BUFFER, next, { desc = "Next buffer", silent = true })
 
 local function previous()
 	vim.cmd(":bp")
-	buf_cpt()
+	bufcmd()
 end
 k("n", PREV_BUFFER, previous, { desc = "Prev buffer", silent = true })
 
 local function close()
 	vim.cmd(":bd")
-	buf_cpt()
+	bufcmd()
 end
 k("n", CLOSE_BUFFER, close, { desc = "Close buffer", silent = true })
 
@@ -162,11 +165,11 @@ k("n", CLOSE_OTHERS, function()
 			end
 		end
 	end
-	buf_cpt()
+	bufcmd()
 end, { desc = "Close others", silent = true })
 
 -- Testing
--- This test finds the max message length Buf Captain can send to this particular user's command line before triggering the "Press ENTER to continue" prompt.
+-- This test finds the max message length Buf Command can send to this particular user's command line before triggering the "Press ENTER to continue" prompt.
 -- Starting at full width minus some big number (vim.o.columns - NUMBER), we decrease the size of NUMBER until the prompt triggers.
 -- The final value plus one (since we want the one just before the prompt was triggered) becomes the recommended COMPENSATION setting for the user.
 local function test_compensation()

@@ -35,6 +35,6 @@ require("helpers")
 require("keymaps")
 require("settings")
 require("utilities")
-require("custom")
+require("bufcmd.lua")
 
 -- TODO: go through each plugin and make Lazy as possible
