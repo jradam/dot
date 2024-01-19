@@ -192,6 +192,8 @@ function M.on_enter(telescope)
 
 	local filepath = state.get_selected_entry().value
 
+	-- TODO: this doesn't go to the line number. Can we fix it? Presumably change file_only_path
+
 	-- If filepath is a string
 	if type(filepath) == "string" then
 		-- Only match up to the first colon for when the filepath has more data
