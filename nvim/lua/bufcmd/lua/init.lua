@@ -1,26 +1,17 @@
 -- Buf Command: a minimalist's alternative to bufferline
 -- A NeoVim plugin to manage your buffers
 
--- TODO: turn this into a proper NeoVim plugin
--- TODO: make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
--- TODO: add diagnostic colors
--- TODO: make ESC also trigger buf_cmd?
-
--- TODO: sorting
--- make new buffers always open at end of list (or, optionally at start of list)
+-- TODO:
+-- turn this into a proper NeoVim plugin: https://youtu.be/PdaObkGazoU?si=6fURh5M_OZEpjfoL
+-- OR this https://m4xshen.dev/posts/develop-a-neovim-plugin-in-lua/
+-- make it so that when selecting a buffer past "...", it moves along and adds a "..." to the start
+-- add diagnostic colors
+-- make ESC also trigger buf_cmd?
+-- optional make new buffers insert in the left of list
 -- add shortcuts for moving selected buffer left or right in list
--- add option to keep buffers sorted alphabetically
--- add option to keep buffers sorted by time open
--- add option to show hidden buffers on right side?
-
--- TODO: Add loader so can reload quickly when developing...
--- local loader = require("lazy.core.loader")
--- loader.reload("easypick.nvim")
-
--- TODO: Licence info
-
--- TODO: this https://m4xshen.dev/posts/develop-a-neovim-plugin-in-lua/
--- https://youtu.be/PdaObkGazoU?si=6fURh5M_OZEpjfoL
+-- optional sorting (alphabetically, time open)
+-- Add loader so can reload quickly -> require("lazy.core.loader").reload("easypick.nvim")
+-- licence info
 
 -- User options
 local MAX_NAME_LENGTH = 20
