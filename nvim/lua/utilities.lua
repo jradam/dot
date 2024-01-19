@@ -116,7 +116,7 @@ function M.open_in_same()
 
 		if status then
 			local current_buf = vim.api.nvim_get_current_buf()
-			vim.api.nvim_command("bdelete " .. current_buf)
+			vim.api.nvim_buf_delete(current_buf, { force = false })
 			vim.api.nvim_command("edit " .. node.absolute_path)
 		else
 			-- If tree close fails, it's probably the last open window, so nothing to delete
@@ -211,7 +211,7 @@ function M.on_enter(telescope)
 
 			-- Close that old current buffer afterwards
 			if h.buf_exists(existing_buf) then
-				vim.api.nvim_command("bdelete " .. existing_buf)
+				vim.api.nvim_buf_delete(existing_buf, { force = false })
 			end
 
 			-- Exit if handled

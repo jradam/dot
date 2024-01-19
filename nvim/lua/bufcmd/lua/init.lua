@@ -151,7 +151,7 @@ end
 k("n", PREV_BUFFER, previous, { desc = "Prev buffer", silent = true })
 
 local function close()
-	vim.cmd(":bd")
+	vim.cmd(":bw")
 	bufcmd()
 end
 k("n", CLOSE_BUFFER, close, { desc = "Close buffer", silent = true })

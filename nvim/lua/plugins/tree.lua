@@ -1,7 +1,20 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	keys = { { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", silent = true } },
+	keys = function()
+		-- Fail without interrupting the user, but log the error
+		local function nvim_tree_toggle()
+			local _, err = pcall(function()
+				vim.cmd("NvimTreeToggle")
+			end)
+			if err then
+				vim.api.nvim_out_write(err)
+				print("Cannot toggle the tree")
+			end
+		end
+
+		return { { "<leader>e", nvim_tree_toggle, desc = "Explorer", silent = true } }
+	end,
 	opts = function()
 		local api = require("nvim-tree.api")
 		local u = require("utilities")
