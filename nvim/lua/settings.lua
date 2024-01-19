@@ -29,7 +29,7 @@ o.linebreak = true
 o.showbreak = "↪ "
 
 -- Behaviour
-o.scrolloff = 12
+o.scrolloff = 8
 
 -- Disable swapfiles
 o.swapfile = false
