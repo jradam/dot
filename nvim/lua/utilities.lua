@@ -166,6 +166,17 @@ function M.safe_delete()
 	end
 end
 
+-- TODO: why this work perfectly if run manually only??
+-- Nvim-tree resize to full height of window
+function M.resize_tree()
+	local tree_window = require("nvim-tree.view").get_winnr()
+
+	if tree_window then
+		local height = vim.api.nvim_get_option_value("lines", {})
+		vim.api.nvim_win_set_height(tree_window, height - 3)
+	end
+end
+
 -- Telescope function to replace files on `<CR>`, or run default action when not opening files
 function M.on_enter(telescope)
 	local actions = require("telescope.actions")

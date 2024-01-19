@@ -24,8 +24,8 @@ return {
 				initial_mode = "normal",
 				layout_strategy = "vertical",
 				layout_config = {
-					height = math.floor(vim.api.nvim_win_get_height(0)),
-					width = math.floor(vim.api.nvim_win_get_width(0)),
+					height = 100,
+					width = 100,
 					scroll_speed = 9,
 					mirror = true,
 					preview_height = 0.65,

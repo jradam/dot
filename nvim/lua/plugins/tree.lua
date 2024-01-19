@@ -38,7 +38,8 @@ return {
 					enable = true,
 					quit_on_focus_loss = false, -- Avoids a startup crash when opening a float
 					open_win_config = {
-						height = math.floor(vim.api.nvim_win_get_height(0) * 1) - 1,
+						-- TODO: this is what is causing issues with Lazy
+						height = math.floor(vim.api.nvim_win_get_height(0)) - 1,
 						row = 0,
 						col = 0,
 					},
@@ -77,6 +78,7 @@ return {
 		}
 	end,
 	init = function()
+		-- TODO: investigate hijack_unnamed_buffer_when_opening as alternative to startup
 		local function open_on_startup()
 			-- If nvim is starting with buffers open, do not open the tree
 			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
