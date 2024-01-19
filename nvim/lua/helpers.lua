@@ -13,18 +13,6 @@ function M.close_floats()
 	end
 end
 
--- Close all non-terminal buffers except the current one
-function M.close_all_else()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= vim.api.nvim_get_current_buf() and vim.api.nvim_buf_is_loaded(buf) then
-			local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-			if buftype ~= "terminal" then
-				vim.api.nvim_buf_delete(buf, { force = false })
-			end
-		end
-	end
-end
-
 -- Print a table
 function M.print_table(table)
 	for key, value in pairs(table) do

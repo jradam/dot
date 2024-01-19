@@ -77,27 +77,4 @@ return {
 			},
 		}
 	end,
-	init = function()
-		-- TODO: investigate hijack_unnamed_buffer_when_opening as alternative to startup
-		local function open_on_startup()
-			-- If nvim is starting with buffers open, do not open the tree
-			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-				if vim.bo[buf].buflisted then
-					return
-				end
-			end
-
-			-- If a float is open on startup, do not open the tree
-			for _, win in ipairs(vim.api.nvim_list_wins()) do
-				local config = vim.api.nvim_win_get_config(win)
-				if config.relative ~= "" then
-					return
-				end
-			end
-
-			require("nvim-tree.api").tree.open()
-		end
-
-		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_on_startup })
-	end,
 }

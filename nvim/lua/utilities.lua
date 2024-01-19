@@ -110,10 +110,18 @@ end
 function M.open_in_same()
 	local node = api.tree.get_node_under_cursor()
 	if node and node.type == "file" then
-		api.tree.close()
-		local current_buf = vim.api.nvim_get_current_buf()
-		vim.api.nvim_command("bdelete " .. current_buf)
-		vim.api.nvim_command("edit " .. node.absolute_path)
+		local status = pcall(function()
+			api.tree.close()
+		end)
+
+		if status then
+			local current_buf = vim.api.nvim_get_current_buf()
+			vim.api.nvim_command("bdelete " .. current_buf)
+			vim.api.nvim_command("edit " .. node.absolute_path)
+		else
+			-- If tree close fails, it's probably the last open window, so nothing to delete
+			vim.api.nvim_command("edit " .. node.absolute_path)
+		end
 	end
 end
 
