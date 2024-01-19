@@ -10,9 +10,9 @@ return {
 			-- Language servers
 			ensure_installed = {
 				"eslint",
+				"jsonls",
 				"lua_ls",
 				"tailwindcss",
-				"jsonls",
 			},
 		})
 		require("mason-tool-installer").setup({

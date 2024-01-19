@@ -32,6 +32,7 @@ return {
 		local formatters_by_ft = {
 			lua = { "stylua" },
 			json = { "prettierd" },
+			markdown = { "prettierd" },
 		}
 		for _, js_type in ipairs(js_types) do
 			formatters_by_ft[js_type] = { "prettierd" }
