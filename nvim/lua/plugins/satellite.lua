@@ -5,8 +5,7 @@ return {
 		local status, satellite = pcall(require, "satellite")
 		if status then
 			---@diagnostic disable-next-line: missing-fields
-			satellite.setup()
-			-- satellite.setup({ current_only = true }) -- this might crash less frequently?
+			satellite.setup({ current_only = true })
 		else
 			print("Failed to load satellite.nvim")
 		end
