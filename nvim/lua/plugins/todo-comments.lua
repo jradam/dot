@@ -5,5 +5,9 @@ return {
 		signs = false,
 		highlight = { pattern = [[.*<(KEYWORDS)\s*:]] },
 		search = { pattern = [[\b(KEYWORDS):]] },
+		keywords = {
+			DONE = { icon = " ", color = "hint" },
+			WIP = { icon = " ", color = "error" },
+		},
 	},
 }

@@ -49,6 +49,10 @@ return {
 						PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/env/.prettierrc.json",
 					},
 				},
+				stylua = {
+					command = "stylua",
+					args = { "--config-path", vim.fn.stdpath("config") .. "/env/.stylua.toml", "-" },
+				},
 			},
 		}
 	end,

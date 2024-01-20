@@ -12,7 +12,9 @@ return {
 			return snip.env.TM_FILENAME_BASE
 		end
 
+		-- TODO: scope by filetype
 		ls.add_snippets("all", {
+			s("p", { t('require("helpers").print_table('), i(1), t(")") }),
 			s("c", { t('className="'), i(1), t('"') }),
 			s("cn", { t("className={cn('"), i(1), t("')}") }),
 			s("cs", { t("console.log("), i(1), t(")") }),
