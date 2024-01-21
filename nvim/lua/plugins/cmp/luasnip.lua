@@ -12,9 +12,15 @@ return {
 			return snip.env.TM_FILENAME_BASE
 		end
 
-		-- TODO: scope by filetype
-		ls.add_snippets("all", {
-			s("p", { t('require("helpers").print_table('), i(1), t(")") }),
+		ls.add_snippets(
+			"lua",
+			{ s("p", { t('require("helpers").print_table('), i(1), t(")") }) }
+		)
+
+		local js_types =
+			{ "javascript", "typescript", "javascriptreact", "typescriptreact" }
+
+		local js_snippets = {
 			s("c", { t('className="'), i(1), t('"') }),
 			s("cn", { t("className={cn('"), i(1), t("')}") }),
 			s("cs", { t("console.log("), i(1), t(")") }),
@@ -46,6 +52,10 @@ return {
 					"}",
 				}),
 			}),
-		})
+		}
+
+		for _, value in pairs(js_types) do
+			ls.add_snippets(value, js_snippets)
+		end
 	end,
 }
