@@ -23,7 +23,7 @@ return {
 		local js_snippets = {
 			s("c", { t('className="'), i(1), t('"') }),
 			s("cn", { t("className={cn('"), i(1), t("')}") }),
-			s("cs", { t("console.log("), i(1), t(")") }),
+			s("cs", { t('console.log("'), i(1), t('")') }),
 			s("rc", {
 				t({
 					"import { ReactElement, ReactNode } from 'react'",
