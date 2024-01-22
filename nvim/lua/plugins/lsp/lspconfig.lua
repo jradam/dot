@@ -15,10 +15,14 @@ return {
 	},
 	keys = function()
 		local go_prev = function()
-			vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+			vim.diagnostic.goto_prev({
+				severity = { min = vim.diagnostic.severity.WARN },
+			})
 		end
 		local go_next = function()
-			vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+			vim.diagnostic.goto_next({
+				severity = { min = vim.diagnostic.severity.WARN },
+			})
 		end
 
 		-- TODO: want any of this from kickstart?
@@ -39,17 +43,40 @@ return {
 
 		return {
 			{ "<localleader>i", vim.lsp.buf.hover, desc = "Show info" },
-			{ "<localleader>e", vim.diagnostic.open_float, desc = "Show errors" },
+			{
+				"<localleader>e",
+				vim.diagnostic.open_float,
+				desc = "Show errors",
+			},
 			{ "<localleader>r", vim.lsp.buf.rename, desc = "Rename" },
-			{ "<localleader>a", vim.lsp.buf.code_action, desc = "Code actions" },
+			{
+				"<localleader>a",
+				vim.lsp.buf.code_action,
+				desc = "Code actions",
+			},
 			{ "<localleader>p", go_prev, desc = "Go to previous" },
 			{ "<localleader>n", go_next, desc = "Go to next" },
-			{ "<localleader>u", "<cmd>Telescope lsp_references<CR>", desc = "List references" },
-			-- TODO: make these an Easypick
-			{ "<localleader>d", "<cmd>TSToolsAddMissingImports<CR>", desc = "TS add imports" },
-			{ "<localleader>R", "<cmd>TSToolsRenameFile<CR>", desc = "TS rename file" },
+			{
+				"<localleader>u",
+				"<cmd>Telescope lsp_references<CR>",
+				desc = "List references",
+			},
+			{
+				"<localleader>d",
+				"<cmd>TSToolsAddMissingImports<CR>",
+				desc = "TS add imports",
+			},
+			{
+				"<localleader>R",
+				"<cmd>TSToolsRenameFile<CR>",
+				desc = "TS rename file",
+			},
 			{ "<localleader>f", "<cmd>TSToolsFixAll<CR>", desc = "TS fix all" },
-			{ "<localleader>o", "<cmd>TSToolsOrganizeImports<CR>", desc = "TS organise imports" },
+			{
+				"<localleader>o",
+				"<cmd>TSToolsOrganizeImports<CR>",
+				desc = "TS organise imports",
+			},
 		}
 	end,
 	config = function(_, opts)
@@ -65,7 +92,8 @@ return {
 
 		-- Apply styling options for diagnostics and hovers
 		vim.diagnostic.config(opts.diagnostics)
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, opts.hover)
+		vim.lsp.handlers["textDocument/hover"] =
+			vim.lsp.with(vim.lsp.handlers.hover, opts.hover)
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
@@ -74,7 +102,11 @@ return {
 			eslint = { -- Check `:LspLog` to debug
 				on_attach = u.eslint_setup,
 				capabilities = vim.tbl_deep_extend("force", capabilities, {
-					workspace = { didChangeWorkspaceFolders = { dynamicRegistration = true } },
+					workspace = {
+						didChangeWorkspaceFolders = {
+							dynamicRegistration = true,
+						},
+					},
 				}),
 				root_dir = lspconfig.util.root_pattern(".git", "package.json"),
 			},

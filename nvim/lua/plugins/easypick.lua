@@ -6,23 +6,27 @@ return {
 		local easypick = require("easypick")
 		local u = require("utilities")
 
-		local git_toplevel = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+		local git_toplevel =
+			vim.fn.systemlist("git rev-parse --show-toplevel")[1]
 		local current_dir = vim.fn.getcwd()
 
 		if git_toplevel == nil or git_toplevel ~= current_dir then
-			return { pickers = { { name = "Not in top level of a Git repository", command = "" } } }
+			return {
+				pickers = {
+					{
+						name = "Not in top level of a Git repository",
+						command = "",
+					},
+				},
+			}
 		end
 
 		-- TODO: Remove Easypick and implement these in Telescope natively
-		-- Telescope allows for making custom pickers and adding them to your configuration. Albeit it can be a little confusing in the beginning, it’s not too hard. The universally supported option however, is utilizing the inbuilt vim.ui.select and to let dressing.nvim handle the bridging to Telescope (or FZF). It works even without plugins and the advantage is you don’t have to learn syntax that is only ever useful for a single plugin.
-
-		-- TODO: deleted files can show as green until scrolled past and back again. diff_preview issue? Affects both local and main versions.
-
-		-- TODO: make an Easypick with the output of :highlight
-
-		-- TODO: Make an Easypick for basic git commands on <C-g>
-
-		-- TODO: When telescope native, make "Local changes" only show when there are actually local changes etc
+		-- Git diff/conflict like below. Make "Local changes" only show when there are actually local changes etc
+		-- basic git commands on <C-g>
+		-- the output of :highlight
+		-- Git Signs. Make it say, e.g. "Turn number highlighting off" when on, and "Turn number highlighting on" when off
+		-- TSTools menu
 
 		return {
 			pickers = {
