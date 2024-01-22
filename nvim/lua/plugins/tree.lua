@@ -13,7 +13,9 @@ return {
 			end
 		end
 
-		return { { "<leader>e", nvim_tree_toggle, desc = "Explorer", silent = true } }
+		return {
+			{ "<leader>e", nvim_tree_toggle, desc = "Explorer", silent = true },
+		}
 	end,
 	opts = function()
 		local api = require("nvim-tree.api")
@@ -21,7 +23,12 @@ return {
 
 		local function on_attach(bufnr)
 			local function opts(desc)
-				return { desc = desc, buffer = bufnr, silent = true, nowait = true }
+				return {
+					desc = desc,
+					buffer = bufnr,
+					silent = true,
+					nowait = true,
+				}
 			end
 
 			-- Custom

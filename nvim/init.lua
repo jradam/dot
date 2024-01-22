@@ -37,3 +37,4 @@ require("settings")
 require("utilities")
 
 -- TODO: go through each plugin and make Lazy as possible
+-- TODO: remap keyboard keys
