@@ -1,7 +1,10 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope", -- Needed for calling this from other plugins
-	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-symbols.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-symbols.nvim",
+	},
 	opts = function()
 		local actions = require("telescope.actions")
 		local h = require("helpers")
@@ -17,7 +20,13 @@ return {
 			pickers = {
 				find_files = {
 					-- Search hidden/dotfiles but not git files
-					find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+					find_command = {
+						"rg",
+						"--files",
+						"--hidden",
+						"-g",
+						"!.git",
+					},
 				},
 			},
 			defaults = {
@@ -67,13 +76,6 @@ return {
 			},
 			{ "<leader>l", ":TodoTelescope keywords=", desc = "Filter todo" },
 			{
-				"<leader>b",
-				function()
-					builtin.buffers()
-				end,
-				desc = "View buffers",
-			},
-			{
 				"<leader>d",
 				function()
 					builtin.diagnostics({
@@ -97,7 +99,7 @@ return {
 				desc = "Resume find",
 			},
 			{
-				"<leader>n",
+				"<leader>i",
 				function()
 					builtin.symbols({ initial_mode = "insert" })
 				end,

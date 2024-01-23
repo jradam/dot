@@ -30,6 +30,9 @@ k("n", "j", "gj", { desc = "Visual move up" })
 k("n", "k", "gk", { desc = "Visual move down" })
 k("n", "<C-d>", "<C-d>zz", { desc = "Jump down" })
 k("n", "<C-u>", "<C-u>zz", { desc = "Jump up" })
+k("n", "<leader>v", "$", { desc = "Line start" })
+k("n", "<leader>b", "gM", { desc = "Line mid" })
+k("n", "<leader>n", "^", { desc = "Line end" })
 
 -- Close floating windows with `<Esc>`
 k("n", "<Esc>", function()
