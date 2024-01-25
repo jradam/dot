@@ -10,6 +10,7 @@ o.tabstop = 2
 o.shiftwidth = 2
 o.expandtab = true
 o.smartindent = true
+o.breakindent = true
 
 -- Persistent undo
 o.undodir = { os.getenv("HOME") .. "/.nvim-undodir" }
