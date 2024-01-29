@@ -1,5 +1,4 @@
 return {
-	-- FIXME: this fails outside of projects, how can we fix?
 	"pmizio/typescript-tools.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	config = function()

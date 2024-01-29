@@ -59,6 +59,9 @@ npm install --global yarn
 print "info" "Diff so fancy"
 npm install --global diff-so-fancy
 
+print "info" "Typescript" # For typescript-tools to work globally
+npm install --global typescript
+
 print "info" "TypeScript styled-components support"
 npm install --global @styled/typescript-styled-plugin
 
