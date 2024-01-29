@@ -122,7 +122,19 @@ return {
 					},
 				},
 			},
-			tailwindcss = { capabilities = capabilities },
+			tailwindcss = {
+				capabilities = capabilities,
+				root_dir = function(fname)
+					local find_root = lspconfig.util.root_pattern
+					local root_dir = find_root("tailwind.config*")(fname)
+
+					if root_dir then
+						return root_dir
+					end
+
+					return nil -- If no config found, don't start
+				end,
+			},
 		}
 
 		for server, config in pairs(servers) do
