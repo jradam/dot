@@ -22,47 +22,45 @@
 --   nontext = "#3B4048",
 
 return {
-	"Mofiqul/dracula.nvim",
-	opts = {
-		italic_comment = true,
-		overrides = function(c)
-			local darkBg = "#191a21"
+  "Mofiqul/dracula.nvim",
+  opts = {
+    italic_comment = true,
+    overrides = function(c)
+      local darkBg = "#191a21"
 
-			return {
-				-- General overrides
-				Normal = { bg = darkBg },
-				FloatBorder = { fg = c.comment, bg = c.bg },
-				WinSeparator = { fg = c.selection, bg = darkBg }, -- Split window vertical separator
+      return {
+        -- General overrides
+        Normal = { bg = darkBg },
+        FloatBorder = { fg = c.comment, bg = c.bg },
+        WinSeparator = { fg = c.selection, bg = darkBg }, -- Split window vertical separator
 
-				-- Cmp (removes incorrect backgrounds from words)
-				Pmenu = { bg = "NONE" },
-				CmpItemAbbrMatch = { bg = "NONE", fg = c.cyan },
-				CmpItemAbbr = { bg = "NONE", fg = c.fg },
-				CmpItemAbbrDeprecated = { bg = "NONE", fg = c.comment },
+        -- Cmp (removes incorrect backgrounds from words)
+        Pmenu = { bg = "NONE" },
+        CmpItemAbbrMatch = { bg = "NONE", fg = c.cyan },
+        CmpItemAbbr = { bg = "NONE", fg = c.fg },
+        CmpItemAbbrDeprecated = { bg = "NONE", fg = c.comment },
 
-				-- Todo-comments
-				DiagnosticHint = { fg = c.green },
+        -- Todo-comments
+        DiagnosticHint = { fg = c.green },
 
-				-- Flash
-				FlashMatch = { fg = c.green },
-				FlashCurrent = { fg = c.green },
-				FlashBackdrop = { fg = c.comment },
-				FlashLabel = { bg = c.selection, fg = c.orange },
+        -- Flash
+        FlashMatch = { fg = c.green },
+        FlashCurrent = { fg = c.green },
+        FlashBackdrop = { fg = c.comment },
+        FlashLabel = { bg = c.selection, fg = c.orange },
 
-				-- Indent-blankline
-				Indent = { fg = c.bg },
-				IndentScope = { fg = c.selection },
+        -- Indent-blankline
+        Indent = { fg = c.bg },
+        IndentScope = { fg = c.selection },
 
-				-- Git-conflict
-				DiffCurrent = { bg = "#254C35" },
-				DiffIncoming = { bg = "#423857" },
+        -- Git-conflict
+        DiffCurrent = { bg = "#254C35" },
+        DiffIncoming = { bg = "#423857" },
 
-				-- Cmp
-				CompletionGhostText = { fg = c.selection },
-			}
-		end,
-	},
-	init = function()
-		vim.cmd([[ colorscheme dracula ]])
-	end,
+        -- Cmp
+        CompletionGhostText = { fg = c.selection },
+      }
+    end,
+  },
+  init = function() vim.cmd([[ colorscheme dracula ]]) end,
 }

@@ -35,9 +35,12 @@ k("n", "<leader>b", "gM", { desc = "Line mid" })
 k("n", "<leader>n", "$", { desc = "Line end" })
 
 -- Close floating windows with `<Esc>`
-k("n", "<Esc>", function()
-	h.close_floats()
-end, { desc = "Close floats", silent = true })
+k(
+  "n",
+  "<Esc>",
+  function() h.close_floats() end,
+  { desc = "Close floats", silent = true }
+)
 
 -- Remaps
 -- FIXME: I think we just need a new keyboard layer with AHK
