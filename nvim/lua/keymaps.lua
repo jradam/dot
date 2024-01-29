@@ -63,6 +63,5 @@ k("i", ";e", "=", { desc = "=" })
 k("i", ";c", ";", { desc = ";" })
 
 k("i", ";n", "<CR>", { desc = "Newline" })
--- TODO: make these do a word at a time
-k("i", ";b", "<Backspace>", { desc = "Backspace" })
-k("i", ";x", "<Delete>", { desc = "Delete" })
+k("i", ";b", "<C-w>", { desc = "Backspace word" })
+k("i", ";x", "<C-o>dw", { desc = "Delete word" })
