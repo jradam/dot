@@ -11,7 +11,8 @@ return {
 			print("Formatting set to " .. tostring(vim.g.should_format))
 		end, { desc = "Toggle format" })
 
-		local js_types = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+		local js_types =
+			{ "javascript", "javascriptreact", "typescript", "typescriptreact" }
 
 		-- Make LSP formatting (including eslint formatting) always run for JavaScript-types
 		local format_on_save = function()
@@ -46,12 +47,17 @@ return {
 				prettierd = {
 					env = {
 						XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
-						PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/env/.prettierrc.json",
+						PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
+							.. "/env/.prettierrc.json",
 					},
 				},
 				stylua = {
 					command = "stylua",
-					args = { "--config-path", vim.fn.stdpath("config") .. "/env/.stylua.toml", "-" },
+					args = {
+						"--config-path",
+						vim.fn.stdpath("config") .. "/env/.stylua.toml",
+						"-",
+					},
 				},
 			},
 		}
