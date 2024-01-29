@@ -31,9 +31,10 @@ return {
     end
 
     local formatters_by_ft = {
-      lua = { "stylua" },
       json = { "prettierd" },
+      lua = { "stylua" },
       markdown = { "prettierd" },
+      python = { "autopep8" },
     }
     for _, js_type in ipairs(js_types) do
       formatters_by_ft[js_type] = { "prettierd" }
@@ -44,6 +45,9 @@ return {
       format_on_save = format_on_save,
       notify_on_error = false,
       formatters = {
+        autopep8 = {
+          args = { "--indent-size=2", "-" },
+        },
         prettierd = {
           env = {
             XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
