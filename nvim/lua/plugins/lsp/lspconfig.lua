@@ -122,6 +122,7 @@ return {
           },
         },
       },
+      pyright = { capabilities = capabilities },
       tailwindcss = {
         capabilities = capabilities,
         root_dir = function(fname)

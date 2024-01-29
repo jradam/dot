@@ -13,6 +13,7 @@ return {
 }
 
 -- FIXME: When this breaks again, try some of this:
+-- Try running disable then enable on every file open
 -- The :SatelliteDisable command disables scrollbars.
 -- The :SatelliteEnable command enables scrollbars. This is only necessary if scrollbars have previously been disabled.
 -- The :SatelliteRefresh command refreshes the scrollbars. This is relevant when the scrollbars are out-of-sync, which can occur as a result of some window arrangement actions.

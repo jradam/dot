@@ -12,6 +12,7 @@ return {
         "eslint",
         "jsonls",
         "lua_ls",
+        "pyright",
         "tailwindcss",
       },
     })
