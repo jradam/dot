@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# FIXME: this doesn't work at all
+
 # Custom battery script for tmux powerline
 
 # setting the locale, some users have issues with different locales, this forces the correct one
