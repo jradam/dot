@@ -3,6 +3,9 @@ from pynput.mouse import Button, Controller as MouseController
 from pynput.keyboard import Key, Controller as KeyboardController
 import threading
 
+# TODO: have installed pyinstaller, python3-pip, python3-venv
+# Do I really need all this? Should I try Node or Rust?
+
 # Constants
 INTERVAL = 40
 SPEED = 20
