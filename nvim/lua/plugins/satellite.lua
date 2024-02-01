@@ -1,7 +1,7 @@
 return {
   "lewis6991/satellite.nvim",
   config = function()
-    vim.api.nvim_create_autocmd("FocusGained", {
+    vim.api.nvim_create_autocmd("FocusLost", {
       pattern = "*",
       command = ":SatelliteRefresh", -- To stop crashing when returning focus
     })
