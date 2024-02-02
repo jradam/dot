@@ -2,6 +2,7 @@ return {
   dir = "~/bufcmd",
   -- "jradam/bufcmd",
   opts = {
+    compensation = 12,
     theme = {
       current = { fg = "#FFFFA5", bg = "" },
       other = { fg = "#FFB86C", bg = "" },

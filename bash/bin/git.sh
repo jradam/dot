@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # TODO: don't allow commits less than two words
+# TODO: combine everything into one big function on "g"
 
 source "$HOME/dotfiles/bash/lib/colors.sh"
 
@@ -15,6 +16,11 @@ gp() {
 
 gd() {
   git diff "$@" | diff-so-fancy | less -RFX
+}
+
+gc() {
+  git branch "$@"
+  git push --set-upstream origin "$@"
 }
 
 # Multipurpose git status/commit function
