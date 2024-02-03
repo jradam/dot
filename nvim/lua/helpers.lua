@@ -14,11 +14,7 @@ function M.close_floats()
 end
 
 -- Print a table
-function M.print_table(table)
-  for key, value in pairs(table) do
-    print(key, value)
-  end
-end
+function M.print_table(table) print(vim.inspect(table)) end
 
 -- Determine if a string looks like a file path
 function M.is_file_path(string)
