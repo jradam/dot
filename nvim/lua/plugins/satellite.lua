@@ -1,10 +1,7 @@
 return {
-  "lewis6991/satellite.nvim",
-  config = function()
-    vim.api.nvim_create_autocmd({ "FocusLost", "FocusGained", "BufEnter" }, {
-      pattern = "*",
-      command = ":SatelliteRefresh", -- To stop crashing when returning focus
-    })
-    require("satellite").setup()
-  end,
+  -- FIXME: nothing I do makes this not crash
+  -- "lewis6991/satellite.nvim",
+  -- config = function()
+  --   require("satellite").setup()
+  -- end,
 }
