@@ -110,6 +110,15 @@ return {
         }),
         root_dir = lspconfig.util.root_pattern(".git", "package.json"),
       },
+      html = {
+        capabilities = vim.tbl_deep_extend("force", capabilities, {
+          workspace = {
+            didChangeWorkspaceFolders = {
+              dynamicRegistration = true,
+            },
+          },
+        }),
+      },
       jsonls = { capabilities = capabilities },
       lua_ls = {
         capabilities = capabilities,

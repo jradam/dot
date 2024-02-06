@@ -10,6 +10,7 @@ return {
       -- Language servers
       ensure_installed = {
         "eslint",
+        "html",
         "jsonls",
         "lua_ls",
         "pyright",

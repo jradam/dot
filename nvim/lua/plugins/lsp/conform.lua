@@ -14,18 +14,23 @@ return {
     local js_types =
       { "javascript", "javascriptreact", "typescript", "typescriptreact" }
 
-    -- Make LSP formatting (including eslint formatting) always run for JavaScript-types
     local format_on_save = function()
       local ft = vim.bo.filetype
 
       if vim.g.should_format then
         for _, filetype in ipairs(js_types) do
           if ft == filetype then
-            -- Running TailwindSort here as its own onsave function crashes frequently
+            -- Run TailwindSort (built-in onsave function crashes frequently)
             vim.api.nvim_command("TailwindSort")
+
+            -- Make LSP formatting (including eslint formatting) always run for JavaScript-types
             return { lsp_fallback = "always" }
           end
         end
+
+        -- Also run TailwindSort for plain html
+        if ft == "html" then vim.api.nvim_command("TailwindSort") end
+
         return { lsp_fallback = true } -- Otherwise, only run if no formatters available
       end
     end
