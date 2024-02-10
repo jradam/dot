@@ -40,6 +40,7 @@ return {
       lua = { "stylua" },
       markdown = { "prettierd" },
       python = { "autopep8" },
+      html = { "prettierd" },
     }
     for _, js_type in ipairs(js_types) do
       formatters_by_ft[js_type] = { "prettierd" }
