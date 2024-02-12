@@ -79,8 +79,7 @@ function M.eslint_setup(client)
 
   if sets.options == nil then sets.options = {} end
 
-  local local_eslint =
-    util.root_pattern(".eslintrc.js", ".eslintrc.json")(vim.fn.getcwd())
+  local local_eslint = util.root_pattern(".eslintrc*")(vim.fn.getcwd())
 
   if local_eslint then
     sets.useEslintrc = true
