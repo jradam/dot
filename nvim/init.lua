@@ -39,3 +39,4 @@ require("utilities")
 -- TODO: go through each plugin and make Lazy as possible
 -- TODO: remap keyboard keys
 -- TODO: bigfile.nvim
+-- TODO: separate envs for vite, next, etc
