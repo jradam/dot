@@ -75,6 +75,8 @@ return {
             ".storybook",
             "dist",
             "build",
+            "public",
+            "fonts",
           },
         },
         change_dir = { restrict_above_cwd = true },
