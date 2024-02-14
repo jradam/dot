@@ -7,10 +7,10 @@ return {
         tsserver_plugins = {
           "@styled/typescript-styled-plugin",
         },
-        jsx_close_tag = {
-          enable = true,
-          filetypes = { "javascriptreact", "typescriptreact" },
-        },
+        -- jsx_close_tag = {
+        --   enable = true,
+        --   filetypes = { "javascriptreact", "typescriptreact" },
+        -- },
       },
     })
   end,
