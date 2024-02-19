@@ -6,7 +6,7 @@ return {
       direction = "float",
       float_opts = {
         border = "curved",
-        winblend = 5,
+        -- winblend = 5, -- Some elements (emojis) don't blend
         width = math.floor(vim.api.nvim_win_get_width(0)),
         height = math.floor(vim.api.nvim_win_get_height(0)) - 1,
       },
