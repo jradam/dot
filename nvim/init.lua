@@ -40,3 +40,4 @@ require("utilities")
 -- TODO: remap keyboard keys
 -- TODO: bigfile.nvim
 -- TODO: separate envs for vite, next, etc
+-- TODO: silence "tag not found" error
