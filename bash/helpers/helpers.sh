@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/dotfiles/bash/lib/colors.sh
+source $HOME/dotfiles/bash/utilities/colors.sh
 
 print() {
   local type=$1

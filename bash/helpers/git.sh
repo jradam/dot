@@ -3,7 +3,7 @@
 # TODO: don't allow commits less than two words
 # TODO: combine everything into one big function on "g"
 
-source "$HOME/dotfiles/bash/lib/colors.sh"
+source "$HOME/dotfiles/bash/utilities/colors.sh"
 
 # Print and run git commands
 gp() {
