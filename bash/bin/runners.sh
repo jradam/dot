@@ -1,6 +1,6 @@
 find_main_file() {
     local extension="$1"
-    local files_to_check=("main" "init")
+    local files_to_check=("main" "init" "index")
 
     for filename in "${files_to_check[@]}"; do
         if [ -f "${filename}.${extension}" ]; then
@@ -12,6 +12,7 @@ find_main_file() {
     echo "" # Empty string if no file found
 }
 
+# TODO: make this run ts files too. Combine both as well (i.e. if find a js file, run it with node, else if .py then run with python). Make hotkey just "r"
 
 j() {
     if [ $# -gt 0 ]; then
@@ -24,7 +25,7 @@ j() {
     if [ -n "$file" ]; then
         node "$file"
     else
-        echo "No main.js or init.js found."
+        echo "No main/init/index file found."
     fi
 }
 
@@ -39,6 +40,6 @@ p() {
     if [ -n "$file" ]; then
         python3 "$file"
     else
-        echo "No main.py or init.py found."
+        echo "No main/init/index file found."
     fi
 }

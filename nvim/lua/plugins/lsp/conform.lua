@@ -52,7 +52,8 @@ return {
       notify_on_error = false,
       formatters = {
         autopep8 = {
-          args = { "--indent-size=2", "-" },
+          -- TODO: just use black.
+          -- args = { "--indent-size=2", "--ignore=E302", "-" },
         },
         prettierd = {
           env = {
