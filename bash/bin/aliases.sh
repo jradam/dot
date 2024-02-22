@@ -23,8 +23,9 @@ alias ....='cd ../../../'
 alias q='tmux kill-server'
 alias e='explorer.exe'
 
-# running shortcuts
+# general shortcuts
 alias v='nvim'
+alias python='python3'
 
 # edit dotfiles
 alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
