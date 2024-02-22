@@ -1,4 +1,4 @@
-source $HOME/dotfiles/bash/utilities/git-prompt.sh
+source $HOME/dotfiles/bash/lib/git-prompt.sh
 
 # TODO: Tidy this, or just implement starship.rs ??
 
