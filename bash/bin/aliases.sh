@@ -16,7 +16,6 @@ alias l='ls -CF'
 
 # other utilities
 alias c='clear'
-alias d='cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -25,7 +24,11 @@ alias e='explorer.exe'
 
 # general shortcuts
 alias v='nvim'
+
+# python helpers
 alias python='python3'
+alias a='. venv/bin/activate'
+alias d='deactivate'
 
 # edit dotfiles
 alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
