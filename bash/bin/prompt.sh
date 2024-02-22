@@ -18,12 +18,20 @@ c_pink='\[\e[35m\]'
 c_purple='\[\e[34m\]'
 c_end='\[\e[0m\]'
 
+# Check if virtualenv 
+get_virtualenv() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    # Extract the name of the virtual env from its path
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+P_VIRTUALENV="${c_green} $(get_virtualenv)${c_end}"
+
 P_PWD="\w"
 P_BASENAME="\W"
-P_NEWLINE="\n"
 P_TITLE="\e]0;${P_BASENAME}\a"
 P_PATH="${c_purple} ${c_gray}${P_PWD}${c_end}"
 P_GIT="${c_pink}${P_DYNAMICGIT}${c_end}"
-P_PROMPT="${P_NEWLINE}${c_green}󰐊${c_end}"
-PS1="${P_NEWLINE}${P_TITLE}${P_PATH}${P_GIT}${P_PROMPT} "
+P_PROMPT="\n${c_green}󰐊${c_end}"
+PS1="\n${P_TITLE}${P_PATH}${P_GIT}${P_VIRTUALENV}${P_PROMPT} "
 
