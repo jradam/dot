@@ -46,10 +46,18 @@ vim.api.nvim_create_autocmd("FileType", {
   command = [[ setlocal formatoptions-=cro ]],
 })
 
--- Send `<Esc>` on focus loss to enter normal mode
+-- Send `<Esc>` on focus loss to enter normal mode (when not terminal)
 vim.api.nvim_create_autocmd("FocusLost", {
   pattern = "*",
-  command = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)",
+  callback = function()
+    if vim.bo.buftype ~= "terminal" then
+      vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+        "n",
+        true
+      )
+    end
+  end,
 })
 
 -- TODO: make into small plugin
