@@ -25,7 +25,6 @@ get_virtualenv() {
     echo "($(basename $VIRTUAL_ENV))"
   fi
 }
-P_VIRTUALENV="${c_green} $(get_virtualenv)${c_end}"
 
 P_PWD="\w"
 P_BASENAME="\W"
@@ -33,5 +32,10 @@ P_TITLE="\e]0;${P_BASENAME}\a"
 P_PATH="${c_purple} ${c_gray}${P_PWD}${c_end}"
 P_GIT="${c_pink}${P_DYNAMICGIT}${c_end}"
 P_PROMPT="\n${c_green}󰐊${c_end}"
-PS1="\n${P_TITLE}${P_PATH}${P_GIT}${P_VIRTUALENV}${P_PROMPT} "
 
+# Run this before every command to fetch env updates without having to reset bash
+update() {
+  P_VIRTUALENV="${c_green} $(get_virtualenv)${c_end}"
+  PS1="\n${P_TITLE}${P_PATH}${P_GIT}${P_VIRTUALENV}${P_PROMPT} "
+}
+PROMPT_COMMAND='update'
