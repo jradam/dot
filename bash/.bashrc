@@ -7,6 +7,7 @@ source $HOME/dotfiles/bash/bin/git.sh
 source $HOME/dotfiles/bash/bin/aliases.sh
 source $HOME/dotfiles/bash/bin/defaults.sh
 source $HOME/dotfiles/bash/bin/prompt.sh
+source $HOME/dotfiles/bash/bin/runners.sh
 source $HOME/dotfiles/.env
 
 # Link Window's browser to WSL2

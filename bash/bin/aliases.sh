@@ -20,9 +20,11 @@ alias d='cd'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-alias v='nvim'
 alias q='tmux kill-server'
 alias e='explorer.exe'
+
+# running shortcuts
+alias v='nvim'
 
 # edit dotfiles
 alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
