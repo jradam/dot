@@ -77,6 +77,8 @@ return {
             "build",
             "public",
             "fonts",
+            "lib",
+            "bin",
           },
         },
         change_dir = { restrict_above_cwd = true },
