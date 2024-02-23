@@ -14,6 +14,7 @@ from winput import (
 cooking = False
 shifted = False
 semicolon = False
+halt = WP_DONT_PASS_INPUT_ON
 
 
 def toggle_cooking(event: KeyboardEvent):
@@ -35,61 +36,59 @@ def toggle_shifted(event: KeyboardEvent):
         shifted = False
 
 
+def hit(key):
+    press_key(key)
+    release_key(key)
+
+
+def shift_hit(key):
+    press_key(VK_SHIFT)
+    hit(key)
+    release_key(VK_SHIFT)
+
+
 def handle_ingredients(event: KeyboardEvent):
     global semicolon
     if event.vkCode == VK_F and event.action == WM_KEYDOWN:  # F > {
-        press_key(VK_SHIFT)
-        press_key(VK_OEM_4)
-        release_key(VK_OEM_4)
-        release_key(VK_SHIFT)
+        shift_hit(VK_OEM_4)
+        return halt
     if event.vkCode == VK_J and event.action == WM_KEYDOWN:  # J > }
-        press_key(VK_SHIFT)
-        press_key(VK_OEM_6)
-        release_key(VK_OEM_6)
-        release_key(VK_SHIFT)
+        shift_hit(VK_OEM_6)
+        return halt
     if event.vkCode == VK_D and event.action == WM_KEYDOWN:  # D > (
-        press_key(VK_SHIFT)
-        press_key(VK_9)
-        release_key(VK_9)
-        release_key(VK_SHIFT)
+        shift_hit(VK_9)
+        return halt
     if event.vkCode == VK_K and event.action == WM_KEYDOWN:  # K > )
-        press_key(VK_SHIFT)
-        press_key(VK_0)
-        release_key(VK_0)
-        release_key(VK_SHIFT)
+        shift_hit(VK_0)
+        return halt
     if event.vkCode == VK_S and event.action == WM_KEYDOWN:  # S > [
-        press_key(VK_OEM_4)
-        release_key(VK_OEM_4)
+        hit(VK_OEM_4)
+        return halt
     if event.vkCode == VK_L and event.action == WM_KEYDOWN:  # L > ]
-        press_key(VK_OEM_6)
-        release_key(VK_OEM_6)
+        hit(VK_OEM_6)
+        return halt
     if event.vkCode == VK_U and event.action == WM_KEYDOWN:  # U > _
-        press_key(VK_SHIFT)
-        press_key(VK_OEM_MINUS)
-        release_key(VK_OEM_MINUS)
-        release_key(VK_SHIFT)
+        shift_hit(VK_OEM_MINUS)
+        return halt
     if event.vkCode == VK_H and event.action == WM_KEYDOWN:  # H > -
-        press_key(VK_OEM_MINUS)
-        release_key(VK_OEM_MINUS)
+        hit(VK_OEM_MINUS)
+        return halt
     if event.vkCode == VK_Q and event.action == WM_KEYDOWN:  # Q > "
-        press_key(VK_SHIFT)
-        press_key(VK_2)
-        release_key(VK_2)
-        release_key(VK_SHIFT)
+        shift_hit(VK_2)
+        return halt
     if event.vkCode == VK_E and event.action == WM_KEYDOWN:  # E > =
-        press_key(VK_OEM_PLUS)
-        release_key(VK_OEM_PLUS)
+        hit(VK_OEM_PLUS)
+        return halt
     if event.vkCode == VK_C and event.action == WM_KEYDOWN:  # C > ;
         semicolon = True
-        press_key(VK_OEM_1)
-        release_key(VK_OEM_1)
+        hit(VK_OEM_1)
         semicolon = False
+        return halt
     if event.vkCode == VK_N and event.action == WM_KEYDOWN:  # N > Return
-        press_key(VK_RETURN)
-        release_key(VK_RETURN)
+        hit(VK_RETURN)
+        return halt
     if event.vkCode == VK_ESCAPE and event.action == WM_KEYDOWN:  # Exit
         return WP_UNHOOK | WP_STOP
-    return WP_DONT_PASS_INPUT_ON
 
 
 def keyboard_callback(event: KeyboardEvent):
