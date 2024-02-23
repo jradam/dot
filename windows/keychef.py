@@ -1,11 +1,10 @@
-# This program replaces semicolon with F13, and enables the "cooking" keyboard layer here.
+# This program replaces semicolon with F13, and enables a new keyboard layer here.
 # In Windows, this means that semicolon does nothing, as F13 is not bound there, and it can now act as our new keyboard layer.
-# In Windows Terminal's settings.json, I have bound F13 to send semicolon again so I can use it as a leader key in neovim, and I have blocked it from typing anything with <Nop>
+# In Windows Terminal's settings.json, I have bound F13 to send ¦ to use as a leader key in neovim (the only key I could think of that I never need to use) and I have blocked it from typing anything with <Nop> in init.lua
 
-# TODO: figure out how to type semicolon in Neovim while still having functionality
-# TODO: figure out how to make semi+e type "=" but also work well for opening tree
+# TODO: figure out how to make <leader>e type "=" but also work well for opening tree. Maybe just rebind all the leader things that clash to the new bindings (i.e. menu open on "=")?
+# TODO: package as an exe and run at startup
 # TODO: mouse movement
-
 
 from winput import (
     VK_2, VK_C, VK_E, VK_ESCAPE, VK_H, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_U, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
