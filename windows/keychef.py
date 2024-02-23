@@ -14,7 +14,6 @@ from winput import (
 cooking = False
 shifted = False
 semicolon = False
-halt = WP_DONT_PASS_INPUT_ON
 
 
 def toggle_cooking(event: KeyboardEvent):
@@ -47,49 +46,36 @@ def shift_hit(key):
     release_key(VK_SHIFT)
 
 
+def handle_semicolon():
+    global semicolon
+    semicolon = True
+    hit(VK_OEM_1)
+    semicolon = False
+
+
 def handle_ingredients(event: KeyboardEvent):
     global semicolon
+    key_map = {
+        VK_F: lambda: shift_hit(VK_OEM_4),
+        VK_J: lambda: shift_hit(VK_OEM_6),
+        VK_D: lambda: shift_hit(VK_9),
+        VK_K: lambda: shift_hit(VK_0),
+        VK_S: lambda: hit(VK_OEM_4),
+        VK_L: lambda: hit(VK_OEM_6),
+        VK_U: lambda: shift_hit(VK_OEM_MINUS),
+        VK_H: lambda: hit(VK_OEM_MINUS),
+        VK_Q: lambda: shift_hit(VK_2),
+        VK_E: lambda: hit(VK_OEM_PLUS),
+        VK_N: lambda: hit(VK_RETURN),
+        VK_C: lambda: handle_semicolon(),
+    }
     if event.action == WM_KEYDOWN:
-        if event.vkCode == VK_F:
-            shift_hit(VK_OEM_4)
-            return halt
-        if event.vkCode == VK_J:
-            shift_hit(VK_OEM_6)
-            return halt
-        if event.vkCode == VK_D:
-            shift_hit(VK_9)
-            return halt
-        if event.vkCode == VK_K:
-            shift_hit(VK_0)
-            return halt
-        if event.vkCode == VK_S:
-            hit(VK_OEM_4)
-            return halt
-        if event.vkCode == VK_L:
-            hit(VK_OEM_6)
-            return halt
-        if event.vkCode == VK_U:
-            shift_hit(VK_OEM_MINUS)
-            return halt
-        if event.vkCode == VK_H:
-            hit(VK_OEM_MINUS)
-            return halt
-        if event.vkCode == VK_Q:
-            shift_hit(VK_2)
-            return halt
-        if event.vkCode == VK_E:
-            hit(VK_OEM_PLUS)
-            return halt
-        if event.vkCode == VK_C:
-            semicolon = True
-            hit(VK_OEM_1)
-            semicolon = False
-            return halt
-        if event.vkCode == VK_N:
-            hit(VK_RETURN)
-            return halt
         if event.vkCode == VK_ESCAPE:
             return WP_UNHOOK | WP_STOP
+        action = key_map.get(event.vkCode)
+        if action:
+            action()
+            return WP_DONT_PASS_INPUT_ON
 
 
 def keyboard_callback(event: KeyboardEvent):
