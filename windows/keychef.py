@@ -49,46 +49,47 @@ def shift_hit(key):
 
 def handle_ingredients(event: KeyboardEvent):
     global semicolon
-    if event.vkCode == VK_F and event.action == WM_KEYDOWN:  # F > {
-        shift_hit(VK_OEM_4)
-        return halt
-    if event.vkCode == VK_J and event.action == WM_KEYDOWN:  # J > }
-        shift_hit(VK_OEM_6)
-        return halt
-    if event.vkCode == VK_D and event.action == WM_KEYDOWN:  # D > (
-        shift_hit(VK_9)
-        return halt
-    if event.vkCode == VK_K and event.action == WM_KEYDOWN:  # K > )
-        shift_hit(VK_0)
-        return halt
-    if event.vkCode == VK_S and event.action == WM_KEYDOWN:  # S > [
-        hit(VK_OEM_4)
-        return halt
-    if event.vkCode == VK_L and event.action == WM_KEYDOWN:  # L > ]
-        hit(VK_OEM_6)
-        return halt
-    if event.vkCode == VK_U and event.action == WM_KEYDOWN:  # U > _
-        shift_hit(VK_OEM_MINUS)
-        return halt
-    if event.vkCode == VK_H and event.action == WM_KEYDOWN:  # H > -
-        hit(VK_OEM_MINUS)
-        return halt
-    if event.vkCode == VK_Q and event.action == WM_KEYDOWN:  # Q > "
-        shift_hit(VK_2)
-        return halt
-    if event.vkCode == VK_E and event.action == WM_KEYDOWN:  # E > =
-        hit(VK_OEM_PLUS)
-        return halt
-    if event.vkCode == VK_C and event.action == WM_KEYDOWN:  # C > ;
-        semicolon = True
-        hit(VK_OEM_1)
-        semicolon = False
-        return halt
-    if event.vkCode == VK_N and event.action == WM_KEYDOWN:  # N > Return
-        hit(VK_RETURN)
-        return halt
-    if event.vkCode == VK_ESCAPE and event.action == WM_KEYDOWN:  # Exit
-        return WP_UNHOOK | WP_STOP
+    if event.action == WM_KEYDOWN:
+        if event.vkCode == VK_F:
+            shift_hit(VK_OEM_4)
+            return halt
+        if event.vkCode == VK_J:
+            shift_hit(VK_OEM_6)
+            return halt
+        if event.vkCode == VK_D:
+            shift_hit(VK_9)
+            return halt
+        if event.vkCode == VK_K:
+            shift_hit(VK_0)
+            return halt
+        if event.vkCode == VK_S:
+            hit(VK_OEM_4)
+            return halt
+        if event.vkCode == VK_L:
+            hit(VK_OEM_6)
+            return halt
+        if event.vkCode == VK_U:
+            shift_hit(VK_OEM_MINUS)
+            return halt
+        if event.vkCode == VK_H:
+            hit(VK_OEM_MINUS)
+            return halt
+        if event.vkCode == VK_Q:
+            shift_hit(VK_2)
+            return halt
+        if event.vkCode == VK_E:
+            hit(VK_OEM_PLUS)
+            return halt
+        if event.vkCode == VK_C:
+            semicolon = True
+            hit(VK_OEM_1)
+            semicolon = False
+            return halt
+        if event.vkCode == VK_N:
+            hit(VK_RETURN)
+            return halt
+        if event.vkCode == VK_ESCAPE:
+            return WP_UNHOOK | WP_STOP
 
 
 def keyboard_callback(event: KeyboardEvent):
