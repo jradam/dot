@@ -41,27 +41,3 @@ k(
   function() h.close_floats() end,
   { desc = "Close floats", silent = true }
 )
-
--- Remaps
--- FIXME: I think we just need a new keyboard layer with AHK
--- k("i", ";", "", { desc = "Remove `;` from insert mode" })
-
-k("i", ";f", "{", { desc = "{" })
-k("i", ";j", "}", { desc = "}" })
-
-k("i", ";d", "(", { desc = "(" })
-k("i", ";k", ")", { desc = ")" })
-
-k("i", ";s", "[", { desc = "[" })
-k("i", ";l", "]", { desc = "]" })
-
-k("i", ";u", "_", { desc = "_" })
-k("i", ";h", "-", { desc = "-" })
-k("i", ";q", '"', { desc = '"' })
-
-k("i", ";e", "=", { desc = "=" })
-k("i", ";c", ";", { desc = ";" })
-
-k("i", ";n", "<CR>", { desc = "Newline" })
-k("i", ";b", "<C-w>", { desc = "Backspace word" })
-k("i", ";x", "<C-o>dw", { desc = "Delete word" })
