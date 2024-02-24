@@ -8,7 +8,7 @@
 # TODO: move to public repo
 
 from winput import (
-    VK_2, VK_C, VK_E, VK_ESCAPE, VK_H, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_U, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
+    VK_2, VK_B, VK_BACK, VK_C, VK_DELETE, VK_E, VK_ESCAPE, VK_H, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_U, VK_X, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
 )
 
 cooking = False
@@ -67,6 +67,8 @@ def handle_ingredients(event: KeyboardEvent):
         VK_Q: lambda: shift_hit(VK_2),
         VK_E: lambda: hit(VK_OEM_PLUS),
         VK_N: lambda: hit(VK_RETURN),
+        VK_B: lambda: hit(VK_BACK),
+        VK_X: lambda: hit(VK_DELETE),
         VK_C: lambda: handle_semicolon(),
     }
     if event.action == WM_KEYDOWN:
