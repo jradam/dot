@@ -8,7 +8,7 @@
 # TODO: move to public repo
 
 from winput import (
-    VK_2, VK_7, VK_A, VK_B, VK_BACK, VK_C, VK_DELETE, VK_DOWN, VK_E, VK_ESCAPE, VK_G, VK_H, VK_LEFT, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_RIGHT, VK_U, VK_UP, VK_X, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
+    VK_2, VK_7, VK_A, VK_B, VK_BACK, VK_C, VK_DELETE, VK_DOWN, VK_E, VK_ESCAPE, VK_G, VK_H, VK_LEFT, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_RIGHT, VK_UP, VK_X, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
 )
 import time
 
