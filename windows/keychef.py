@@ -8,7 +8,7 @@
 # TODO: move to public repo
 
 from winput import (
-    VK_2, VK_4, VK_7, VK_A, VK_B, VK_BACK, VK_C, VK_DELETE, VK_DOWN, VK_E, VK_ESCAPE, VK_G, VK_H, VK_LEFT, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_RIGHT, VK_UP, VK_X, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
+    VK_2, VK_4, VK_7, VK_A, VK_B, VK_BACK, VK_C, VK_DELETE, VK_DOWN, VK_E, VK_ESCAPE, VK_G, VK_H, VK_I, VK_LEFT, VK_M, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_RIGHT, VK_UP, VK_X, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
 )
 import time
 
@@ -83,8 +83,9 @@ def handle_ingredients(event: KeyboardEvent):
         VK_D: lambda: double((VK_9, True), (VK_0, True)),
         VK_S: lambda: double((VK_OEM_4, False), (VK_OEM_6, False)),
         VK_G: lambda: double((VK_OEM_MINUS, False), (VK_OEM_MINUS, True)),
-        VK_A: lambda: double((VK_7, True), (VK_4, True)),
-        VK_Q: lambda: press(VK_2, True),
+        VK_A: lambda: press(VK_7, True),
+        VK_M: lambda: press(VK_4, True),
+        VK_I: lambda: press(VK_2, True),
         VK_E: lambda: press(VK_OEM_PLUS),
         VK_N: lambda: press(VK_RETURN),
         VK_B: lambda: press(VK_BACK),
@@ -96,7 +97,7 @@ def handle_ingredients(event: KeyboardEvent):
         VK_C: lambda: handle_semicolon(),
     }
     if event.action == WM_KEYDOWN:
-        if event.vkCode == VK_ESCAPE:
+        if event.vkCode == VK_Q:
             return WP_UNHOOK | WP_STOP
         action = key_map.get(event.vkCode)
         if action:
