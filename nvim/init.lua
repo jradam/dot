@@ -19,7 +19,7 @@ vim.g.loaded_netrwPlugin = 1
 -- Leader keymap
 vim.g.mapleader = "¦"
 vim.g.maplocalleader = " "
-vim.keymap.set({ "n", "i", "t" }, "¦", "<Nop>", { desc = "Disable ¦" })
+vim.keymap.set({ "n", "i", "v", "t" }, "¦", "<Nop>", { desc = "Disable ¦" })
 
 -- Load plugins
 require("lazy").setup({
