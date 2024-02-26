@@ -1,33 +1,34 @@
-# This program replaces semicolon with F13, and enables a new keyboard layer here.
-# In Windows, this means that semicolon does nothing, as F13 is not bound there, and it can now act as our new keyboard layer.
-# In Windows Terminal's settings.json, I have bound F13 to send ¦ to use as a leader key in neovim (the only key I could think of that I never need to use) and I have blocked it from typing anything with <Nop> in init.lua
-
-# TODO: figure out how to make <leader>e type "=" but also work well for opening tree. Maybe just rebind all the leader things that clash to the new bindings (i.e. menu open on "=")?
-# TODO: package as an exe and run at startup
-# TODO: mouse movement
-# TODO: move to public repo
-
-from winput import (
-    VK_2, VK_4, VK_7, VK_A, VK_B, VK_BACK, VK_C, VK_DELETE, VK_DOWN, VK_E, VK_ESCAPE, VK_G, VK_H, VK_I, VK_LEFT, VK_M, VK_N, VK_OEM_1, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_RIGHT, VK_UP, VK_X, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, VK_F, VK_OEM_4, VK_SHIFT, VK_J, press_key, release_key, WP_UNHOOK, WP_STOP, hook_keyboard, wait_messages, KeyboardEvent, VK_OEM_6, VK_D, VK_9, VK_K, VK_S, VK_0, VK_L, VK_F13, VK_LSHIFT
-)
 import time
+from winput import (
+    VK_2, VK_4, VK_7, VK_A, VK_B, VK_BACK, VK_C, VK_DELETE, VK_DOWN, VK_E, VK_F, VK_F13, VK_G, VK_H, VK_I, VK_J, VK_K, VK_L, VK_LEFT, VK_M, VK_N, VK_OEM_1, VK_OEM_4, VK_OEM_6, VK_OEM_MINUS, VK_OEM_PLUS, VK_Q, VK_RETURN, VK_RIGHT, VK_S, VK_SHIFT, VK_UP, VK_X, VK_D, VK_9, VK_0, VK_LSHIFT, press_key, release_key, hook_keyboard, wait_messages, KeyboardEvent, WP_DONT_PASS_INPUT_ON, WM_KEYDOWN, WM_KEYUP, WP_UNHOOK, WP_STOP
+)
 
-cooking = False
-shifted = False
-semicolon = False
+# KeyChef adds a new keyboard layer, accessed by holding the activate_key (default `;`)
+# It can also send an on_activate key (default `F13`)
 
-last_key_time = 0
-last_key = None
+# TODO: add user configuration
+# TODO: package as an exe
+# TODO: mouse movement
+
+# USER SETTINGS HERE
+
+activate_key = VK_OEM_1
+on_activate = VK_F13
+
+# END USER SETTINGS
+
+cooking, shifted, sending_replacement = False, False, False
+last_key_time, last_key = 0, None
 
 
 def toggle_cooking(event: KeyboardEvent):
     global cooking
     if event.action == WM_KEYDOWN:
         cooking = True
-        press_key(VK_F13)
+        press_key(on_activate)
     elif event.action == WM_KEYUP:
         cooking = False
-        release_key(VK_F13)
+        release_key(on_activate)
     return WP_DONT_PASS_INPUT_ON
 
 
@@ -69,15 +70,15 @@ def double(key1, key2):
     last_key = key1[0]
 
 
-def handle_semicolon():
-    global semicolon
-    semicolon = True
-    hit(VK_OEM_1)
-    semicolon = False
+def activate_replacement():
+    global sending_replacement
+    sending_replacement = True
+    hit(activate_key)
+    sending_replacement = False
 
 
 def handle_ingredients(event: KeyboardEvent):
-    global semicolon
+    global sending_replacement
     key_map = {
         VK_F: lambda: double((VK_OEM_4, True), (VK_OEM_6, True)),
         VK_D: lambda: double((VK_9, True), (VK_0, True)),
@@ -94,7 +95,7 @@ def handle_ingredients(event: KeyboardEvent):
         VK_J: lambda: press(VK_DOWN),
         VK_K: lambda: press(VK_UP),
         VK_L: lambda: press(VK_RIGHT),
-        VK_C: lambda: handle_semicolon(),
+        VK_C: lambda: activate_replacement(),
     }
     if event.action == WM_KEYDOWN:
         if event.vkCode == VK_Q:
@@ -108,7 +109,7 @@ def handle_ingredients(event: KeyboardEvent):
 def keyboard_callback(event: KeyboardEvent):
     if event.vkCode == VK_LSHIFT:
         return toggle_shifted(event)
-    if event.vkCode == VK_OEM_1 and not shifted and not semicolon:
+    if event.vkCode == activate_key and not shifted and not sending_replacement:
         return toggle_cooking(event)
     elif cooking:
         return handle_ingredients(event)

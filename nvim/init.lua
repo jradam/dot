@@ -16,10 +16,15 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Terminal intercepts the F13 on_activate from KeyChef's `;` press and sends `¦` instead
+-- (F keys not available in Neovim)
+-- We disable `¦` here so it is never actually typed, and so `¦` acts like a modifier key
+-- This means we can use both our new keyboard layer and our leader key with one key
+vim.keymap.set({ "n", "i", "v", "t" }, "¦", "<Nop>", { desc = "Disable ¦" })
+
 -- Leader keymap
 vim.g.mapleader = "¦"
 vim.g.maplocalleader = " "
-vim.keymap.set({ "n", "i", "v", "t" }, "¦", "<Nop>", { desc = "Disable ¦" })
 
 -- Load plugins
 require("lazy").setup({
