@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# TODO: add a "list all git commands and aliases" command
 # TODO: don't allow commits less than two words
 # TODO: combine everything into one big function on "g"
 
