@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# TODO re-write bash scripts in python
+# TODO: re-write bash scripts in python
+# TODO: add listener that blocks ¦ from printing in terminal (but still allows neovim to work)
 
 source $HOME/dotfiles/bash/bin/helpers.sh
 source $HOME/dotfiles/bash/bin/git.sh
@@ -23,7 +24,7 @@ bold='01'
 orange='33'
 export LS_COLORS="$LS_COLORS:ln=$bold;$orange"
 
-# TODO ---------------------------- Old bashrc
+# TODO: ---------------------------- Old bashrc
 #
 # # git with message: g "add" add -A
 # function g() {
