@@ -20,7 +20,8 @@ vim.g.loaded_netrwPlugin = 1
 -- (F keys not available in Neovim)
 -- We disable `¦` here so it is never actually typed, and so `¦` acts like a modifier key
 -- This means we can use both our new keyboard layer and our leader key with one key
-vim.keymap.set({ "n", "i", "v", "t" }, "¦", "<Nop>", { desc = "Disable ¦" })
+local h = require("helpers")
+vim.keymap.set(h.allModes, "¦", "<Nop>", { desc = "Disable ¦" })
 
 -- Leader keymap
 vim.g.mapleader = "¦"
