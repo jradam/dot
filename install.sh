@@ -32,7 +32,7 @@ yes | sudo apt install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 link $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
-link $HOME/dotfiles/tmux/bin/battery.sh $HOME/.tmux/plugins/tmux/scripts/battery.sh
+link $HOME/dotfiles/tmux/battery.sh $HOME/.tmux/plugins/tmux/scripts/battery.sh
 
 print "info" "Bash"
 link $HOME/dotfiles/bash/.bashrc $HOME/.bashrc
