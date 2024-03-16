@@ -1,14 +1,9 @@
-; TODO: Rewrite in python or node.js
-; if not possible, at least rewrite in AHK1
-; https://stackoverflow.com/questions/33863921/detecting-a-keypress-in-python-while-in-the-background
-
 ; TODO: how can we auto-install/sync the windows stuff? Want to edit files in here, then run something to sync over perhaps?
 
 ; TODO: add key for `alt + space` then `m` for moving windows
 
 ; -------------------- Settings
 activate := "CapsLock"
-; TODO: Esc is sent many times, how to make it only send once? Does it mean StartRemap is being called multiple times? 
 onActivate := "{Esc}"
 
 up := "k"
