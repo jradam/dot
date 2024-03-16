@@ -20,7 +20,7 @@ return {
     require("mason-tool-installer").setup({
       -- Formatters
       ensure_installed = {
-        "autopep8",
+        "black",
         "prettierd",
         "stylua",
       },

@@ -39,7 +39,7 @@ return {
       json = { "prettierd" },
       lua = { "stylua" },
       markdown = { "prettierd" },
-      python = { "autopep8" },
+      python = { "black" },
       html = { "prettierd" },
     }
     for _, js_type in ipairs(js_types) do
@@ -51,10 +51,6 @@ return {
       format_on_save = format_on_save,
       notify_on_error = false,
       formatters = {
-        autopep8 = {
-          -- TODO: just use black.
-          -- args = { "--indent-size=2", "--ignore=E302", "-" },
-        },
         prettierd = {
           env = {
             XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
