@@ -14,6 +14,7 @@ k("n", "c", ":noh<cr>", { desc = "Clear highlights" })
 k("n", "C", ":edit<cr>:LspRestart<cr>", { desc = "Restart buffer" })
 k("t", "<c-q>", "<C-\\><C-n>", { desc = "Exit terminal insert" })
 k("n", "<leader>c", ":source<CR>", { desc = "Source this file" })
+k("n", "<leader>R", ":luafile %<CR>", { desc = "Run this lua file" })
 
 -- Text manipulation
 k("n", "<leader>a", "ggVG", { desc = "Select all" })
