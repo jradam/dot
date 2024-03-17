@@ -21,11 +21,7 @@ return {
     end
 
     -- TODO: Remove Easypick and implement these in Telescope natively
-    -- Git diff/conflict like below. Make "Local changes" only show when there are actually local changes etc
-    -- basic git commands on <C-g>
-    -- the output of :highlight
-    -- Git Signs. Make it say, e.g. "Turn number highlighting off" when on, and "Turn number highlighting on" when off
-    -- TSTools menu
+    -- Add quantity, like "Local changes (3)"
 
     return {
       pickers = {

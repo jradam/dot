@@ -42,9 +42,8 @@ require("helpers")
 require("keymaps")
 require("settings")
 require("utilities")
+require("spyglass")
 
 -- TODO: go through each plugin and make Lazy as possible
--- TODO: remap keyboard keys
 -- TODO: bigfile.nvim
--- TODO: separate envs for vite, next, etc
 -- TODO: silence "tag not found" error
