@@ -37,8 +37,6 @@ return {
           width = 100,
           scroll_speed = 9,
           mirror = true,
-          preview_height = 0.65,
-          preview_cutoff = 30, -- If window too small, don't show preview
         },
         file_ignore_patterns = { "node_modules", "yarn.lock" },
         mappings = {
@@ -52,15 +50,26 @@ return {
     local status, builtin = pcall(require, "telescope.builtin")
     if not status then return end
 
+    local function with_preview(mode)
+      return {
+        initial_mode = mode,
+        layout_config = {
+          -- Only apply to pickers with previews - otherwise causes crash
+          preview_height = 0.65,
+          preview_cutoff = 30, -- If window too small, don't show preview
+        },
+      }
+    end
+
     return {
       {
         "<leader>f",
-        function() builtin.find_files({ initial_mode = "insert" }) end,
+        function() builtin.find_files(with_preview("insert")) end,
         desc = "Find file",
       },
       {
         "<leader>s",
-        function() builtin.live_grep({ initial_mode = "insert" }) end,
+        function() builtin.live_grep(with_preview("insert")) end,
         desc = "Find string",
       },
       {
@@ -80,7 +89,7 @@ return {
       },
       {
         "<leader>h",
-        function() builtin.help_tags({ initial_mode = "insert" }) end,
+        function() builtin.help_tags(with_preview("insert")) end,
         desc = "Get help",
       },
       {
@@ -97,7 +106,7 @@ return {
         "<localleader>k",
         function()
           require("utilities").ts_quickfix()
-          builtin.quickfix()
+          builtin.quickfix(with_preview("normal"))
         end,
         desc = "TS issue list",
       },
