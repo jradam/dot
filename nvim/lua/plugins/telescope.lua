@@ -78,15 +78,7 @@ return {
         desc = "Find todo",
       },
       { "<leader>l", ":TodoTelescope keywords=", desc = "Filter todo" },
-      {
-        "<leader>d",
-        function()
-          builtin.diagnostics({
-            severity = { min = vim.diagnostic.severity.WARN },
-          })
-        end,
-        desc = "Diagnostics",
-      },
+      { "<leader>d", builtin.diagnostics, desc = "Diagnostics" },
       {
         "<leader>h",
         function() builtin.help_tags(with_preview("insert")) end,

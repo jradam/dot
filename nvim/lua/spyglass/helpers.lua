@@ -28,8 +28,9 @@ function M.spyglass(name, commands)
       local selection = action_state.get_selected_entry()
       local cmd = get_cmd(commands, selection.value)
 
-      vim.cmd(cmd)
+      -- Close picker and wait to ensure command is run in buffer
       actions.close(bufnr)
+      vim.defer_fn(function() vim.cmd(cmd) end, 100)
     end)
 
     return true

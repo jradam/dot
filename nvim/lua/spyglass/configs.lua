@@ -19,12 +19,26 @@ function M.gitsigns()
     },
     {
       label = state.base == "main" and "Switch to head" or "Switch to main",
-      cmd = "Gitsigns "
+      cmd = (
+        "Gitsigns "
         .. (
           state.base == "main" and "change_base HEAD true"
           or "change_base main true"
-        ),
+        )
+      ),
     },
+  })
+end
+
+function M.ts_tools()
+  h.spyglass("TS Tools", {
+    { label = "Add imports", cmd = "TSToolsAddMissingImports" },
+    { label = "Organise imports", cmd = "TSToolsOrganizeImports" },
+    { label = "Rename file", cmd = "TSToolsRenameFile" },
+    { label = "Fix all", cmd = "TSToolsFixAll" },
+    { label = "Remove unused", cmd = "TSToolsRemoveUnused" },
+    { label = "Go to definition", cmd = "TSToolsGoToSourceDefinition" },
+    { label = "File references", cmd = "TSToolsFileReferences" },
   })
 end
 

@@ -61,22 +61,6 @@ return {
         "<cmd>Telescope lsp_references<CR>",
         desc = "List references",
       },
-      {
-        "<localleader>d",
-        "<cmd>TSToolsAddMissingImports<CR>",
-        desc = "TS add imports",
-      },
-      {
-        "<localleader>R",
-        "<cmd>TSToolsRenameFile<CR>",
-        desc = "TS rename file",
-      },
-      { "<localleader>f", "<cmd>TSToolsFixAll<CR>", desc = "TS fix all" },
-      {
-        "<localleader>o",
-        "<cmd>TSToolsOrganizeImports<CR>",
-        desc = "TS organise imports",
-      },
     }
   end,
   config = function(_, opts)
