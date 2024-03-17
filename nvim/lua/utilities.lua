@@ -179,7 +179,6 @@ function M.safe_delete()
   end
 end
 
--- TODO: why this work perfectly if run manually only??
 -- Nvim-tree resize to full height of window
 function M.resize_tree()
   local tree_window = require("nvim-tree.view").get_winnr()

@@ -26,7 +26,7 @@ return {
     end
 
     -- TODO: want any of this from kickstart?
-    --    	nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+    -- nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
     -- nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
     -- nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
     -- nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")

@@ -4,7 +4,10 @@ return {
   keys = function()
     -- Fail without interrupting the user, but log the error
     local function nvim_tree_toggle()
-      local _, err = pcall(function() vim.cmd("NvimTreeToggle") end)
+      local _, err = pcall(function()
+        vim.cmd("NvimTreeToggle")
+        require("utilities").resize_tree() -- Ensure tree fills space, even if window size has changed
+      end)
       if err then
         vim.api.nvim_out_write(err)
         print("Cannot toggle the tree")
