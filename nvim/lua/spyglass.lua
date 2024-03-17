@@ -55,30 +55,33 @@ local option_table = {
     label = "Switch to",
     off = "main",
     on = "current",
-    value = state.base,
+    value = state.base == "main",
     cmd = "Gitsigns"
       .. " "
-      .. (state.base and "change_base" or "change_base main"),
+      .. (state.base == "main" and "change_base" or "change_base main"),
   },
 }
 
 local gitsigns = function(opts)
   opts = opts or {}
 
+  local action = function(bufnr)
+    actions.select_default:replace(function()
+      local selection = action_state.get_selected_entry()
+      local cmd = get_cmd(option_table, selection.value)
+
+      vim.cmd(cmd)
+      actions.close(bufnr)
+    end)
+
+    return true
+  end
+
   pickers
     .new(opts, {
       finder = finders.new_table({ results = get_labels(option_table) }),
       sorter = conf.generic_sorter(opts),
-      attach_mappings = function(bufnr)
-        actions.select_default:replace(function()
-          local selection = action_state.get_selected_entry()
-          vim.cmd(get_cmd(option_table, selection.value))
-
-          actions.close(bufnr)
-        end)
-
-        return true
-      end,
+      attach_mappings = action,
     })
     :find()
 end
