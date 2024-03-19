@@ -65,12 +65,6 @@ npm install --global typescript
 print "info" "TypeScript styled-components support"
 npm install --global @styled/typescript-styled-plugin
 
-# FIXME: Might need if having issues with python LSP/Formatters:
-# print "info" "Python package manager"
-# sudo apt install python3-pip
-# print "info" "Python virtual environment"
-# sudo apt install python3-venv
-
 print "title" "CONFIGURING"
 
 print "info" "Silencing login message"
