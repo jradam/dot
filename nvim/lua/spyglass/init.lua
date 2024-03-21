@@ -3,6 +3,7 @@ local c = require("spyglass.configs")
 
 -- TODO:
 -- Make separate plugin
+-- Make <leader>r not open this somehow?
 -- New: new version of TODO Telescope with nicer formatting
 -- New: replace easypick by implementing git helpers
 -- New: the output of :highlight
