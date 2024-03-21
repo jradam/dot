@@ -2,7 +2,7 @@ local k = vim.keymap.set
 local h = require("helpers")
 
 -- Disable
-k("n", "q", "<Nop>", { desc = "Disable recording" })
+-- k("n", "q", "<Nop>", { desc = "Disable recording" })
 k("n", "x", '"_x', { desc = "Delete without register" })
 
 -- Actions
