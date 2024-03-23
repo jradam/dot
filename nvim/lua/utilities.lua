@@ -85,12 +85,13 @@ function M.eslint_setup(client)
     sets.useEslintrc = true
     sets.options.resolvePluginsRelativeTo = local_eslint
   else
-    sets.useEslintrc = false
-    sets.options.overrideConfigFile = vim.fn.stdpath("config")
-      .. "/env/.eslintrc.json"
-    sets.options.resolvePluginsRelativeTo = vim.fn.stdpath("config")
-      .. "/env/node_modules"
-    sets.nodePath = vim.fn.stdpath("config") .. "/env/node_modules"
+    -- FIX: Disabled custom env for now
+    -- sets.useEslintrc = false
+    -- sets.options.overrideConfigFile = vim.fn.stdpath("config")
+    --   .. "/env/.eslintrc.json"
+    -- sets.options.resolvePluginsRelativeTo = vim.fn.stdpath("config")
+    --   .. "/env/node_modules"
+    -- sets.nodePath = vim.fn.stdpath("config") .. "/env/node_modules"
   end
 end
 
