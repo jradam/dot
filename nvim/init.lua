@@ -44,6 +44,5 @@ require("settings")
 require("utilities")
 require("spyglass")
 
--- TODO: go through each plugin and make Lazy as possible
 -- TODO: bigfile.nvim
 -- TODO: silence "tag not found" error

@@ -1,5 +1,3 @@
-; TODO: how can we auto-install/sync the windows stuff? Want to edit files in here, then run something to sync over perhaps?
-
 ; TODO: add key for `alt + space` then `m` for moving windows
 
 ; -------------------- Settings
