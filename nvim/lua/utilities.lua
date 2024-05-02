@@ -2,6 +2,7 @@ local M = {}
 local h = require("helpers")
 
 -- Run tsc and eslint and put all results in one quickfix list
+-- TODO: Make this own plugin
 function M.ts_quickfix()
   -- Clear quickfix list
   vim.fn.setqflist({})
