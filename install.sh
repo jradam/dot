@@ -83,6 +83,7 @@ print "info" "Adding NPM token to secrets"
 echo "export NPM_TOKEN=$(awk -F= '{print $2}' $HOME/.npmrc)" >> $HOME/dotfiles/.env
 
 # FIXME: untested
+# TODO: Remove this, and related code? Overcomplicated, and not using anyway.
 print "info" "Initialising development environment"
 yarn --cwd $HOME/dotfiles/nvim/env/
 
