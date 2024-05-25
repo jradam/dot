@@ -4,7 +4,7 @@ return {
   opts = function()
     local k = vim.keymap.set
 
-    -- TODO: test Add this to a better shortcut?
+    -- TODO: Add this to a better shortcut?
 
     k("n", "<localleader>cc", function()
       local actions = {
