@@ -23,6 +23,7 @@ return {
         return
       end
 
+      -- FIXME: remove this if my pull requests get merged
       if line:match(">>>>>>>") then
         -- Move cursor up one, as `choose()` doesn't work on the final line
         local cursor_pos = vim.api.nvim_win_get_cursor(0)
@@ -60,6 +61,18 @@ return {
       "<localleader>c0",
       ":GitConflictChooseNone<CR>",
       { desc = "Choose none" }
+    )
+    k(
+      "n",
+      "<localleader>co",
+      ":GitConflictChooseOurs<CR>",
+      { desc = "Choose ours" }
+    )
+    k(
+      "n",
+      "<localleader>ct",
+      ":GitConflictChooseTheirs<CR>",
+      { desc = "Choose theirs" }
     )
 
     return {
