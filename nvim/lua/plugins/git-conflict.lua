@@ -6,9 +6,7 @@ return {
   opts = function()
     local k = vim.keymap.set
 
-    -- TODO: Add this to a better shortcut?
-
-    k("n", "<localleader>cc", function()
+    k("n", "<localleader>c", function()
       local actions = {
         GitConflictCurrent = "ours",
         GitConflictCurrentLabel = "ours",
@@ -35,37 +33,25 @@ return {
       end
 
       choose(actions[mark.opts.hl_group])
-    end)
+    end, { desc = "Choose conflict" })
 
     k(
       "n",
-      "<localleader>cn",
-      ":GitConflictNextConflict<CR>",
-      { desc = "Next conflict" }
-    )
-    k(
-      "n",
-      "<localleader>cN",
-      ":GitConflictPrevConflict<CR>",
-      { desc = "Prev conflict" }
-    )
-    k(
-      "n",
-      "<localleader>c0",
+      "<localleader>C",
       ":GitConflictChooseNone<CR>",
       { desc = "Choose none" }
     )
     k(
       "n",
-      "<localleader>co",
-      ":GitConflictChooseOurs<CR>",
-      { desc = "Choose ours" }
+      "<localleader>v",
+      ":GitConflictNextConflict<CR>",
+      { desc = "Next conflict" }
     )
     k(
       "n",
-      "<localleader>ct",
-      ":GitConflictChooseTheirs<CR>",
-      { desc = "Choose theirs" }
+      "<localleader>V",
+      ":GitConflictPrevConflict<CR>",
+      { desc = "Prev conflict" }
     )
 
     return {
