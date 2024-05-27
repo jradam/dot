@@ -1,6 +1,8 @@
 return {
   "akinsho/git-conflict.nvim",
-  version = "*",
+  -- TODO: change back to `version` from `branch` after next release
+  -- version = "*",
+  branch = "main",
   opts = function()
     local k = vim.keymap.set
 
@@ -20,15 +22,6 @@ return {
 
       if line:match("=======") then
         choose("both")
-        return
-      end
-
-      -- FIXME: remove this if my pull requests get merged
-      if line:match(">>>>>>>") then
-        -- Move cursor up one, as `choose()` doesn't work on the final line
-        local cursor_pos = vim.api.nvim_win_get_cursor(0)
-        vim.api.nvim_win_set_cursor(0, { cursor_pos[1] - 1, cursor_pos[2] })
-        choose("theirs")
         return
       end
 
