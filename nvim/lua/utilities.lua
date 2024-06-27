@@ -196,6 +196,9 @@ function M.on_enter(telescope)
   local actions = require("telescope.actions")
   local state = require("telescope.actions.state")
 
+  -- If there is nothing to select, return
+  if not state.get_selected_entry() then return end
+
   local filepath = state.get_selected_entry().value
 
   -- If filepath is a string
