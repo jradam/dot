@@ -62,6 +62,9 @@ npm install --global diff-so-fancy
 print "info" "Typescript" # For typescript-tools to work globally
 npm install --global typescript
 
+print "info" "TS Node" # For running ts without having to compile first
+npm install --global ts-node
+
 print "info" "TypeScript styled-components support"
 npm install --global @styled/typescript-styled-plugin
 
