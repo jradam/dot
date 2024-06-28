@@ -81,6 +81,7 @@ return {
             "public",
             "fonts",
             "venv",
+            "solved",
           },
         },
         change_dir = { restrict_above_cwd = true },
