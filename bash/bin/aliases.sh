@@ -24,11 +24,10 @@ alias e='explorer.exe'
 
 # general shortcuts
 alias v='nvim'
+alias t='ts-node'
 
 # python helpers
 alias python='python3'
-alias a='. venv/bin/activate'
-alias d='deactivate'
 
 # edit dotfiles
 alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
