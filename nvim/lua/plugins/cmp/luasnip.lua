@@ -62,6 +62,10 @@ return {
           "}",
         }),
       }),
+      s(
+        "fl",
+        { t("for (let i = 0; i < "), i(1), t("; i++) { "), i(2), t(" }") }
+      ),
     }
 
     for _, value in pairs(js_types) do
