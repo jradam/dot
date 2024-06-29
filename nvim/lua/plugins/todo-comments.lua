@@ -8,6 +8,7 @@ return {
     keywords = {
       DONE = { icon = " ", color = "hint" },
       WIP = { icon = " ", color = "error" },
+      EXAMPLE = { color = "hint" },
     },
   },
 }
