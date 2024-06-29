@@ -24,7 +24,6 @@ alias e='explorer.exe'
 
 # general shortcuts
 alias v='nvim'
-alias t='ts-node'
 
 # python helpers
 alias python='python3'
