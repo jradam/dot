@@ -82,6 +82,7 @@ return {
             "fonts",
             "venv",
             "solved",
+            ".expo",
           },
         },
         change_dir = { restrict_above_cwd = true },
