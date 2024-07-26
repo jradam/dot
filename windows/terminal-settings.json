@@ -55,9 +55,9 @@
   "experimental.rendering.forceFullRepaint": false,
   "experimental.rendering.software": false,
   "focusFollowMouse": true,
-  "initialPosition": "1467,0",
+  "initialPosition": "1469,0",
   "initialCols": 109,
-  "initialRows": 67,
+  "initialRows": 68,
   "launchMode": "focus",
   "newTabMenu": [
     {
@@ -70,7 +70,7 @@
       "bellStyle": "none",
       "font": {
         "face": "DankMono Nerd Font",
-        "size": 14.0
+        "size": 14
       },
       "padding": "0",
       "scrollbarState": "hidden"
