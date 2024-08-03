@@ -19,10 +19,10 @@ return {
     }
   end,
   opts = function()
-    local api = require("nvim-tree.api")
-    local u = require("utilities")
-
     local function on_attach(bufnr)
+      local api = require("nvim-tree.api")
+      local u = require("utilities")
+
       local function opts(desc)
         return {
           desc = desc,
