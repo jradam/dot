@@ -83,6 +83,8 @@ return {
             "venv",
             "solved",
             ".expo",
+            ".yarn",
+            ".github",
           },
         },
         change_dir = { restrict_above_cwd = true },
