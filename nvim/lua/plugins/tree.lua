@@ -85,6 +85,7 @@ return {
             ".expo",
             ".yarn",
             ".github",
+            "__pycache__",
           },
         },
         change_dir = { restrict_above_cwd = true },
