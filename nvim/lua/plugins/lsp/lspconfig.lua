@@ -126,6 +126,18 @@ return {
 
           return nil -- If no config found, don't start
         end,
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                -- classes="..." or '...' or `...`
+                "classes\\s*=\\s*['\"`]([^'\"`,]*)['\"`]",
+                -- className="..." or '...' or `...`
+                "className\\s*=\\s*['\"`]([^'\"`,]*)['\"`]",
+              },
+            },
+          },
+        },
       },
     }
 
