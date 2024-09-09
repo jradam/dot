@@ -1,10 +1,12 @@
 return {
-  "laytan/tailwind-sorter.nvim",
+  -- FIXME: revert if/when pull request accepted
+  dir = "~/tailwind-sorter.nvim",
+  -- "laytan/tailwind-sorter.nvim",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
   },
   -- Takes a while to build on install/update, and if build is cancelled must reinstall
   build = "cd formatter && npm i && npm run build",
-  config = true,
+  config = function() require("tailwind-sorter").setup({ trim_spaces = true }) end,
 }
