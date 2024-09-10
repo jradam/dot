@@ -1,7 +1,5 @@
 return {
-  -- FIXME: revert if/when pull request accepted
-  dir = "~/tailwind-sorter.nvim",
-  -- "laytan/tailwind-sorter.nvim",
+  "laytan/tailwind-sorter.nvim",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
