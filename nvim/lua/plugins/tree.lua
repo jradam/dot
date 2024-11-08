@@ -1,5 +1,6 @@
 return {
   "nvim-tree/nvim-tree.lua",
+  tag = "nvim-tree-v1.7.0", -- FIXME: Latest version breaks my `multi` function
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = function()
     -- Fail without interrupting the user, but log the error
