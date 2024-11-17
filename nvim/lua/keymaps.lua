@@ -15,6 +15,7 @@ k("n", "C", ":edit<cr>:LspRestart<cr>", { desc = "Restart buffer" })
 k("t", "<c-q>", "<C-\\><C-n>", { desc = "Exit terminal insert" })
 k("n", "<leader>c", ":source<CR>", { desc = "Source this file" })
 k("n", "<leader>R", ":luafile %<CR>", { desc = "Run this lua file" })
+k("n", "<leader>k", ":Lazy reload ", { desc = "Reload a plugin" })
 
 -- Text manipulation
 k("n", "<leader>a", "ggVG", { desc = "Select all" })
