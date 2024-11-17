@@ -1,13 +1,13 @@
 return {
-  dir = "~/bufcmd",
+  dir = "~/bufcmd_new",
   -- "jradam/bufcmd",
   opts = {
-    compensation = 12,
-    theme = {
-      current = { fg = "#FFFFA5", bg = "" },
-      inactive = { fg = "#FFB86C", bg = "" },
-      modified = { fg = "#8BE9FD", bg = "" },
-      current_modified = { fg = "#A4FFFF", bg = "" },
-    },
+    -- compensation = 12,
+    -- theme = {
+    --   current = { fg = "#FFFFA5", bg = "" },
+    --   inactive = { fg = "#FFB86C", bg = "" },
+    --   modified = { fg = "#8BE9FD", bg = "" },
+    --   current_modified = { fg = "#A4FFFF", bg = "" },
+    -- },
   },
 }
