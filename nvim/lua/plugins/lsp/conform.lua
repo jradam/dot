@@ -20,8 +20,9 @@ return {
       if vim.g.should_format then
         for _, filetype in ipairs(js_types) do
           if ft == filetype then
+            -- FIXME:
             -- Run TailwindSort (built-in onsave function crashes frequently)
-            vim.api.nvim_command("TailwindSort")
+            -- vim.api.nvim_command("TailwindSort")
 
             -- Make LSP formatting (including eslint formatting) always run for JavaScript-types
             return { lsp_fallback = "always" }
