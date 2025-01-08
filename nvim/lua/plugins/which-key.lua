@@ -1,5 +1,8 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = { icons = { separator = "→" } },
+  opts = {
+    icons = { separator = "→" },
+    sort = { "desc" },
+  },
 }
