@@ -68,6 +68,9 @@ npm install --global ts-node
 print "info" "TypeScript styled-components support"
 npm install --global @styled/typescript-styled-plugin
 
+print "info" "WSL Open"
+npm install --global wsl-open
+
 print "title" "CONFIGURING"
 
 print "info" "Silencing login message"

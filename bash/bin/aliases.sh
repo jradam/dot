@@ -30,6 +30,7 @@ alias python='python3'
 
 # edit dotfiles
 alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
+alias ob='current_dir=$PWD;cd /mnt/c/Users/adamj/Documents/Vaults/Jimbo;v .;cd $current_dir;'
 
 # restart terminal
 alias rs='exec bash'
