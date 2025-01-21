@@ -87,6 +87,7 @@ return {
             ".yarn",
             ".github",
             "__pycache__",
+            ".obsidian",
           },
         },
         change_dir = { restrict_above_cwd = true },
