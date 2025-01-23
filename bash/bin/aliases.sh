@@ -20,7 +20,7 @@ alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias q='tmux kill-server'
-alias e='explorer.exe'
+alias e='wsl-open'
 
 # general shortcuts
 alias v='nvim'
