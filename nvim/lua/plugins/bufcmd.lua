@@ -4,12 +4,11 @@ return {
   event = { "BufReadPre" }, -- Load when opening any buffer
   opts = {
     -- compensation = 12,
-    -- theme = {
-    --   current = { fg = "#FFFFA5", bg = "" },
-    --   inactive = { fg = "#FFB86C", bg = "" },
-    --   modified = { fg = "#8BE9FD", bg = "" },
-    --   current_modified = { fg = "#A4FFFF", bg = "" },
-    -- },
+    theme = {
+      active = { fg = "#FFFFA5", bg = "" },
+      inactive = { fg = "#FFB86C", bg = "" },
+      modified = { fg = "#8BE9FD", bg = "" },
+    },
   },
   keys = {
     { "<tab>", ":bn<cr>", desc = "Next buffer", silent = true },
