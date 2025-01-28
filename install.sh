@@ -32,7 +32,7 @@ yes | sudo apt install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 link $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
-link $HOME/dotfiles/tmux/battery.sh $HOME/.tmux/plugins/tmux/scripts/battery.sh
+# link $HOME/dotfiles/tmux/battery.sh $HOME/.tmux/plugins/tmux/scripts/battery.sh # Still want this?
 
 print "info" "Bash"
 link $HOME/dotfiles/bash/.bashrc $HOME/.bashrc
@@ -90,8 +90,8 @@ echo "export NPM_TOKEN=$(awk -F= '{print $2}' $HOME/.npmrc)" >> $HOME/dotfiles/.
 
 # FIXME: untested
 # TODO: Remove this, and related code? Overcomplicated, and not using anyway.
-print "info" "Initialising development environment"
-yarn --cwd $HOME/dotfiles/nvim/env/
+# print "info" "Initialising development environment"
+# yarn --cwd $HOME/dotfiles/nvim/env/
 
 print "title" "USER ACTIONS"
 
