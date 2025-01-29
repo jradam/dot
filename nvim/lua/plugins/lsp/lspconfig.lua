@@ -11,7 +11,6 @@ return {
       virtual_text = false,
       float = { border = "rounded" },
     },
-    hover = { border = "rounded" },
   },
   keys = function()
     local go_prev = function()
@@ -42,7 +41,11 @@ return {
     -- end, "[W]orkspace [L]ist Folders")
 
     return {
-      { "<localleader>i", vim.lsp.buf.hover, desc = "Show info" },
+      {
+        "<localleader>i",
+        function() vim.lsp.buf.hover({ border = "rounded" }) end,
+        desc = "Show info",
+      },
       {
         "<localleader>e",
         vim.diagnostic.open_float,
@@ -76,8 +79,6 @@ return {
 
     -- Apply styling options for diagnostics and hovers
     vim.diagnostic.config(opts.diagnostics)
-    vim.lsp.handlers["textDocument/hover"] =
-      vim.lsp.with(vim.lsp.handlers.hover, opts.hover)
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
@@ -118,6 +119,28 @@ return {
       pyright = { capabilities = capabilities },
       tailwindcss = {
         capabilities = capabilities,
+        -- tailwindcss hover sending back incorrectly formatted response, this fixes it
+        on_attach = function(client, bufnr)
+          local original = vim.lsp.buf.hover -- Store original hover result
+          vim.lsp.buf.hover = function(settings)
+            settings = settings or {}
+            local position = vim.lsp.util.make_position_params()
+
+            client.request("textDocument/hover", position, function(_, result)
+              if result and result.contents and result.contents.value then
+                -- It's a Tailwind result, handle it specially
+                vim.lsp.util.open_floating_preview(
+                  vim.split(result.contents.value, "\n"),
+                  result.contents.language,
+                  settings
+                )
+              else
+                -- Not a Tailwind result, use original hover
+                original(settings)
+              end
+            end, bufnr)
+          end
+        end,
         root_dir = function(fname)
           local find_root = lspconfig.util.root_pattern
 
