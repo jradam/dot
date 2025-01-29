@@ -120,9 +120,25 @@ return {
         capabilities = capabilities,
         root_dir = function(fname)
           local find_root = lspconfig.util.root_pattern
-          local root_dir = find_root("tailwind.config*")(fname)
 
+          -- Check for tailwind config files
+          local root_dir = find_root("tailwind.config*")(fname)
           if root_dir then return root_dir end
+
+          -- Check for vite config that contains the word "tailwind"
+          local vite_root = find_root("vite.config.ts")(fname)
+          if vite_root then
+            -- Read vite config file
+            local vite_config_path =
+              table.concat({ vite_root, "vite.config.ts" }, "/")
+            local file = io.open(vite_config_path, "r")
+            if file then
+              local content = file:read("*all")
+              file:close()
+              -- Check if content contains "tailwind"
+              if content:match("tailwind") then return vite_root end
+            end
+          end
 
           return nil -- If no config found, don't start
         end,
