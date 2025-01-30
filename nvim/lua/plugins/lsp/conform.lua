@@ -29,8 +29,9 @@ return {
           end
         end
 
+        -- FIXME:
         -- Also run TailwindSort for plain html
-        if ft == "html" then vim.api.nvim_command("TailwindSort") end
+        -- if ft == "html" then vim.api.nvim_command("TailwindSort") end
 
         return { lsp_fallback = true } -- Otherwise, only run if no formatters available
       end
@@ -56,7 +57,7 @@ return {
           env = {
             XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
             PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
-              .. "/env/.prettierrc.json",
+              .. "/env/.prettierrc",
           },
         },
         stylua = {
