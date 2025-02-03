@@ -26,6 +26,7 @@ print "info" "Github CLI"
 sudo apt install gh
 gh auth login --web
 link $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
+link $HOME/dotfiles/git/.gitignore_global $HOME/.gitignore_global
 
 print "info" "tmux"
 yes | sudo apt install tmux
