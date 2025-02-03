@@ -41,7 +41,7 @@ return {
       json = { "prettierd" },
       lua = { "stylua" },
       markdown = { "prettierd" },
-      python = { "black" },
+      -- python = { "black" }, -- FIMXE: not working
       html = { "prettierd" },
     }
     for _, js_type in ipairs(js_types) do

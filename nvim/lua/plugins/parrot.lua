@@ -27,18 +27,35 @@ return {
     end
 
     require("parrot").setup({
-      providers = {
-        anthropic = { api_key = os.getenv("ANTHROPIC_API_KEY") },
-      },
-      system_prompt = {
-        chat = "Be concise! Don't copy out my code, just provide the code of the solution.",
-      },
+      providers = { anthropic = { api_key = os.getenv("ANTHROPIC_API_KEY") } },
       toggle_target = "popup",
       style_popup_max_width = 100,
       hooks = {
         File = function(parrot, params)
           local prompt = [[
-        Let's talk about this file: {{filename}}
+        I have the following code from {{filename}}:
+
+        ```{{filetype}}
+        {{filecontent}}
+        ```
+
+        Please look at the following section specifically:
+        ```{{filetype}}
+        {{selection}}
+        ```
+
+        Please finish the code above carefully and logically.
+        Respond just with the snippet of code that should be inserted.
+        Do not reply with any explanation. 
+        Just the code snippet.
+        ]]
+
+          local model_obj = parrot.get_model("command")
+          parrot.Prompt(params, parrot.ui.Target.append, model_obj, nil, prompt)
+        end,
+        FilePopup = function(parrot, params)
+          local prompt = [[
+        Be concise! Don't copy out my code, just provide the code of the solution. Let's talk about this file: {{filename}}
         ```{{filetype}}
         {{filecontent}}
         ```
@@ -57,8 +74,9 @@ return {
     })
 
     local k = vim.keymap.set
-    k("n", "<leader>k", ":PrtFile<CR>", { desc = "Parrot this file" })
-    -- FIXME: for some reason this .parrot.md context is not available to ChatNew?
+    -- k( "n", "<leader>k", ":PrtFilePopup<CR>", { desc = "Parrot popup" })
+    k({ "n", "v" }, "<leader>k", ":PrtFile<CR>", { desc = "Parrot cursor" })
+    -- TODO: for some reason this .parrot.md context is not available to ChatNew?
     -- k(
     --   "n",
     --   "<leader>p",

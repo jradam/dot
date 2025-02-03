@@ -78,7 +78,7 @@ return {
         desc = "Find todo",
       },
       { "<leader>l", ":TodoTelescope keywords=", desc = "Filter todo" },
-      { "<leader>d", builtin.diagnostics, desc = "Diagnostics" },
+      -- { "<leader>d", builtin.diagnostics, desc = "Diagnostics" },
       {
         "<leader>h",
         function() builtin.help_tags(with_preview("insert")) end,
