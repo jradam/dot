@@ -84,6 +84,6 @@ return {
     --   { desc = "Add context" }
     -- )
     k("v", "<leader>i", ":PrtImplement<CR>", { desc = "Parrot implement" })
-    k("v", "<leader>j", ":PrtRewrite<CR>", { desc = "Parrot rewrite" })
+    -- k("v", "<leader>j", ":PrtRewrite<CR>", { desc = "Parrot rewrite" })
   end,
 }
