@@ -19,8 +19,6 @@ print "info" "Install common dependencies"
 yes | sudo apt install build-essential
 sudo apt install ripgrep # for nvim telescope 
 sudo apt install unzip # for nvim mason
-# sudo apt install xsel # is default clipboard still broken?
-# sudo apt install python3-pip # actually needed for treesitter?
 
 print "info" "Github CLI"
 sudo apt install gh
@@ -88,11 +86,6 @@ npm login
 
 print "info" "Adding NPM token to secrets"
 echo "export NPM_TOKEN=$(awk -F= '{print $2}' $HOME/.npmrc)" >> $HOME/dotfiles/.env
-
-# FIXME: untested
-# TODO: Remove this, and related code? Overcomplicated, and not using anyway.
-# print "info" "Initialising development environment"
-# yarn --cwd $HOME/dotfiles/nvim/env/
 
 print "title" "USER ACTIONS"
 
