@@ -98,7 +98,8 @@ ai() {
     echo "dist
 .yarn*
 .github*
-.mypy*" > "$HOME/aidigest/.ignore"
+.mypy*
+*.backup*" > "$HOME/aidigest/.ignore"
 
     # Run
     npx ai-digest --ignore-file "${relative_path}aidigest/.ignore" --show-output-files --output "$HOME/aidigest/$(basename "$PWD").md"
