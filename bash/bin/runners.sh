@@ -99,6 +99,17 @@ ai() {
 .yarn*
 .github*
 .mypy*
+*.mp3
+*.mp4
+*.jpg
+*.png
+*.webp
+*.ico
+*.svg
+*.otf
+*.ttf
+*.woff2
+*-infra*
 *.backup*" > "$HOME/aidigest/.ignore"
 
     # Run
