@@ -109,7 +109,8 @@ ai() {
 *.otf
 *.ttf
 *.woff2
-*-infra*
+*.min.js
+*jquery-ui*
 *.backup*" > "$HOME/aidigest/.ignore"
 
     # Run
