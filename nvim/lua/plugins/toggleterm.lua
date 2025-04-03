@@ -2,7 +2,6 @@ return {
   "akinsho/toggleterm.nvim",
   opts = function()
     return {
-      on_open = function() vim.cmd("startinsert!") end,
       float_opts = {
         border = "curved",
         width = math.floor(vim.api.nvim_win_get_width(0)),
@@ -45,6 +44,8 @@ return {
         FloatBorder = { guifg = c.bright_blue, guibg = darkBg },
       },
     })
+
+    -- TODO: Refresh all open buffers when coming out of claude so any new code generated is shown
 
     function Toggle_terminal_one() terminal_one:toggle() end
     function Toggle_terminal_two() terminal_two:toggle() end
