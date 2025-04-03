@@ -37,13 +37,18 @@ return {
         FloatBorder = { guifg = c.red, guibg = darkBg },
       },
     })
-    local terminal_three = Terminal:new({ direction = "horizontal" })
-    local terminal_four = Terminal:new({ direction = "vertical" })
+    local terminal_three = Terminal:new({
+      direction = "float",
+      cmd = "claude",
+      highlights = {
+        NormalFloat = { guibg = darkBg },
+        FloatBorder = { guifg = c.bright_blue, guibg = darkBg },
+      },
+    })
 
     function Toggle_terminal_one() terminal_one:toggle() end
     function Toggle_terminal_two() terminal_two:toggle() end
     function Toggle_terminal_three() terminal_three:toggle() end
-    function Toggle_terminal_four() terminal_four:toggle() end
 
     vim.keymap.set(
       { "n", "t" },
@@ -57,19 +62,11 @@ return {
       "<cmd>lua Toggle_terminal_two()<CR>",
       { desc = "Terminal two" }
     )
-    -- TODO: Have these in a telescope picker instead
-    -- TODO: Need better bindings for moving between splits
-    vim.keymap.set(
-      { "n", "t" },
-      "<C-s>",
-      "<cmd>lua Toggle_terminal_three()<CR>",
-      { desc = "Terminal three" }
-    )
     vim.keymap.set(
       { "n", "t" },
       "<C-e>",
-      "<cmd>lua Toggle_terminal_four()<CR>",
-      { desc = "Terminal four" }
+      "<cmd>lua Toggle_terminal_three()<CR>",
+      { desc = "Terminal three" }
     )
   end,
 }
