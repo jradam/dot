@@ -45,3 +45,6 @@ alias dl='curl -LO'
 
 # delete junk 'zone identifier' files
 alias dz='cd ~ && find . -name "*:Zone.Identifier" -type f -delete' 
+
+# Expose wsl
+alias expose='yes | npx expose-wsl@latest'
