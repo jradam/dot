@@ -44,5 +44,8 @@ require("settings")
 require("utilities")
 require("spyglass")
 
+-- Prevent cursor jumps on imports during undo/redo
+require("undohelper").setup()
+
 -- TODO: bigfile.nvim
 -- TODO: silence "tag not found" error

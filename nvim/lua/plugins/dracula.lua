@@ -62,7 +62,7 @@ return {
 
         -- Gitsigns
         GitSignsAdd = { fg = c.green },
-        GitSignsChange = { fg = c.white },
+        GitSignsChange = { fg = c.bright_white },
         GitSignsDelete = { fg = c.orange },
       }
     end,
