@@ -4,6 +4,7 @@ return {
     require("local-highlight").setup({
       disable_file_types = { "markdown" },
       hlgroup = "CursorLine",
+      animate = false,
     })
   end,
 }
