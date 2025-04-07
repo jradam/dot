@@ -59,6 +59,11 @@ return {
 
         -- Cmp
         CompletionGhostText = { fg = c.selection },
+
+        -- Gitsigns
+        GitSignsAdd = { fg = c.green },
+        GitSignsChange = { fg = c.white },
+        GitSignsDelete = { fg = c.orange },
       }
     end,
   },
