@@ -117,67 +117,7 @@ return {
         },
       },
       pyright = { capabilities = capabilities },
-      tailwindcss = {
-        capabilities = capabilities,
-        -- tailwindcss hover sending back incorrectly formatted response, this fixes it
-        on_attach = function(client, bufnr)
-          local original = vim.lsp.buf.hover -- Store original hover result
-          vim.lsp.buf.hover = function(settings)
-            settings = settings or {}
-            local position = vim.lsp.util.make_position_params()
-
-            client.request("textDocument/hover", position, function(_, result)
-              if result and result.contents and result.contents.value then
-                -- It's a Tailwind result, handle it specially
-                vim.lsp.util.open_floating_preview(
-                  vim.split(result.contents.value, "\n"),
-                  result.contents.language,
-                  settings
-                )
-              else
-                -- Not a Tailwind result, use original hover
-                original(settings)
-              end
-            end, bufnr)
-          end
-        end,
-        root_dir = function(fname)
-          local find_root = lspconfig.util.root_pattern
-
-          -- Check for tailwind config files
-          local root_dir = find_root("tailwind.config*")(fname)
-          if root_dir then return root_dir end
-
-          -- Check for vite config that contains the word "tailwind"
-          local vite_root = find_root("vite.config.ts")(fname)
-          if vite_root then
-            -- Read vite config file
-            local vite_config_path =
-              table.concat({ vite_root, "vite.config.ts" }, "/")
-            local file = io.open(vite_config_path, "r")
-            if file then
-              local content = file:read("*all")
-              file:close()
-              -- Check if content contains "tailwind"
-              if content:match("tailwind") then return vite_root end
-            end
-          end
-
-          return nil -- If no config found, don't start
-        end,
-        settings = {
-          tailwindCSS = {
-            experimental = {
-              classRegex = {
-                -- classes="..." or '...' or `...`
-                "classes\\s*=\\s*['\"`]([^'\"`,]*)['\"`]",
-                -- className="..." or '...' or `...`
-                "className\\s*=\\s*['\"`]([^'\"`,]*)['\"`]",
-              },
-            },
-          },
-        },
-      },
+      tailwindcss = { capabilities = capabilities },
     }
 
     for server, config in pairs(servers) do

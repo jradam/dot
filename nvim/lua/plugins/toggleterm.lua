@@ -43,9 +43,8 @@ return {
         NormalFloat = { guibg = darkBg },
         FloatBorder = { guifg = c.bright_blue, guibg = darkBg },
       },
+      on_close = function() vim.cmd("checktime") end, -- Refresh all open buffers to get changes
     })
-
-    -- TODO: Refresh all open buffers when coming out of claude so any new code generated is shown
 
     function Toggle_terminal_one() terminal_one:toggle() end
     function Toggle_terminal_two() terminal_two:toggle() end

@@ -1,3 +1,5 @@
+-- TODO: Make this a plugin
+
 -- undohelper.lua - Prevents cursor jumping to imports during undo/redo operations
 
 local M = {}
