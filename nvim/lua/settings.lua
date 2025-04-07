@@ -15,6 +15,10 @@ o.breakindent = true
 o.undodir = { os.getenv("HOME") .. "/.nvim-undodir" }
 o.undofile = true
 
+-- Jump cursor back to original position after undo/redo
+vim.keymap.set("n", "u", "u<C-o>", { noremap = true })
+vim.keymap.set("n", "<C-r>", "<C-r><C-o>", { noremap = true })
+
 -- Appearance
 o.signcolumn = "number"
 o.showmode = false
