@@ -71,14 +71,23 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local u = require("utilities")
 
-    -- Change the numberline error icons to colour highlights
-    for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = "", numhl = hl })
-    end
-
-    -- Apply styling options for diagnostics and hovers
-    vim.diagnostic.config(opts.diagnostics)
+    local diagnostics_config = vim.tbl_deep_extend("force", opts.diagnostics, {
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+        },
+        numhl = {
+          [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+          [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+          [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+          [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+        },
+      },
+    })
+    vim.diagnostic.config(diagnostics_config)
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = cmp_nvim_lsp.default_capabilities(capabilities)

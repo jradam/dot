@@ -14,7 +14,6 @@ return {
           return vim.o.columns * 0.4
         end
       end,
-      persist_size = true,
     }
   end,
   init = function()
@@ -28,6 +27,7 @@ return {
         NormalFloat = { guibg = darkBg },
         FloatBorder = { guifg = c.green, guibg = darkBg },
       },
+      on_close = function() vim.cmd("checktime") end, -- Refresh all open buffers to get changes
     })
     local terminal_two = Terminal:new({
       direction = "float",
@@ -35,6 +35,7 @@ return {
         NormalFloat = { guibg = darkBg },
         FloatBorder = { guifg = c.red, guibg = darkBg },
       },
+      on_close = function() vim.cmd("checktime") end, -- Refresh all open buffers to get changes
     })
     local terminal_three = Terminal:new({
       direction = "float",
@@ -46,26 +47,26 @@ return {
       on_close = function() vim.cmd("checktime") end, -- Refresh all open buffers to get changes
     })
 
-    function Toggle_terminal_one() terminal_one:toggle() end
-    function Toggle_terminal_two() terminal_two:toggle() end
-    function Toggle_terminal_three() terminal_three:toggle() end
+    local function Toggle_terminal_one() terminal_one:toggle() end
+    local function Toggle_terminal_two() terminal_two:toggle() end
+    local function Toggle_terminal_three() terminal_three:toggle() end
 
     vim.keymap.set(
       { "n", "t" },
       "<C-t>",
-      "<cmd>lua Toggle_terminal_one()<CR>",
+      function() Toggle_terminal_one() end,
       { desc = "Terminal one" }
     )
     vim.keymap.set(
       { "n", "t" },
       "<C-y>",
-      "<cmd>lua Toggle_terminal_two()<CR>",
+      function() Toggle_terminal_two() end,
       { desc = "Terminal two" }
     )
     vim.keymap.set(
       { "n", "t" },
       "<C-e>",
-      "<cmd>lua Toggle_terminal_three()<CR>",
+      function() Toggle_terminal_three() end,
       { desc = "Terminal three" }
     )
   end,

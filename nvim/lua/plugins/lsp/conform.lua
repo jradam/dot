@@ -27,13 +27,15 @@ return {
 
         return { lsp_fallback = true } -- Otherwise, only run if no formatters available
       end
+
+      return false -- Don't format when formatting is disabled
     end
 
     local formatters_by_ft = {
       json = { "prettierd" },
       lua = { "stylua" },
       markdown = { "prettierd" },
-      -- python = { "black" }, -- FIMXE: not working
+      -- python = { "black" }, -- FIXME: not working
       html = { "prettierd" },
     }
     for _, js_type in ipairs(js_types) do
@@ -46,11 +48,43 @@ return {
       notify_on_error = false,
       formatters = {
         prettierd = {
-          env = {
-            XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
-            PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
-              .. "/env/.prettierrc",
-          },
+          env = function()
+            local env = {
+              XDG_RUNTIME_DIR = XDG_RUNTIME_DIR,
+            }
+
+            local has_tailwind = false
+
+            if
+              vim.fn.filereadable("tailwind.config.js") == 1
+              or vim.fn.filereadable("tailwind.config.ts") == 1
+            then
+              has_tailwind = true
+            end
+
+            -- Check package.json if tailwind config not found
+            if
+              not has_tailwind and vim.fn.filereadable("package.json") == 1
+            then
+              local ok, package_json = pcall(function()
+                return vim.fn.join(vim.fn.readfile("package.json", "", 1000), "\n")
+              end)
+              
+              if ok and package_json then
+                has_tailwind = string.find(package_json, "tailwindcss") ~= nil
+              end
+            end
+
+            if has_tailwind then
+              env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
+                .. "/env/.prettierrc"
+            else
+              env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
+                .. "/env/.prettierrc-no-tw"
+            end
+
+            return env
+          end,
         },
         stylua = {
           command = "stylua",
