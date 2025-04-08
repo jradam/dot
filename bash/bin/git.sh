@@ -86,6 +86,14 @@ gu() {
 # Multipurpose git branch function
 # TODO: do a fetch first to get new branches
 # TODO: alpha sorting so consistent branch order? Or can I do it by creation date (better)
+# BUG: when there is a remote branch, it shows "origin" as a branch:
+# BRANCHES
+#  1  adding-expired-filter [local, remote]
+#  2 main [local, remote]
+#  3  production [local, remote]
+#  4  origin [remote] <- this is a mistake
+#  5  ot-portal/main [remote]
+
 gb() {
   local SHOULD_DELETE BRANCH STRING CURRENT 
   local HAS_LOCAL=false
