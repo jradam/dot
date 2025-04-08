@@ -11,8 +11,7 @@ alias egrep='egrep --color=auto'
 
 # ls shortcuts
 alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias la='ls -ACF'
 
 # other utilities
 alias c='clear'
@@ -25,12 +24,9 @@ alias e='wsl-open'
 # general shortcuts
 alias v='nvim'
 
-# python helpers
-alias python='python3'
-
-# edit dotfiles
-alias s='current_dir=$PWD;cd $HOME/dotfiles;v .;cd $current_dir;'
-alias ob='current_dir=$PWD;cd /mnt/c/Users/adamj/Documents/Jimbo;v .;cd $current_dir;'
+# Quick links to dotfiles / obsidian
+alias s='dir=$PWD;cd $HOME/dotfiles;v .;cd $dir;'
+alias ob='dir=$PWD;cd /mnt/c/Users/adamj/Documents/Jimbo;v .;cd $dir;'
 
 # restart terminal
 alias rs='exec bash'
@@ -44,7 +40,7 @@ alias mkdir='mkdir -vp'
 alias dl='curl -LO'
 
 # delete junk 'zone identifier' files
-alias dz='cd ~ && find . -name "*:Zone.Identifier" -type f -delete' 
+alias dz='dir=$PWD; cd ~ && COUNT=$(find . -name "*:Zone.Identifier" -type f -print | wc -l); find . -name "*:Zone.Identifier" -type f -delete; echo "Deleted $COUNT"; cd $dir;'
 
 # Expose wsl
 alias expose='yes | npx expose-wsl@latest'
