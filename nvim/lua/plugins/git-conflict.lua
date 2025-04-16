@@ -55,7 +55,7 @@ return {
     )
 
     return {
-      disable_diagnostics = true,
+      diagnostics = { enable = false },
       list_opener = function() require("telescope.builtin").quickfix({}) end,
       highlights = {
         current = "DiffCurrent",
