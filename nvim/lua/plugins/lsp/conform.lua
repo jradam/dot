@@ -75,9 +75,10 @@ return {
               end
             end
 
+            -- FIXME: Pretter plugin is broken
             if has_tailwind then
               env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
-                .. "/env/.prettierrc"
+                .. "/env/.prettierrc-no-tw"
             else
               env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
                 .. "/env/.prettierrc-no-tw"
