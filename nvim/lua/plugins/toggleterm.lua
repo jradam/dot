@@ -9,7 +9,7 @@ return {
       },
       size = function(term)
         if term.direction == "horizontal" then
-          return 15
+          return 10
         elseif term.direction == "vertical" then
           return vim.o.columns * 0.4
         end
@@ -46,10 +46,12 @@ return {
       },
       on_close = function() vim.cmd("checktime") end, -- Refresh all open buffers to get changes
     })
+    local terminal_split = Terminal:new({ direction = "horizontal" })
 
     local function Toggle_terminal_one() terminal_one:toggle() end
     local function Toggle_terminal_two() terminal_two:toggle() end
     local function Toggle_terminal_three() terminal_three:toggle() end
+    local function Toggle_terminal_split() terminal_split:toggle() end
 
     vim.keymap.set(
       { "n", "t" },
@@ -68,6 +70,12 @@ return {
       "<C-e>",
       function() Toggle_terminal_three() end,
       { desc = "Terminal three" }
+    )
+    vim.keymap.set(
+      { "n", "t" },
+      "<C-s>",
+      function() Toggle_terminal_split() end,
+      { desc = "Terminal split" }
     )
   end,
 }
