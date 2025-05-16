@@ -102,7 +102,14 @@ return {
             },
           },
         }),
-        root_dir = lspconfig.util.root_pattern(".git", "package.json"),
+        root_dir = lspconfig.util.root_pattern(
+          ".eslintrc",
+          ".eslintrc.js",
+          ".eslintrc.json",
+          ".eslintrc.yaml",
+          ".eslintrc.yml",
+          "eslint.config.js"
+        ),
       },
       html = {
         capabilities = vim.tbl_deep_extend("force", capabilities, {

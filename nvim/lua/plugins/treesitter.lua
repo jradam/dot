@@ -21,6 +21,7 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "embedded_template",
       },
       incremental_selection = {
         enable = true,
