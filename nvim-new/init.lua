@@ -1,37 +1,3 @@
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--branch=stable",
-    lazyrepo,
-    lazypath,
-  })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
+require("conf.lazy")
 
--- Terminal intercepts F13 on_activate from KeyChef's `;` and sends `¦` instead (F keys not available in Neovim)
--- Disable `¦` here so it is never typed, so `¦` acts like a modifier key
-local h = require("helpers")
-vim.keymap.set(h.allModes, "¦", "<Nop>", { noremap = true })
-
-vim.g.mapleader = "¦"
-vim.g.maplocalleader = " "
-
-require("lazy").setup({
-  spec = { { import = "plugins" } },
-  install = { colorscheme = { "dracula" } },
-  checker = { enabled = true },
-})
+vim.g.mapleader = " "

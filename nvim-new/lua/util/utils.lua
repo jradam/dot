@@ -1,6 +1,6 @@
 local M = {}
 
-M.allModes = {
+M.modes = {
   "n", -- Normal
   "v", -- Visual and Select
   "s", -- Select
