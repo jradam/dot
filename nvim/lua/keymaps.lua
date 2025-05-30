@@ -6,7 +6,10 @@ local h = require("helpers")
 k("n", "x", '"_x', { desc = "Delete without register" })
 
 -- Actions
-k("n", "<leader>w", ":w<CR>", { desc = "Write" })
+k("n", "<leader>w", function()
+  vim.cmd("checktime") -- check for changes before saving
+  vim.cmd("w")
+end, { desc = "Write" })
 k("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 k("n", "<leader>m", ":messages<CR>", { desc = "Show messages" })
 k("n", "<leader>M", ":messages clear<CR>", { desc = "Clear messages" })
@@ -43,3 +46,8 @@ k(
   function() h.close_floats() end,
   { desc = "Close floats", silent = true }
 )
+
+-- Check for file changes when entering insert mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function() vim.cmd("checktime") end,
+})

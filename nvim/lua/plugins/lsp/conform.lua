@@ -66,10 +66,15 @@ return {
             if
               not has_tailwind and vim.fn.filereadable("package.json") == 1
             then
-              local ok, package_json = pcall(function()
-                return vim.fn.join(vim.fn.readfile("package.json", "", 1000), "\n")
-              end)
-              
+              local ok, package_json = pcall(
+                function()
+                  return vim.fn.join(
+                    vim.fn.readfile("package.json", "", 1000),
+                    "\n"
+                  )
+                end
+              )
+
               if ok and package_json then
                 has_tailwind = string.find(package_json, "tailwindcss") ~= nil
               end

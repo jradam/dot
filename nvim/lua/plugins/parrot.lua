@@ -1,5 +1,6 @@
 return {
   "frankroeder/parrot.nvim",
+  tag = "v1.8.0",
   dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
   config = function()
     require("parrot").setup({
@@ -13,14 +14,15 @@ return {
         {{filecontent}}
         ```
 
-        Please look at the following section specifically:
+        Please look at the following selection specifically:
         ```{{filetype}}
         {{selection}}
         ```
 
-        Please finish the code above carefully and logically.
-        Respond just with the snippet of code that should be inserted.
-        Do not reply with any explanation. 
+        Please finish the code selection carefully and logically.
+        Respond just with the snippet of code that should be inserted. 
+        Do not copy out code that already exists.
+        Do not reply with any explanation.
         Just the code snippet.
         ]]
 
