@@ -64,6 +64,9 @@ npm install --global typescript
 print "info" "TS Node" # For running ts without having to compile first
 npm install --global ts-node
 
+print "info" "Treesitter CLI"
+npm install --global tree-sitter-cli
+
 print "info" "TypeScript styled-components support"
 npm install --global @styled/typescript-styled-plugin
 
