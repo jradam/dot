@@ -13,3 +13,6 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 require("conf.lazy")
 require("conf.opts")
 require("conf.maps")
+
+require("conf.util").setup_lsp()
+
