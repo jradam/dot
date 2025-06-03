@@ -7,7 +7,6 @@ return {
     local toggle = 0
 
     local function on_attach(bufnr)
-
       local function multi(node)
         if node.name == '..' then
           if toggle == 0 then
@@ -31,7 +30,6 @@ return {
         }
       end
 
-
       k(
         "n",
         "e",
@@ -46,7 +44,6 @@ return {
       k("n", "p", api.fs.paste, opts("Paste"))
       k("n", "x", api.fs.cut, opts("Cut"))
       k("n", "r", api.fs.rename, opts("Rename"))
-
     end
 
     return {
@@ -82,4 +79,3 @@ return {
     }
   end
 }
-

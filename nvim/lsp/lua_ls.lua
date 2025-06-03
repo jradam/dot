@@ -1,29 +1,21 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
-
 return {
-  cmd = {
-    "lua-language-server",
-  },
-  filetypes = {
-    "lua",
-  },
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
   root_markers = {
-    ".git",
-    ".luacheckrc",
-    ".luarc.json",
-    ".luarc.jsonc",
-    ".stylua.toml",
-    "selene.toml",
-    "selene.yml",
-    "stylua.toml",
+    '.luarc.json',
+    '.luarc.jsonc',
+    '.luacheckrc',
+    '.stylua.toml',
+    'stylua.toml',
+    'selene.toml',
+    'selene.yml',
+    '.git',
   },
   settings = {
     Lua = {
       diagnostics = {
-        disable = { "missing-parameters", "missing-fields" },
-      },
-    },
-  },
-  single_file_support = true,
-  log_level = vim.lsp.protocol.MessageType.Warning,
+        disable = { "undefined-global", "missing-fields", "missing-parameter" }
+      }
+    }
+  }
 }
