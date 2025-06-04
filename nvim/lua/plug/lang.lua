@@ -3,21 +3,21 @@
 
 return {
   { "mason-org/mason.nvim", opts = {} }, -- Get language servers as required
-  { "j-hui/fidget.nvim",    opts = {} }, -- Show loading state of LSPs
+  { "j-hui/fidget.nvim", opts = {} }, -- Show loading state of LSPs
   {
-    "nvim-treesitter/nvim-treesitter",   -- Highlighting
+    "nvim-treesitter/nvim-treesitter", -- Highlighting
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { 'lua' },
+        ensure_installed = { "lua" },
         auto_install = true,
-        highlight = { enable = true }
+        highlight = { enable = true },
       })
-    end
+    end,
   },
   {
     "folke/lazydev.nvim", -- Set up Lua for Neovim development
-    config = function()   -- Co-opt lazydev config to setup LSPs
+    config = function() -- Co-opt lazydev config to setup LSPs
       require("lazydev").setup({})
 
       -- Number highlighting for errors
@@ -31,55 +31,65 @@ return {
             [s.WARN] = "DiagnosticSignWarn",
             [s.INFO] = "DiagnosticSignInfo",
             [s.HINT] = "DiagnosticSignHint",
-          }
-        }
+          },
+        },
       })
 
-      -- Format on save
-      vim.api.nvim_create_autocmd('LspAttach', {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client then return end
-
-          if client.server_capabilities.documentFormattingProvider then
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = args.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-              end
-            })
-          end
-        end,
-      })
-
-      -- Setup LSPs in /lsp/
+      -- Enable LSPs found in /lsp/
       local lsp_configs = {}
-      for _, f in pairs(vim.api.nvim_get_runtime_file('lsp/*.lua', true)) do
-        local server_name = vim.fn.fnamemodify(f, ':t:r')
+      for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+        local server_name = vim.fn.fnamemodify(f, ":t:r")
         table.insert(lsp_configs, server_name)
       end
       vim.lsp.enable(lsp_configs)
-    end
+    end,
   },
-  -- TODO: Keys for this, check old cmp for parity
   {
-    "saghen/blink.cmp",
-    version = '1.*',
+    "saghen/blink.cmp", -- Completion
+    version = "1.*",
     opts = {
-      completion = {
-        ghost_text = { enabled = true },
-        documentation = { auto_show = true }
-      },
+      completion = { ghost_text = { enabled = true } },
       sources = {
         default = { "lazydev", "lsp", "path", "snippets", "buffer" },
         providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100, -- make lazydev completions top priority
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+        },
+      },
+      keymap = {
+        preset = "enter",
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim", -- Format on save
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        javascript = { "prettierd", "eslint_d" },
+        javascriptreact = { "prettierd", "eslint_d" },
+        typescript = { "prettierd", "eslint_d" },
+        typescriptreact = { "prettierd", "eslint_d" },
+      },
+      format_on_save = { lsp_format = "fallback", timeout_ms = 1000 },
+      formatters = {
+        stylua = {
+          command = "stylua",
+          args = {
+            "--config-path",
+            vim.fn.stdpath("config") .. "/env/.stylua.toml",
+            "-",
+          },
+        },
+        prettierd = {
+          env = {
+            XDG_RUNTIME_DIR = os.getenv("HOME") .. "/.temp-conform",
+            PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
+              .. "/env/.prettierrc",
           },
         },
       },
     },
-  }
+  },
 }

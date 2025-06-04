@@ -23,7 +23,7 @@ return {
 
     local function on_attach(bufnr)
       local function multi(node)
-        if node.name == '..' then
+        if node.name == ".." then
           if toggle == 0 then
             api.tree.expand_all()
             toggle = 1
@@ -40,7 +40,12 @@ return {
         return { desc = desc, buffer = bufnr, silent = true, nowait = true }
       end
 
-      k("n", "e", function() multi(api.tree.get_node_under_cursor()) end, opts('Multi'))
+      k(
+        "n",
+        "e",
+        function() multi(api.tree.get_node_under_cursor()) end,
+        opts("Multi")
+      )
       k("n", "d", api.fs.remove, opts("Delete"))
       k("n", "a", api.fs.create, opts("Create"))
       k("n", "c", api.fs.copy.node, opts("Copy"))
@@ -60,7 +65,7 @@ return {
         expand_all = {
           exclude = {
             "node_modules",
-            ".git"
+            ".git",
           },
         },
         change_dir = { restrict_above_cwd = true },
@@ -72,5 +77,5 @@ return {
       },
       update_focused_file = { enable = true },
     }
-  end
+  end,
 }

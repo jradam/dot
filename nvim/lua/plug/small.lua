@@ -1,7 +1,7 @@
 return {
   {
     "echasnovski/mini.move",
-    opts = { mappings = { left = "H", right = "L", down = "J", up = "K" } }
+    opts = { mappings = { left = "H", right = "L", down = "J", up = "K" } },
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -14,14 +14,17 @@ return {
       },
     },
   },
-  { "levouh/tint.nvim",       opts = { tint = -20, saturation = 0.2 } },
-  { 'Aasim-A/scrollEOF.nvim', event = { 'CursorMoved', 'WinScrolled' }, opts = {} },
+  { "levouh/tint.nvim", opts = { tint = -20, saturation = 0.2 } },
+  {
+    "Aasim-A/scrollEOF.nvim",
+    event = { "CursorMoved", "WinScrolled" },
+    opts = {},
+  },
   {
     -- "folke/todo-comments.nvim",
     dir = "~/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
-
   },
   {
     "tzachar/local-highlight.nvim",
@@ -32,5 +35,5 @@ return {
         animate = false,
       })
     end,
-  }
+  },
 }

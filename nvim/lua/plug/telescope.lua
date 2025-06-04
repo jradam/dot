@@ -1,12 +1,12 @@
 return {
-  'nvim-telescope/telescope.nvim',
+  "nvim-telescope/telescope.nvim",
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' } -- Apparently makes it faster
+    "nvim-lua/plenary.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Apparently makes it faster
   },
   opts = {
     defaults = {
-      initial_mode = 'insert',
+      initial_mode = "insert",
       layout_strategy = "vertical",
       layout_config = {
         height = 60,
@@ -18,16 +18,31 @@ return {
       },
       mappings = { n = { ["e"] = "select_default" } },
     },
-    extensions = { fzf = {} }
+    extensions = { fzf = {} },
   },
   keys = function()
     local t = require("telescope.builtin")
     return {
-      { "<leader>f", function() t.find_files() end,                        desc = "Find file" },
-      { "<leader>s", function() t.live_grep() end,                         desc = "Find string" },
-      { "<leader>t", ":TodoTelescope path=name position=false<CR>",        desc = "Find todo" },
-      { "<leader>b", function() t.resume({ initial_mode = "normal" }) end, desc = "Resume find" },
+      {
+        "<leader>f",
+        function() t.find_files() end,
+        desc = "Find file",
+      },
+      {
+        "<leader>s",
+        function() t.live_grep() end,
+        desc = "Find string",
+      },
+      {
+        "<leader>t",
+        ":TodoTelescope path=name position=false<CR>",
+        desc = "Find todo",
+      },
+      {
+        "<leader>b",
+        function() t.resume({ initial_mode = "normal" }) end,
+        desc = "Resume find",
+      },
     }
-  end
-
+  end,
 }
