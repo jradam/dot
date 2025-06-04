@@ -61,11 +61,15 @@ return {
       vim.lsp.enable(lsp_configs)
     end
   },
-  -- TODO: Keys for this
+  -- TODO: Keys for this, check old cmp for parity
   {
     "saghen/blink.cmp",
     version = '1.*',
     opts = {
+      completion = {
+        ghost_text = { enabled = true },
+        documentation = { auto_show = true }
+      },
       sources = {
         default = { "lazydev", "lsp", "path", "snippets", "buffer" },
         providers = {
