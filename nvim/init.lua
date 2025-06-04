@@ -37,6 +37,7 @@ vim.opt.undodir = { os.getenv("HOME") .. "/.nvim-undodir" }
 vim.opt.undofile = true
 
 -- Appearance
+vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.signcolumn = "number"
 vim.opt.scrolloff = 8

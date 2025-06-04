@@ -16,31 +16,17 @@ return {
         preview_height = 0.65,
         preview_cutoff = 30, -- If window too small, don't show preview
       },
-      mappings = {
-        n = {
-          ["e"] = "select_default",
-        },
-      },
+      mappings = { n = { ["e"] = "select_default" } },
     },
-    extensions = {
-      fzf = {}
-    }
+    extensions = { fzf = {} }
   },
   keys = function()
     local t = require("telescope.builtin")
     return {
-      { "<leader>f", function() t.find_files() end, desc = "Find file" },
-      { "<leader>s", function() t.live_grep() end,  desc = "Find string" },
-      {
-        "<leader>t",
-        ":TodoTelescope path=name position=false<CR>",
-        desc = "Find todo",
-      },
-      {
-        "<leader>b",
-        function() t.resume({ initial_mode = "normal" }) end,
-        desc = "Resume find",
-      },
+      { "<leader>f", function() t.find_files() end,                        desc = "Find file" },
+      { "<leader>s", function() t.live_grep() end,                         desc = "Find string" },
+      { "<leader>t", ":TodoTelescope path=name position=false<CR>",        desc = "Find todo" },
+      { "<leader>b", function() t.resume({ initial_mode = "normal" }) end, desc = "Resume find" },
     }
   end
 

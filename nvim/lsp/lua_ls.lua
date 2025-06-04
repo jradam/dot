@@ -14,9 +14,9 @@ return {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim" }, -- Make lsp recognize "vim" global
-        -- disable = { "missing-fields", "missing-parameter" }
+        globals = { "vim" },
+        disable = { "missing-parameters", "missing-fields" },
       },
     }
-  }
+  },
 }

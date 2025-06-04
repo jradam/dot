@@ -1,3 +1,6 @@
+-- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
+-- https://github.com/ruicsh/nvim-config/tree/main/lsp
+
 return {
   { "mason-org/mason.nvim", opts = {} }, -- Get language servers as required
   { "j-hui/fidget.nvim",    opts = {} }, -- Show loading state of LSPs
@@ -8,6 +11,7 @@ return {
       require("nvim-treesitter.configs").setup({
         ensure_installed = { 'lua' },
         auto_install = true,
+        highlight = { enable = true }
       })
     end
   },
