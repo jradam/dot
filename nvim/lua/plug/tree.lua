@@ -1,6 +1,21 @@
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  keys = function()
+    local function nvim_tree_toggle() -- Always fill vertical space on tree toggle
+      vim.cmd("NvimTreeToggle")
+      local tree_window = require("nvim-tree.view").get_winnr()
+
+      if tree_window then
+        local height = vim.api.nvim_get_option_value("lines", {})
+        vim.api.nvim_win_set_height(tree_window, height - 3)
+      end
+    end
+
+    return {
+      { "<leader>e", nvim_tree_toggle, desc = "Tree" },
+    }
+  end,
   opts = function()
     local api = require("nvim-tree.api")
     local k = vim.keymap.set
@@ -22,22 +37,10 @@ return {
       end
 
       local function opts(desc)
-        return {
-          desc = desc,
-          buffer = bufnr,
-          silent = true,
-          nowait = true,
-        }
+        return { desc = desc, buffer = bufnr, silent = true, nowait = true }
       end
 
-      k(
-        "n",
-        "e",
-        function() multi(api.tree.get_node_under_cursor()) end,
-        opts('Multi')
-      )
-      -- TODO:
-      -- k("n", "r", vim.lsp.buf.rename, opts('Rename'))
+      k("n", "e", function() multi(api.tree.get_node_under_cursor()) end, opts('Multi'))
       k("n", "d", api.fs.remove, opts("Delete"))
       k("n", "a", api.fs.create, opts("Create"))
       k("n", "c", api.fs.copy.node, opts("Copy"))
@@ -51,14 +54,7 @@ return {
       view = {
         signcolumn = "no",
         adaptive_size = true,
-        float = {
-          enable = true,
-          open_win_config = {
-            height = math.floor(vim.api.nvim_win_get_height(0)) - 1,
-            row = 0,
-            col = 0,
-          },
-        },
+        float = { enable = true, open_win_config = { col = 0 } },
       },
       actions = {
         expand_all = {
@@ -71,9 +67,8 @@ return {
       },
       renderer = {
         highlight_git = true,
-        icons = {
-          git_placement = "signcolumn", -- Hides git icons, as `signcolumn` is not shown
-        },
+        icons = { git_placement = "signcolumn" },
+        group_empty = true,
       },
       update_focused_file = { enable = true },
     }

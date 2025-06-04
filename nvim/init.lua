@@ -22,6 +22,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 
 -- Line numbers
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 3
 
@@ -36,7 +37,22 @@ vim.opt.undodir = { os.getenv("HOME") .. "/.nvim-undodir" }
 vim.opt.undofile = true
 
 -- Appearance
+vim.opt.showmode = false
 vim.opt.signcolumn = "number"
+vim.opt.scrolloff = 8
+vim.opt.showbreak = "↪ "
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function() vim.highlight.on_yank() end,
+  pattern = "*",
+})
+
+-- Remove comment continuation
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  command = [[ setlocal formatoptions-=cro ]],
+})
 
 require("lazy").setup({
   spec = { { import = "plug" } },

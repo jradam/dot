@@ -6,12 +6,10 @@ return {
       icons = { separator = "→", mappings = false, },
       sort = { "desc" },
     })
-
     local k = vim.keymap.set
 
     -- Actions
     k("n", "<leader>w", function() vim.cmd("w") end, { desc = "Write" })
-    k("n", "<leader>e", function() vim.cmd("NvimTreeToggle") end, { desc = "Tree" })
     k("n", "<leader>m", ":Mason<cr>", { desc = "Mason" })
     k("n", "<leader>c", ":restart<cr>", { desc = "Restart" })
     k("n", "<leader>r", function() vim.cmd("checktime") end, { desc = "Refresh" })
