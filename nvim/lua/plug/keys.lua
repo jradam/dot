@@ -44,7 +44,7 @@ return {
     k("n", "<leader>n", function()
       vim.diagnostic.jump({ count = 1 })
       vim.schedule(
-        function() vim.diagnostic.open_float(nil, { focusable = false }) end
+        function() vim.diagnostic.open_float() end
       )
     end, { desc = "Next issue" })
     k("n", "<leader>j", "<C-]>", { desc = "Jump to tag" })
