@@ -4,8 +4,11 @@ return {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Apparently makes it faster
   },
-  opts = {
-    defaults = {
+  opts = { extensions = { fzf = {} } },
+  keys = function()
+    local t = require("telescope.builtin")
+    local opts = {
+
       initial_mode = "insert",
       layout_strategy = "vertical",
       layout_config = {
@@ -17,26 +20,17 @@ return {
         preview_cutoff = 30, -- If window too small, don't show preview
       },
       mappings = { n = { ["e"] = "select_default" } },
-    },
-    extensions = { fzf = {} },
-  },
-  keys = function()
-    local t = require("telescope.builtin")
+    }
     return {
       {
         "<leader>f",
-        function() t.find_files() end,
+        function() t.find_files(opts) end,
         desc = "Find file",
       },
       {
         "<leader>s",
-        function() t.live_grep() end,
+        function() t.live_grep(opts) end,
         desc = "Find string",
-      },
-      {
-        "<leader>t",
-        ":TodoTelescope path=name position=false<CR>",
-        desc = "Find todo",
       },
       {
         "<leader>b",
