@@ -45,12 +45,6 @@ return {
       vim.schedule(function() vim.diagnostic.open_float() end)
     end, { desc = "Next issue" })
     k("n", "<leader>j", "<C-]>", { desc = "Jump to tag" })
-    k(
-      "n",
-      "<leader>d",
-      function() require("spyglass").lsp_actions() end,
-      { desc = "LSP Actions" }
-    )
 
     -- Close floating windows
     k("n", "<Esc>", function()

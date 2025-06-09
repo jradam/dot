@@ -47,8 +47,12 @@ vim.opt.undofile = true
 vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.signcolumn = "number"
-vim.opt.scrolloff = 8
+-- FIXME: this breaks my floating terminals
+-- vim.opt.scrolloff = 8
 vim.opt.showbreak = "↪ "
+
+-- Disable swapfiles
+vim.opt.swapfile = false
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -98,3 +102,38 @@ vim.lsp.enable(lsp_configs)
 
 -- TODO: make own toggle term (and remove tmux popups)
 -- TODO: Spyglass todo picker
+
+-- FIXME:
+-- Debug scrolloff resetting
+vim.api.nvim_create_user_command("TestScrolloff", function()
+  print("Setting scrolloff to 0...")
+  vim.o.scrolloff = 0
+  vim.wo.scrolloff = 0
+
+  -- Set up a timer to check if it gets reset
+  local timer = vim.loop.new_timer()
+  timer:start(
+    100,
+    100,
+    vim.schedule_wrap(function()
+      local current = vim.o.scrolloff
+      if current ~= 0 then
+        print("SCROLLOFF WAS RESET TO: " .. current)
+        timer:stop()
+        timer:close()
+      end
+    end)
+  )
+
+  print("Monitoring scrolloff for resets...")
+end, {})
+
+-- FIXME:
+-- Also add an autocmd to catch what's setting it
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter", "CmdlineLeave" }, {
+  callback = function(ev)
+    if vim.o.scrolloff ~= 0 then
+      print("Scrolloff changed to " .. vim.o.scrolloff .. " on " .. ev.event)
+    end
+  end,
+})

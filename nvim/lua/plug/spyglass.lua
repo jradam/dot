@@ -1,4 +1,0 @@
-return {
-  dir = "~/spyglass",
-  opts = {},
-}
