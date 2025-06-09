@@ -6,7 +6,6 @@ return {
   },
   opts = {
     extensions = { fzf = {} },
-    defaults = { mappings = { n = { ["e"] = "select_default" } } },
   },
   keys = function()
     local t = require("telescope.builtin")
@@ -22,6 +21,7 @@ return {
           preview_height = 0.65,
           preview_cutoff = 30, -- If window too small, don't show preview
         },
+        mappings = { n = { ["e"] = "select_default" } },
       }
     end
     return {

@@ -62,12 +62,39 @@ vim.api.nvim_create_autocmd("FileType", {
   command = [[ setlocal formatoptions-=cro ]],
 })
 
+-- Load plugins
 require("lazy").setup({
   spec = { { import = "plug" } },
   install = { colorscheme = { "dracula" } },
   change_detection = { notify = false },
 })
 
--- TODO: undotree
+-- Number highlighting for errors
+local s = vim.diagnostic.severity
+vim.diagnostic.config({
+  float = { border = "rounded" },
+  signs = {
+    text = { [s.ERROR] = "", [s.WARN] = "", [s.INFO] = "", [s.HINT] = "" },
+    numhl = {
+      [s.ERROR] = "DiagnosticSignError",
+      [s.WARN] = "DiagnosticSignWarn",
+      [s.INFO] = "DiagnosticSignInfo",
+      [s.HINT] = "DiagnosticSignHint",
+    },
+  },
+})
+
+-- Enable LSPs found in /lsp/
+local lsp_configs = {}
+for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+  local server_name = vim.fn.fnamemodify(f, ":t:r")
+  table.insert(lsp_configs, server_name)
+end
+vim.lsp.enable(lsp_configs)
+
+-- LSP help:
+-- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
+-- https://github.com/ruicsh/nvim-config/tree/main/lsp
+
 -- TODO: make own toggle term (and remove tmux popups)
 -- TODO: Spyglass todo picker
