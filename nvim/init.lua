@@ -67,3 +67,7 @@ require("lazy").setup({
   install = { colorscheme = { "dracula" } },
   change_detection = { notify = false },
 })
+
+-- TODO: undotree
+-- TODO: make own toggle term (and remove tmux popups)
+-- TODO: Spyglass todo picker

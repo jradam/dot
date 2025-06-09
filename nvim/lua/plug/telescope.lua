@@ -4,33 +4,41 @@ return {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Apparently makes it faster
   },
-  opts = { extensions = { fzf = {} } },
+  opts = {
+    extensions = { fzf = {} },
+    defaults = { mappings = { n = { ["e"] = "select_default" } } },
+  },
   keys = function()
     local t = require("telescope.builtin")
-    local opts = {
-
-      initial_mode = "insert",
-      layout_strategy = "vertical",
-      layout_config = {
-        height = 60,
-        width = 100,
-        scroll_speed = 9,
-        mirror = true,
-        preview_height = 0.65,
-        preview_cutoff = 30, -- If window too small, don't show preview
-      },
-      mappings = { n = { ["e"] = "select_default" } },
-    }
+    local function opts(mode)
+      return {
+        initial_mode = mode,
+        layout_strategy = "vertical",
+        layout_config = {
+          height = 60,
+          width = 100,
+          scroll_speed = 9,
+          mirror = true,
+          preview_height = 0.65,
+          preview_cutoff = 30, -- If window too small, don't show preview
+        },
+      }
+    end
     return {
       {
         "<leader>f",
-        function() t.find_files(opts) end,
+        function() t.find_files(opts("insert")) end,
         desc = "Find file",
       },
       {
         "<leader>s",
-        function() t.live_grep(opts) end,
+        function() t.live_grep(opts("insert")) end,
         desc = "Find string",
+      },
+      {
+        "<leader>u",
+        function() t.lsp_references(opts("normal")) end,
+        desc = "Find uses",
       },
       {
         "<leader>b",
