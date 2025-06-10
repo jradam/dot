@@ -53,7 +53,7 @@ return {
       k("n", "x", api.fs.cut, opts("Cut"))
       k("n", "r", api.fs.rename, opts("Rename"))
 
-      local function git_jump(direction)
+      local function changed_jump(direction)
         return function()
           local attempts = 0
           while attempts < 50 do
@@ -73,8 +73,18 @@ return {
           end
         end
       end
-      k("n", "<S-j>", git_jump("next"), opts("Next git"))
-      k("n", "<S-k>", git_jump("prev"), opts("Prev git"))
+      k("n", "<S-j>", changed_jump("next"), opts("Next changed"))
+      k("n", "<S-k>", changed_jump("prev"), opts("Prev changed"))
+
+      local function open_all_changed()
+        local files = vim.fn.systemlist("git diff --name-only HEAD")
+        if vim.v.shell_error == 0 and #files > 0 then
+          for _, file in ipairs(files) do
+            vim.cmd("edit " .. vim.fn.fnameescape(file))
+          end
+        end
+      end
+      k("n", "l", open_all_changed, opts("All changed"))
 
       local function open_in_same()
         local node = api.tree.get_node_under_cursor()

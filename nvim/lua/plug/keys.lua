@@ -52,7 +52,10 @@ return {
       if vim.fn.search("=======", "nw") > 0 then
         vim.cmd("GitConflictNextConflict")
       else
-        vim.diagnostic.jump({ count = 1 })
+        vim.diagnostic.jump({
+          count = 1,
+          severity = { min = vim.diagnostic.severity.WARN },
+        })
       end
     end, { desc = "LSP next" })
 

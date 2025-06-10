@@ -121,7 +121,7 @@ end
 
 vim.keymap.set(
   "n",
-  "<leader>g",
+  "<leader>C",
   function() git_conflicts() end,
   { desc = "Conflict search" }
 )
