@@ -76,15 +76,7 @@ return {
       k("n", "<S-j>", changed_jump("next"), opts("Next changed"))
       k("n", "<S-k>", changed_jump("prev"), opts("Prev changed"))
 
-      local function open_all_changed()
-        local files = vim.fn.systemlist("git diff --name-only HEAD")
-        if vim.v.shell_error == 0 and #files > 0 then
-          for _, file in ipairs(files) do
-            vim.cmd("edit " .. vim.fn.fnameescape(file))
-          end
-        end
-      end
-      k("n", "l", open_all_changed, opts("All changed"))
+      k("n", "l", function() vim.cmd("Shotgun") end, opts("All changed"))
 
       local function open_in_same()
         local node = api.tree.get_node_under_cursor()

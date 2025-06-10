@@ -41,23 +41,8 @@ return {
     )
 
     -- Diagnostics
-    k(
-      "n",
-      "<leader>i",
-      function() vim.lsp.buf.hover({ border = "rounded", max_width = 80 }) end,
-      { desc = "Tag info" }
-    )
-
-    k("n", "<leader>n", function()
-      if vim.fn.search("=======", "nw") > 0 then
-        vim.cmd("GitConflictNextConflict")
-      else
-        vim.diagnostic.jump({
-          count = 1,
-          severity = { min = vim.diagnostic.severity.WARN },
-        })
-      end
-    end, { desc = "LSP next" })
+    k("n", "<leader>n", function() vim.cmd("Hunt") end, { desc = "Hunt" })
+    k("n", "<leader>i", function() vim.cmd("Inspect") end, { desc = "Inspect" })
 
     k("n", "<leader>j", "<C-]>", { desc = "Tag jump" })
 

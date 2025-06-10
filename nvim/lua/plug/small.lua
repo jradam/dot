@@ -62,4 +62,18 @@ return {
       })
     end,
   },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signcolumn = false,
+      numhl = true,
+      preview_config = {
+        border = "rounded",
+        relative = "cursor",
+        anchor = "SW",
+        row = -1,
+        col = 0,
+      },
+    },
+  },
 }
