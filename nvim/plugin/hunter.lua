@@ -14,7 +14,9 @@ local function hunt()
         severity = { min = vim.diagnostic.severity.WARN },
       })
     else
-      require("gitsigns").nav_hunk("next")
+      local gitsigns = require("gitsigns")
+      local hunks = gitsigns.get_hunks(vim.api.nvim_get_current_buf())
+      if hunks and #hunks > 0 then gitsigns.nav_hunk("next") end
     end
   end
 end
