@@ -5,7 +5,7 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 -- TODO:
--- Make a "recent changes" list - e.g. on main branch without changes, can get a list of files/changes ordered by most recent
+-- Make a "recent changes" list - e.g. on main branch without changes, can get a list of files/changes ordered by most recent. ['git changes', 'local changes', 'git history'] ?
 -- New: replace easypick by implementing git helpers
 -- New: basic git commands on <C-g>
 

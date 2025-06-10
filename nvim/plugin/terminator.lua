@@ -36,6 +36,13 @@ local function toggle_terminal(index, color, startup_cmd)
   local terminal = state.terminals[index]
 
   if not vim.api.nvim_win_is_valid(terminal.win) then
+    -- Close other terminals before opening this one
+    for i, term in pairs(state.terminals) do
+      if i ~= index and vim.api.nvim_win_is_valid(term.win) then
+        vim.api.nvim_win_hide(term.win)
+      end
+    end
+
     terminal = create_terminal_window({
       buf = terminal.buf,
       color = color,

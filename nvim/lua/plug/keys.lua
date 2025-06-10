@@ -18,6 +18,11 @@ return {
     end, { desc = "Refresh buffer" })
     k("n", "<leader>R", ":restart<cr>", { desc = "Restart nvim" })
     k("n", "<leader>m", ":messages<cr>", { desc = "Messages" })
+    k("n", "x", '"_x', { desc = "Delete without register" })
+
+    -- Movement
+    k("n", "j", "gj", { desc = "Visual move up" })
+    k("n", "k", "gk", { desc = "Visual move down" })
 
     -- Text manipulation
     k("n", "K", "i<space><left>", { desc = "Insert space" })
@@ -48,7 +53,6 @@ return {
         vim.cmd("GitConflictNextConflict")
       else
         vim.diagnostic.jump({ count = 1 })
-        vim.schedule(function() vim.diagnostic.open_float() end)
       end
     end, { desc = "LSP next" })
 

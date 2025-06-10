@@ -96,9 +96,12 @@ for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
 end
 vim.lsp.enable(lsp_configs)
 
+-- Jumping to diagnostic should open it
+vim.diagnostic.config({ jump = { float = true } })
+
 -- LSP help:
 -- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
--- TODO: conflict management
 -- TODO: fix keychef
+-- TODO: make ctrl-v work in claude code terminal the same as right-click/paste
