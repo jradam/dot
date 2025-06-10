@@ -22,6 +22,10 @@ return {
     local toggle = 0
 
     local function on_attach(bufnr)
+      local function opts(desc)
+        return { desc = desc, buffer = bufnr, silent = true, nowait = true }
+      end
+
       local function multi(node)
         if node.name == ".." then
           if toggle == 0 then
@@ -36,10 +40,6 @@ return {
         end
       end
 
-      local function opts(desc)
-        return { desc = desc, buffer = bufnr, silent = true, nowait = true }
-      end
-
       k(
         "n",
         "e",
@@ -52,6 +52,60 @@ return {
       k("n", "p", api.fs.paste, opts("Paste"))
       k("n", "x", api.fs.cut, opts("Cut"))
       k("n", "r", api.fs.rename, opts("Rename"))
+
+      local function git_jump(direction)
+        return function()
+          local attempts = 0
+          while attempts < 50 do
+            if direction == "next" then
+              api.node.navigate.git.next()
+            else
+              api.node.navigate.git.prev()
+            end
+            local node = api.tree.get_node_under_cursor()
+            if not node then break end
+            if node.type == "directory" then
+              if not node.open then api.node.open.edit() end
+            else
+              break
+            end
+            attempts = attempts + 1
+          end
+        end
+      end
+
+      k("n", "n", git_jump("next"), opts("Next git"))
+      k("n", "p", git_jump("prev"), opts("Prev git"))
+
+      local function open_in_same()
+        local node = api.tree.get_node_under_cursor()
+        if node and node.type == "file" then
+          local status = pcall(function() api.tree.close() end)
+
+          if status then
+            local current_buf = vim.api.nvim_get_current_buf()
+            local existing_buf = vim.fn.bufnr(node.absolute_path)
+
+            if existing_buf ~= -1 and existing_buf ~= current_buf then
+              -- Switch to existing buffer if it exists and is different
+              vim.api.nvim_buf_delete(current_buf, { force = false })
+              vim.api.nvim_set_current_buf(existing_buf)
+            else
+              -- Replace current buffer contents
+              vim.api.nvim_buf_set_name(current_buf, node.absolute_path)
+              vim.api.nvim_buf_call(
+                current_buf,
+                function() vim.cmd("edit!") end
+              )
+            end
+          else
+            -- If fails, it's probably the last open window, so nothing to delete
+            vim.api.nvim_command("edit " .. node.absolute_path)
+          end
+        end
+      end
+
+      k("n", "<cr>", open_in_same, opts("Open in same"))
     end
 
     return {

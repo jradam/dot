@@ -11,12 +11,11 @@ return {
     -- Actions
     k("n", "<leader>w", function() vim.cmd("w") end, { desc = "Write" })
     k("n", "<leader>c", ":restart<cr>", { desc = "Restart" })
-    k(
-      "n",
-      "<leader>r",
-      function() vim.cmd("checktime") end,
-      { desc = "Refresh" }
-    )
+    k("n", "<leader>r", function()
+      vim.cmd("checktime")
+      vim.cmd("nohlsearch")
+      vim.cmd("e")
+    end, { desc = "Refresh" })
 
     -- Text manipulation
     k("n", "K", "i<space><left>", { desc = "Insert space" })

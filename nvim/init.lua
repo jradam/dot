@@ -47,8 +47,8 @@ vim.opt.undofile = true
 vim.opt.termguicolors = true
 vim.opt.showmode = false
 vim.opt.signcolumn = "number"
--- FIXME: this breaks my floating terminals
--- vim.opt.scrolloff = 8
+vim.opt.scrolloff = 12
+vim.opt.linebreak = true
 vim.opt.showbreak = "↪ "
 
 -- Disable swapfiles
@@ -100,40 +100,7 @@ vim.lsp.enable(lsp_configs)
 -- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
--- TODO: make own toggle term (and remove tmux popups)
+-- TODO: parrot
+-- TODO: local/git changes picker, open on start
 -- TODO: Spyglass todo picker
-
--- FIXME:
--- Debug scrolloff resetting
-vim.api.nvim_create_user_command("TestScrolloff", function()
-  print("Setting scrolloff to 0...")
-  vim.o.scrolloff = 0
-  vim.wo.scrolloff = 0
-
-  -- Set up a timer to check if it gets reset
-  local timer = vim.loop.new_timer()
-  timer:start(
-    100,
-    100,
-    vim.schedule_wrap(function()
-      local current = vim.o.scrolloff
-      if current ~= 0 then
-        print("SCROLLOFF WAS RESET TO: " .. current)
-        timer:stop()
-        timer:close()
-      end
-    end)
-  )
-
-  print("Monitoring scrolloff for resets...")
-end, {})
-
--- FIXME:
--- Also add an autocmd to catch what's setting it
-vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter", "CmdlineLeave" }, {
-  callback = function(ev)
-    if vim.o.scrolloff ~= 0 then
-      print("Scrolloff changed to " .. vim.o.scrolloff .. " on " .. ev.event)
-    end
-  end,
-})
+-- TODO: conflict management
