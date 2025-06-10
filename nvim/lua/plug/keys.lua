@@ -17,6 +17,7 @@ return {
       vim.cmd("e")
     end, { desc = "Refresh buffer" })
     k("n", "<leader>R", ":restart<cr>", { desc = "Restart nvim" })
+    k("n", "<leader>m", ":messages<cr>", { desc = "Messages" })
 
     -- Text manipulation
     k("n", "K", "i<space><left>", { desc = "Insert space" })
@@ -41,10 +42,16 @@ return {
       function() vim.lsp.buf.hover({ border = "rounded", max_width = 80 }) end,
       { desc = "Tag info" }
     )
+
     k("n", "<leader>n", function()
-      vim.diagnostic.jump({ count = 1 })
-      vim.schedule(function() vim.diagnostic.open_float() end)
+      if vim.fn.search("=======", "nw") > 0 then
+        vim.cmd("GitConflictNextConflict")
+      else
+        vim.diagnostic.jump({ count = 1 })
+        vim.schedule(function() vim.diagnostic.open_float() end)
+      end
     end, { desc = "LSP next" })
+
     k("n", "<leader>j", "<C-]>", { desc = "Tag jump" })
 
     -- Close floating windows

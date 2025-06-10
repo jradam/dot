@@ -8,6 +8,8 @@ return {
       return {
         Normal = { bg = darkBg },
         FloatBorder = { fg = c.comment, bg = c.bg },
+        DiffCurrent = { bg = "#254C35" },
+        DiffIncoming = { bg = "#423857" },
       }
     end,
   },

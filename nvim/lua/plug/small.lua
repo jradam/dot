@@ -5,7 +5,7 @@ return {
   },
   {
     "mbbill/undotree",
-    keys = { { "<leader>t", vim.cmd.UndotreeToggle, desc = "Undo tree" } },
+    keys = { { "<leader>u", vim.cmd.UndotreeToggle, desc = "Undo tree" } },
     config = function()
       vim.g.undotree_WindowLayout = 4
       vim.g.undotree_SetFocusWhenToggle = 1
@@ -31,7 +31,7 @@ return {
 
       vim.keymap.set("n", "<C-d>", function()
         local file_lines = vim.fn.line("$")
-        local win_height = vim.fn.winheight(0)
+        local win_height = vim.fn.winheight(0) - 2 -- -2 for lualine and cmdline
         local current_line = vim.fn.line(".")
 
         local top_half = current_line < (win_height / 2)

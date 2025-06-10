@@ -5,10 +5,8 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 -- TODO:
--- New: new version of TODO Telescope with nicer formatting
 -- Make a "recent changes" list - e.g. on main branch without changes, can get a list of files/changes ordered by most recent
 -- New: replace easypick by implementing git helpers
--- New: the output of :highlight
 -- New: basic git commands on <C-g>
 
 local function get_labels(option_table)
@@ -99,4 +97,31 @@ vim.keymap.set(
   "<leader>d",
   function() lsp_actions() end,
   { desc = "LSP Actions" }
+)
+
+local function git_conflicts()
+  local ok, conflicts =
+    pcall(vim.fn.systemlist, "git status --porcelain | grep '^UU' | cut -c4-")
+
+  if not ok or #conflicts == 0 then
+    print("No conflicts found")
+    return
+  end
+
+  local conflict_actions = {}
+  for _, file in ipairs(conflicts) do
+    table.insert(conflict_actions, {
+      label = file,
+      cmd = function() vim.cmd("edit " .. file) end,
+    })
+  end
+
+  spy("Conflicts", conflict_actions)
+end
+
+vim.keymap.set(
+  "n",
+  "<leader>g",
+  function() git_conflicts() end,
+  { desc = "Conflict search" }
 )

@@ -101,3 +101,4 @@ vim.lsp.enable(lsp_configs)
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
 -- TODO: conflict management
+-- TODO: fix keychef

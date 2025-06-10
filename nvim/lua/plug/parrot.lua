@@ -32,6 +32,6 @@ return {
       },
     })
 
-    vim.keymap.set({ "v" }, "k", ":PrtFile<CR>", { desc = "Parrot" })
+    vim.keymap.set({ "v" }, "<leader>p", ":PrtFile<CR>", { desc = "Parrot" })
   end,
 }

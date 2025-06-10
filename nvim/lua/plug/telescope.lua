@@ -48,9 +48,22 @@ return {
         desc = "Find string",
       },
       {
-        "<leader>u",
+        "<leader>k",
         function() t.lsp_references(opts("normal")) end,
         desc = "Find uses",
+      },
+      {
+        "<leader>t",
+        function()
+          require("telescope").extensions["todo-comments"].todo(
+            vim.tbl_extend(
+              "force",
+              opts("normal"),
+              { path = "name", position = false }
+            )
+          )
+        end,
+        desc = "Find todos",
       },
       {
         "<leader>b",
