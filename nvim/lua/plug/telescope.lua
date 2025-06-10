@@ -6,7 +6,19 @@ return {
   },
   opts = {
     extensions = { fzf = {} },
-    defaults = { mappings = { n = { ["e"] = "select_default" } } },
+    defaults = {
+      mappings = { n = { ["e"] = "select_default" } },
+    },
+    pickers = {
+      find_files = {
+        file_ignore_patterns = { "node_modules", ".git/" },
+        hidden = true,
+      },
+      live_grep = {
+        file_ignore_patterns = { "node_modules", ".git/" },
+        additional_args = function() return { "--hidden" } end,
+      },
+    },
   },
   keys = function()
     local t = require("telescope.builtin")
@@ -43,7 +55,7 @@ return {
       {
         "<leader>b",
         function() t.resume({ initial_mode = "normal" }) end,
-        desc = "Resume find",
+        desc = "Find resume",
       },
     }
   end,

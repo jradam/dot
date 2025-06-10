@@ -129,6 +129,9 @@ return {
         group_empty = true,
       },
       update_focused_file = { enable = true },
+      filters = {
+        custom = { "^.git$" }, -- Don't show git files in the tree
+      },
     }
   end,
 }

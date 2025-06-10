@@ -5,8 +5,8 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 -- TODO:
--- Make a "recent changes" list - e.g. on main branch without changes, can get a list of files/changes ordered by most recent
 -- New: new version of TODO Telescope with nicer formatting
+-- Make a "recent changes" list - e.g. on main branch without changes, can get a list of files/changes ordered by most recent
 -- New: replace easypick by implementing git helpers
 -- New: the output of :highlight
 -- New: basic git commands on <C-g>
