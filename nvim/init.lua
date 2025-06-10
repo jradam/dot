@@ -100,7 +100,7 @@ vim.lsp.enable(lsp_configs)
 -- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
--- TODO: parrot
+-- TODO: telescope skipping dotfiles
 -- TODO: local/git changes picker, open on start
 -- TODO: Spyglass todo picker
 -- TODO: conflict management

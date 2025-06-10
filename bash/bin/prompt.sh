@@ -1,4 +1,4 @@
-source $HOME/dotfiles/bash/lib/git-prompt.sh
+source $HOME/dot/bash/lib/git-prompt.sh
 
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=true # staged '+', unstaged '*'

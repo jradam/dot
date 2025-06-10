@@ -24,8 +24,8 @@ alias e='wsl-open'
 # general shortcuts
 alias v='nvim'
 
-# Quick links to dotfiles / obsidian
-alias s='dir=$PWD;cd $HOME/dotfiles;v .;cd $dir;'
+# Quick links to dot / obsidian
+alias s='dir=$PWD;cd $HOME/dot;v .;cd $dir;'
 alias ob='dir=$PWD;cd /mnt/c/Users/adamj/Documents/Jimbo;v .;cd $dir;'
 
 # restart terminal

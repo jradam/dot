@@ -73,9 +73,8 @@ return {
           end
         end
       end
-
-      k("n", "n", git_jump("next"), opts("Next git"))
-      k("n", "p", git_jump("prev"), opts("Prev git"))
+      k("n", "<S-j>", git_jump("next"), opts("Next git"))
+      k("n", "<S-k>", git_jump("prev"), opts("Prev git"))
 
       local function open_in_same()
         local node = api.tree.get_node_under_cursor()

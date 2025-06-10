@@ -3,13 +3,13 @@
 # TODO: re-write bash scripts in python
 # TODO: add listener that blocks ¦ from printing in terminal (but still allows neovim to work)
 
-source $HOME/dotfiles/bash/bin/helpers.sh
-source $HOME/dotfiles/bash/bin/git.sh
-source $HOME/dotfiles/bash/bin/aliases.sh
-source $HOME/dotfiles/bash/bin/defaults.sh
-source $HOME/dotfiles/bash/bin/prompt.sh
-source $HOME/dotfiles/bash/bin/runners.sh
-source $HOME/dotfiles/.env
+source $HOME/dot/bash/bin/helpers.sh
+source $HOME/dot/bash/bin/git.sh
+source $HOME/dot/bash/bin/aliases.sh
+source $HOME/dot/bash/bin/defaults.sh
+source $HOME/dot/bash/bin/prompt.sh
+source $HOME/dot/bash/bin/runners.sh
+source $HOME/dot/.env
 
 # Link Window's browser to WSL2
 export BROWSER="powershell.exe /C start"
