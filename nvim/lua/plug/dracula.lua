@@ -4,25 +4,29 @@ return {
     italic_comment = true,
     overrides = function(c)
       local darkBg = "#191a21"
+      local darkGreen = "#254C35"
+      local darkPurple = "#423857"
+      local darkRed = "#3A1D24"
 
       return {
         Normal = { bg = darkBg },
         FloatBorder = { fg = c.comment, bg = c.bg },
 
         -- For Git conflicts
-        DiffCurrent = { bg = "#254C35" },
-        DiffIncoming = { bg = "#423857" },
+        DiffCurrent = { bg = darkGreen },
+        DiffIncoming = { bg = darkPurple },
 
         -- For the Gitsigns line highlights
-        GitSignsAdd = { bg = "#423857" },
+        GitSignsAdd = { bg = darkPurple },
         GitSignsChange = { reverse = true },
         GitSignsDelete = { bg = darkBg, undercurl = true },
 
-        -- For the Gitsigns popups
-        DiffAdd = { bg = "", fg = c.green },
-        DiffDelete = { bg = "", fg = c.red },
-        GitSignsAddInline = { bg = c.bg },
-        GitSignsDeleteInline = { bg = c.bg },
+        -- For the Gitsigns inline previews
+        -- TODO: need this?: DiffDelete = { bg = c.bg, fg = c.red },
+        GitSignsAddPreview = { bg = c.bg, fg = c.green },
+        GitSignsAddInline = { bg = darkPurple, fg = c.purple },
+        GitSignsChangeInline = { bg = darkGreen, fg = c.green },
+        GitSignsDeleteLnInline = { bg = darkRed, fg = c.red },
 
         -- Flash
         FlashMatch = { fg = c.cyan },

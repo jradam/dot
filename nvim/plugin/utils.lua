@@ -24,7 +24,7 @@ vim.api.nvim_create_user_command("Hunt", hunt, {})
 -- Inspect thing under cursor
 local function inspect()
   local clients = vim.lsp.get_clients({ bufnr = 0 })
-  local preview = require("gitsigns").preview_hunk
+  local preview = require("gitsigns").preview_hunk_inline
 
   if #clients == 0 then
     preview()
@@ -48,6 +48,7 @@ end
 
 vim.api.nvim_create_user_command("Inspect", inspect, {})
 
+-- Open all changed git files
 local function open_all_changed()
   local changed_files = vim.fn.systemlist("git diff --name-only HEAD")
   local untracked_files =
@@ -71,3 +72,14 @@ local function open_all_changed()
 end
 
 vim.api.nvim_create_user_command("Shotgun", open_all_changed, {})
+
+-- Clear Gitsign inline previews
+local function clear_gitsigns()
+  for name, id in pairs(vim.api.nvim_get_namespaces()) do
+    if name:match("gitsigns") then
+      vim.api.nvim_buf_clear_namespace(0, id, 0, -1)
+    end
+  end
+end
+
+vim.api.nvim_create_user_command("ClearGit", clear_gitsigns, {})

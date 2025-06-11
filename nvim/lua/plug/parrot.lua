@@ -32,6 +32,8 @@ return {
       },
     })
 
+    -- TODO: upgrade this, and check model is the smartest one
+
     vim.keymap.set(
       { "n", "v" },
       "<leader>p",
