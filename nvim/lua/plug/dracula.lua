@@ -13,14 +13,22 @@ return {
         DiffCurrent = { bg = "#254C35" },
         DiffIncoming = { bg = "#423857" },
 
-        -- For the Gitsigns popups
-        DiffAdd = { bg = "", fg = c.green },
-        DiffDelete = { bg = "", fg = c.red },
-
         -- For the Gitsigns line highlights
         GitSignsAdd = { bg = "#423857" },
         GitSignsChange = { reverse = true },
         GitSignsDelete = { bg = darkBg, undercurl = true },
+
+        -- For the Gitsigns popups
+        DiffAdd = { bg = "", fg = c.green },
+        DiffDelete = { bg = "", fg = c.red },
+        GitSignsAddInline = { bg = c.bg },
+        GitSignsDeleteInline = { bg = c.bg },
+
+        -- Flash
+        FlashMatch = { fg = c.cyan },
+        FlashCurrent = { fg = c.cyan },
+        FlashBackdrop = { fg = c.comment, bg = darkBg },
+        FlashLabel = { fg = c.green },
       }
     end,
   },

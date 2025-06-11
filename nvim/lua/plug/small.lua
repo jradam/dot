@@ -63,7 +63,8 @@ return {
     end,
   },
   {
-    "lewis6991/gitsigns.nvim",
+    -- "lewis6991/gitsigns.nvim",
+    dir = "~/gitsigns.nvim",
     opts = {
       signcolumn = false,
       numhl = true,
@@ -73,6 +74,23 @@ return {
         anchor = "SW",
         row = -1,
         col = 0,
+      },
+    },
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      jump = { autojump = true }, -- If only one match, jump to it
+      label = { uppercase = false }, -- Do not allow uppercase jump labels
+      modes = { char = { enabled = false } }, -- Disable when in other modes
+    },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function() require("flash").jump() end,
+        desc = "Flash",
       },
     },
   },

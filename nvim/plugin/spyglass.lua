@@ -92,12 +92,7 @@ local function lsp_actions()
   )
 end
 
-vim.keymap.set(
-  "n",
-  "<leader>d",
-  function() lsp_actions() end,
-  { desc = "LSP Actions" }
-)
+vim.api.nvim_create_user_command("SpyLspActions", lsp_actions, {})
 
 local function git_conflicts()
   local ok, conflicts =
@@ -119,9 +114,4 @@ local function git_conflicts()
   spy("Conflicts", conflict_actions)
 end
 
-vim.keymap.set(
-  "n",
-  "<leader>C",
-  function() git_conflicts() end,
-  { desc = "Conflict search" }
-)
+vim.api.nvim_create_user_command("SpyConflicts", git_conflicts, {})

@@ -104,7 +104,6 @@ vim.diagnostic.config({ jump = { float = true } })
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
 -- TODO: snippets (missing my 'cs')
--- TODO: gitsigns
 -- TODO: flash.nvim
 -- TODO: fix keychef
 -- TODO: make ctrl-v work in claude code terminal the same as right-click/paste

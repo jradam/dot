@@ -41,8 +41,10 @@ return {
     )
 
     -- Diagnostics
-    k("n", "<leader>n", function() vim.cmd("Hunt") end, { desc = "Hunt" })
-    k("n", "<leader>i", function() vim.cmd("Inspect") end, { desc = "Inspect" })
+    k("n", "<leader>n", "<cmd>Hunt<cr>", { desc = "Hunt" })
+    k("n", "<leader>i", "<cmd>Inspect<cr>", { desc = "Inspect" })
+    k("n", "<leader>d", "<cmd>SpyLspActions<cr>", { desc = "LSP Actions" })
+    k("n", "<leader>C", "<cmd>SpyConflicts<cr>", { desc = "Conflict search" })
 
     k("n", "<leader>j", "<C-]>", { desc = "Tag jump" })
 
