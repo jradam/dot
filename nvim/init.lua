@@ -107,3 +107,8 @@ vim.diagnostic.config({ jump = { float = true } })
 -- TODO: line blame
 -- TODO: fix keychef
 -- TODO: make ctrl-v work in claude code terminal the same as right-click/paste
+-- TODO: always put import files at top of code actions if exists
+-- TODO: keychef: m: $, brackets
+-- TODO: BufCmd looping
+-- TODO: Undo delete of file in tree?
+-- TODO: Add small version of Claude in a small popup (bottom right?) that just gets the current buffer as context. Bonus if it automatically takes highlighted text in the input when opened

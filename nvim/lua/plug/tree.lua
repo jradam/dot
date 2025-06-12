@@ -58,9 +58,9 @@ return {
           local attempts = 0
           while attempts < 50 do
             if direction == "next" then
-              api.node.navigate.git.next()
+              api.node.navigate.git.next_skip_gitignored()
             else
-              api.node.navigate.git.prev()
+              api.node.navigate.git.prev_skip_gitignored()
             end
             local node = api.tree.get_node_under_cursor()
             if not node then break end
@@ -133,6 +133,10 @@ return {
       update_focused_file = { enable = true },
       filters = {
         custom = { "^.git$" }, -- Don't show git files in the tree
+      },
+      git = {
+        show_on_open_dirs = false,
+        ignore = false, -- Stop gitignored files and folders from being hidden
       },
     }
   end,
