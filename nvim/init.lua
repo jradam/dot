@@ -103,6 +103,7 @@ vim.diagnostic.config({ jump = { float = true } })
 -- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
+-- TODO: button that refactors arrow into normal function and vice-versa
 -- TODO: snippets (missing my 'cs')
 -- TODO: line blame
 -- TODO: fix keychef

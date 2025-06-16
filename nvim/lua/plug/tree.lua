@@ -121,6 +121,7 @@ return {
           exclude = {
             "node_modules",
             ".git",
+            "target",
           },
         },
         change_dir = { restrict_above_cwd = true },

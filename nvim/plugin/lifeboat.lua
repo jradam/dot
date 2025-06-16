@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     if tabs_open > 1 then
       vim.defer_fn(function()
         vim.cmd("tabclose")
-        vim.cmd("edit " .. file_path)
+        vim.api.nvim_set_current_buf(event.buf)
       end, 10) -- Delay allows state to stabilise after tab open. Fixes bug where all buffers unfocus.
     end
   end,
