@@ -118,6 +118,7 @@ return {
       },
       actions = {
         expand_all = {
+          max_folder_discovery = 600,
           exclude = {
             "node_modules",
             ".git",
