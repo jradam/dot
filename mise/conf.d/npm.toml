@@ -1,10 +1,7 @@
 [tools]
-gh = "latest"
-neovim = "nightly"
-node = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:diff-so-fancy" = "latest"
 "npm:ts-node" = "latest"
 "npm:typescript" = "latest"
 "npm:wsl-open" = "latest"
-ripgrep = "latest"
+

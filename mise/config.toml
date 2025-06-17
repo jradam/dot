@@ -1,0 +1,6 @@
+[tools]
+gh = "latest"
+neovim = "nightly"
+node = "latest"
+ripgrep = "latest"
+
