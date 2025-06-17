@@ -8,3 +8,5 @@
   excludesfile = ~/dot/env/.gitignore
 [pull]
   rebase = false
+[credential "https://github.com"]
+  helper = gh auth git-credential
