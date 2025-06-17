@@ -1,0 +1,21 @@
+/* Custom CSS for Firefox */
+/* C:\Users\adamj\AppData\Roaming\Mozilla\Firefox\Profiles\ie7a6ues.dev-edition-default\chrome\userChrome.css */
+
+/* Hide the close button on tabs */
+.tab-close-button.close-icon {
+  display: none !important;
+}
+
+/* Hide the mute/unmute button on tabs */
+.tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]) {
+  display: none !important;
+}
+
+/* Keep site icon visible on hover */
+.tabbrowser-tab:hover .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted])> :not(.tab-icon-overlay),
+
+/* for site icon with Compact density */
+:root[uidensity="compact"] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted])> :not(.tab-icon-overlay) {
+  opacity: 1 !important;
+  /* overrides full transparency with full opacity */
+}
