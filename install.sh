@@ -15,6 +15,7 @@ touch ~/dot/.env
 ln -sf ~/dot/bash/.bashrc ~/.bashrc
 source ~/.bashrc
 mise install
+source ~/.bashrc
 
 # OTHER 
 sudo apt update && yes | sudo apt install build-essential
