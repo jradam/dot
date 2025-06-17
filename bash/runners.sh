@@ -81,38 +81,3 @@ t() {
   fi
 }
 
-# Create digest file
-ai() {
-    local relative_path=""
-    local original_dir="$PWD"
-
-    # Calculate relative path to HOME
-    while [[ "$PWD" != "$HOME" ]]; do
-        relative_path="../$relative_path"
-        cd ..
-    done
-    cd "$original_dir"
-
-    # Create .ignore file
-    mkdir -p "$HOME/aidigest"
-    echo "dist
-.yarn*
-.github*
-.mypy*
-*.mp3
-*.mp4
-*.jpg
-*.png
-*.webp
-*.ico
-*.svg
-*.otf
-*.ttf
-*.woff2
-*.min.js
-*jquery-ui*
-*.backup*" > "$HOME/aidigest/.ignore"
-
-    # Run
-    npx ai-digest --ignore-file "${relative_path}aidigest/.ignore" --show-output-files --output "$HOME/aidigest/$(basename "$PWD").md"
-}

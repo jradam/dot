@@ -7,18 +7,14 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf ~/dot/tmux/.tmux.conf ~/.tmux.conf
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
-# MISE
+# MISE & BASH
 curl https://mise.run | sh
 mkdir -p ~/.config/mise
 ln -sf ~/dot/env/mise.toml ~/.config/mise/mise.toml
 ln -sf ~/dot/bash/.bashrc ~/.bashrc
-# touch dot/.env # TODO: Use mise for env stuff?
-source $HOME/.bashrc
+touch ~/dot/.env
+source ~/.bashrc
 mise install
-
-# DIFF-SO-FANCY
-curl -L https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy -o ~/.local/bin/diff-so-fancy
-chmod +x ~/.local/bin/diff-so-fancy
 
 # GITHUB
 ln -sf ~/dot/env/.gitconfig ~/.gitconfig

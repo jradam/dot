@@ -1,46 +1,34 @@
 #!/bin/bash
 
-# auto cd when type dir name
-shopt -s autocd
-
-# ls and grep with color support
-alias ls='ls --color=auto'
+# Viewing
+alias ls='ls -A --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# ls shortcuts
-alias ll='ls -alF'
-alias la='ls -ACF'
-
-# other utilities
+# Navigation
 alias c='clear'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
+
+# Shortcuts
+alias v='nvim'
+alias rs='exec bash'
 alias q='tmux kill-server'
 alias e='wsl-open'
 
-# general shortcuts
-alias v='nvim'
-
-# Quick links to dot / obsidian
+# Links
 alias s='dir=$PWD;cd $HOME/dot;v .;cd $dir;'
-alias ob='dir=$PWD;cd /mnt/c/Users/adamj/Documents/Jimbo;v .;cd $dir;'
-
-# restart terminal
-alias rs='exec bash'
 
 # add info when doing operations
 alias mv="mv -iv"
 alias cp="cp -riv"
 alias mkdir='mkdir -vp'
 
-# download file from URL
-alias dl='curl -LO'
-
 # delete junk 'zone identifier' files
 alias dz='dir=$PWD; cd ~ && COUNT=$(find . -name "*:Zone.Identifier" -type f -print | wc -l); find . -name "*:Zone.Identifier" -type f -delete; echo "Deleted $COUNT"; cd $dir;'
 
 # Expose wsl
 alias expose='yes | npx expose-wsl@latest'
+

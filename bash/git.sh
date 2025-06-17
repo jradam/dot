@@ -4,7 +4,40 @@
 # TODO: don't allow commits less than two words
 # TODO: combine everything into one big function on "g"
 
-source "$HOME/dot/bash/lib/colors.sh"
+printColors() {
+  for x in 0 1 4 5 7 8; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";
+}
+
+PINK='\033[35m'
+GREEN='\033[32m'
+RED='\033[31m'
+BLUE='\033[34m'
+ORANGE='\033[33m'
+ESC='\033[0m'
+
+print() {
+  local type=$1
+  local message=$2
+  local color
+
+  case $type in
+    "echo") color=$PINK ;;
+    "error") color=$RED ;;
+    "info") color=$BLUE ;;
+    "read") color=$ORANGE ;;
+    "title") color=$GREEN ;;
+    *) color=$PINK ;;
+  esac
+
+  if [ "$type" == "read" ]; then
+    printf "${color}${message}${ESC} "
+    # r: Prevent backslashes from acting as escape chars
+    read -r $3
+  else
+    printf "\n${color}${message}${ESC}\n"
+  fi
+}
+
 
 # Print and run git commands
 gp() {

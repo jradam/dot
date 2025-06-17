@@ -15,6 +15,9 @@ HISTFILESIZE=2000
 # Keep values of LINES and COLUMNS updated when we resize the window
 shopt -s checkwinsize
 
+# Enable autocd (just type dir name)
+shopt -s autocd
+
 # Make `less` more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -45,16 +48,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# Load nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
-
-# Fix output of loading nvm (clears from the beginning of line to current cursor position)
-tput el1
-
-# Load nvm bash_completion 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
 
 # Set default editor to neovim
 export EDITOR=nvim
