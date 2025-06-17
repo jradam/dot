@@ -21,12 +21,13 @@ curl -L https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-
 chmod +x ~/.local/bin/diff-so-fancy
 
 # GITHUB
+ln -sf ~/dot/env/.gitconfig ~/.gitconfig
 yes | gh auth login --web
-git config --global core.excludesfile ~/dot/env/.gitignore
-git config --global user.name "jradam"
-git config --global user.email "15231996+jradam@users.noreply.github.com"
-git config --global init.defaultBranch main
-git config --global pull.rebase false
+# git config --global core.excludesfile ~/dot/env/.gitignore
+# git config --global user.name "jradam"
+# git config --global user.email "15231996+jradam@users.noreply.github.com"
+# git config --global init.defaultBranch main
+# git config --global pull.rebase false
 
 # FINAL
 sudo apt update && yes | sudo apt install build-essential

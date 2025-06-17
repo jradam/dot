@@ -8,3 +8,5 @@
   excludesfile = ~/dot/env/.gitignore
 [pull]
   rebase = false
+[credential]
+  helper = ~/.local/share/mise/shims/gh auth git-credential
