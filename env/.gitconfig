@@ -1,0 +1,10 @@
+[user]
+  email = 15231996+jradam@users.noreply.github.com
+  name = jradam 
+[init]
+  defaultBranch = main
+[core]
+  editor = nvim
+  excludesfile = ~/dot/env/.gitignore
+[pull]
+  rebase = false
