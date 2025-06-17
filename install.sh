@@ -8,11 +8,11 @@ ln -sf ~/dot/tmux/.tmux.conf ~/.tmux.conf
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # MISE & BASH
-curl https://mise.run | sh
 mkdir -p ~/.config/mise
-ln -sf ~/dot/env/mise.toml ~/.config/mise/mise.toml
-ln -sf ~/dot/bash/.bashrc ~/.bashrc
+ln -sf ~/dot/env/.mise.toml ~/.config/mise/.mise.toml
+curl https://mise.run | sh
 touch ~/dot/.env
+ln -sf ~/dot/bash/.bashrc ~/.bashrc
 source ~/.bashrc
 mise install
 

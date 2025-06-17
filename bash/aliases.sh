@@ -18,9 +18,6 @@ alias rs='exec bash'
 alias q='tmux kill-server'
 alias e='wsl-open'
 
-# Links
-alias s='dir=$PWD;cd $HOME/dot;v .;cd $dir;'
-
 # add info when doing operations
 alias mv="mv -iv"
 alias cp="cp -riv"

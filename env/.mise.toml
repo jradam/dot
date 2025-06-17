@@ -8,3 +8,6 @@ node = "latest"
 "npm:typescript" = "latest"
 "npm:wsl-open" = "latest"
 ripgrep = "latest"
+
+[task_config]
+includes = ["~/dot/env/.mise-servers.toml"]
