@@ -49,3 +49,4 @@ require("undohelper").setup()
 
 -- TODO: bigfile.nvim
 -- TODO: silence "tag not found" error
+-- TODO: https://stackoverflow.com/questions/171326/how-can-i-increase-the-key-repeat-rate-beyond-the-oss-limit
