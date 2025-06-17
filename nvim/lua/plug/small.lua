@@ -47,8 +47,8 @@ return {
     end,
   },
   {
-    -- "folke/todo-comments.nvim",
-    dir = "~/todo-comments.nvim",
+    "jradam/todo-comments.nvim",
+    branch = 'telescope-filename-option',
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
@@ -73,8 +73,8 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
-      jump = { autojump = true }, -- If only one match, jump to it
-      label = { uppercase = false }, -- Do not allow uppercase jump labels
+      jump = { autojump = true },             -- If only one match, jump to it
+      label = { uppercase = false },          -- Do not allow uppercase jump labels
       modes = { char = { enabled = false } }, -- Disable when in other modes
     },
     keys = {

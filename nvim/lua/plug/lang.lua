@@ -1,6 +1,5 @@
 return {
-  { "mason-org/mason.nvim", opts = {} }, -- Get language servers as required
-  { "j-hui/fidget.nvim", opts = {} }, -- Show loading state of LSPs
+  { "j-hui/fidget.nvim",  opts = {} }, -- Show loading state of LSPs
   { "folke/lazydev.nvim", opts = {} }, -- Better Lua LSP support
   {
     "nvim-treesitter/nvim-treesitter", -- Highlighting
@@ -56,7 +55,7 @@ return {
           env = {
             XDG_RUNTIME_DIR = os.getenv("HOME") .. "/.temp-conform",
             PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config")
-              .. "/env/.prettierrc",
+                .. "/env/.prettierrc",
           },
         },
       },

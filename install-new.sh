@@ -6,7 +6,16 @@
 
 # MISE
 curl https://mise.run | sh
-echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc # Activate mise
+echo 'eval "$($HOME/.local/bin/mise activate bash)"' >> $HOME/.bashrc # Activate mise
+source $HOME/.bashrc
+
+# GITHUB
+export BROWSER="powershell.exe /C start" # this is set in bashrc later as well
+mise use -g gh
+gh auth login --web
+gh repo clone jradam/dot a
+git config --global core.excludesfile $HOME/dot/env/.gitignore
+ln -sf $HOME/dot/env/mise.toml $HOME/.config/mise/mise.toml
 
 # TMUX 
 sudo apt update 
@@ -16,19 +25,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf $HOME/dot/tmux/.tmux.conf $HOME/.tmux.conf
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
 
-exec bash
-
-# TOOLING
+# RIPGREP 
 mise use -g ripgrep # for nvim telescope and parrot
 
-# GITHUB
-export BROWSER="powershell.exe /C start" # this is set in bashrc later as well
-mise use -g gh
-gh auth login --web
-gh repo clone jradam/dot
-ln -sf $HOME/dot/git/.gitconfig $HOME/.gitconfig # TODO: This might be overriding the mise gitconfig auth location
-ln -sf $HOME/dot/git/.gitignore_global $HOME/.gitignore_global
-ln -sf $HOME/dot/bash/.bashrc $HOME/.bashrc
+# DIFF-SO-FANCY
+curl -L https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy -o $HOME/.local/bin/diff-so-fancy
+chmod +x $HOME/.local/bin/diff-so-fancy
 
 # KEYCHEF
 gh repo clone jradam/keychef
@@ -37,3 +39,13 @@ gh repo clone jradam/keychef
 mise use -g neovim@nightly
 ln -sf $HOME/dot/nvim $HOME/.config/nvim
 touch dot/.env # Need to add secrets here
+
+# FINAL
+ln -sf $HOME/dot/bash/.bashrc $HOME/.bashrc
+exec bash
+
+
+
+
+### Notes
+https://stackoverflow.com/questions/171326/how-can-i-increase-the-key-repeat-rate-beyond-the-oss-limit
