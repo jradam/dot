@@ -9,7 +9,7 @@ ln -sf ~/dot/tmux/.tmux.conf ~/.tmux.conf
 
 # MISE & BASH
 mkdir -p ~/.config/mise
-ln -sf ~/dot/env/.mise.toml ~/.config/mise/.mise.toml
+ln -sf ~/dot/env/mise.toml ~/.config/mise/mise.toml
 curl https://mise.run | sh
 touch ~/dot/.env
 ln -sf ~/dot/bash/.bashrc ~/.bashrc
