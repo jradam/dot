@@ -16,10 +16,32 @@ ln -sf ~/dot/bash/.bashrc ~/.bashrc
 source ~/.bashrc
 mise install
 
-# GITHUB
+# OTHER 
+sudo apt update && yes | sudo apt install build-essential
+ln -sf ~/dot/nvim ~/.config/nvim
+
+# GITHUB - if too_slow error, run `wsl --shutdown` first
 ln -sf ~/dot/env/.gitconfig ~/.gitconfig
 yes | gh auth login --web
 
-# FINAL
-sudo apt update && yes | sudo apt install build-essential
-ln -sf ~/dot/nvim ~/.config/nvim
+# NPM TOKEN
+npm login
+echo "export NPM_TOKEN=$(awk -F= '{print $2}' ~/.npmrc)" >> ~/dot/.env
+
+# GITLAB SSH
+yes "" | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" -N "" > /dev/null
+echo 'Copy key into: https://gitlab.com/-/profile/keys'
+cat ~/.ssh/id_rsa.pub
+read -p "Press enter to continue..."
+
+# PROJECTS 
+git clone git@gitlab.com:one-tree/portal.git ot/portal
+git clone git@gitlab.com:one-tree/purchase.git ot/purchase
+git clone git@gitlab.com:one-tree/admin.git ot/admin
+git clone git@gitlab.com:one-tree/library.git ot/library
+
+git clone jradam/rs
+
+git clone jradam/keychef
+git clone jradam/bufcmd
+git clone jradam/tablesalt

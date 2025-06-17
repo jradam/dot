@@ -1,6 +1,0 @@
-[tools]
-"npm:vscode-langservers-extracted" = "latest"
-"npm:pyright" = "latest"
-"npm:typescript-language-server" = "latest"
-"lua-language-server" = "latest"
-"rust-analyzer" = "latest"
