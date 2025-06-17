@@ -7,7 +7,6 @@
 # MISE
 curl https://mise.run | sh
 echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc # Activate mise
-exec bash
 
 # TMUX 
 sudo apt update 
@@ -17,6 +16,8 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf $HOME/dot/tmux/.tmux.conf $HOME/.tmux.conf
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
 
+exec bash
+
 # TOOLING
 mise use -g ripgrep # for nvim telescope and parrot
 
@@ -25,7 +26,7 @@ export BROWSER="powershell.exe /C start" # this is set in bashrc later as well
 mise use -g gh
 gh auth login --web
 gh repo clone jradam/dot
-ln -sf $HOME/dot/git/.gitconfig $HOME/.gitconfig
+ln -sf $HOME/dot/git/.gitconfig $HOME/.gitconfig # TODO: This might be overriding the mise gitconfig auth location
 ln -sf $HOME/dot/git/.gitignore_global $HOME/.gitignore_global
 ln -sf $HOME/dot/bash/.bashrc $HOME/.bashrc
 
