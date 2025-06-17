@@ -31,7 +31,7 @@ echo "export NPM_TOKEN=$(awk -F= '{print $2}' ~/.npmrc)" >> ~/dot/.env
 
 # GITLAB SSH
 yes "" | ssh-keygen -oq -t rsa -C "gitlab-ssh-key" -N "" > /dev/null
-echo 'Copy key into: https://gitlab.com/-/profile/keys'
+echo 'Copy key into: https://gitlab.com/-/user_settings/ssh_keys'
 cat ~/.ssh/id_rsa.pub
 read -p "Press enter to continue..."
 
@@ -41,8 +41,8 @@ git clone git@gitlab.com:one-tree/purchase.git ot/purchase
 git clone git@gitlab.com:one-tree/admin.git ot/admin
 git clone git@gitlab.com:one-tree/library.git ot/library
 
-git clone jradam/rs
+gh repo clone jradam/rs
 
-git clone jradam/keychef
-git clone jradam/bufcmd
-git clone jradam/tablesalt
+gh repo clone jradam/keychef
+gh repo clone jradam/bufcmd
+gh repo clone jradam/tablesalt
