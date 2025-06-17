@@ -24,6 +24,9 @@ bold='01'
 orange='33'
 export LS_COLORS="$LS_COLORS:ln=$bold;$orange"
 
+# Activate mise
+eval "$(~/.local/bin/mise activate bash)"
+
 # TODO: ---------------------------- Old bashrc
 #
 # # git with message: g "add" add -A
