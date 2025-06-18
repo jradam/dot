@@ -5,6 +5,7 @@ palette = 'dracula'
 
 [character]
 success_symbol = '[󰐊](green)'
+error_symbol = '[󰐊](red)'
 
 [directory]
 truncate_to_repo = false
