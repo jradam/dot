@@ -18,6 +18,7 @@ return {
     end, { desc = "Refresh buffer" })
     k("n", "<leader>R", ":restart<cr>", { desc = "Restart nvim" })
     k("n", "<leader>m", ":messages<cr>", { desc = "Messages" })
+    k("n", "<leader>M", ":messages clear<CR>", { desc = "Clear messages" })
     k("n", "x", '"_x', { desc = "Delete without register" })
 
     -- Movement
@@ -34,11 +35,12 @@ return {
       "r",
       function()
         return ":s/\\%V"
-          .. vim.fn.escape(vim.fn.getreg('"'), "/\\")
-          .. "//g<Left><Left>"
+            .. vim.fn.escape(vim.fn.getreg('"'), "/\\")
+            .. "//g<Left><Left>"
       end,
       { desc = "Replace", expr = true }
     )
+    k("x", "p", [["_dP]], { desc = "Copyless paste" })
 
     -- Diagnostics
     k("n", "<leader>n", "<cmd>Hunt<cr>", { desc = "Hunt" })

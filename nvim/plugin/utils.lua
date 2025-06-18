@@ -61,6 +61,9 @@ vim.api.nvim_create_user_command("Inspect", inspect, {})
 
 -- Open all changed git files
 -- TODO: If not in git root, do nothing and send print 'not in root'
+-- TODO: Should not open lock files
+-- TODO: Should not open deleted files
+-- TODO: The fact that this can open deleted files is promising - make a Spy picker of all deleted files and select to restore.
 local function open_all_changed()
   local changed_files = vim.fn.systemlist("git diff --name-only HEAD")
   local untracked_files =

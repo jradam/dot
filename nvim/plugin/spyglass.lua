@@ -8,6 +8,7 @@ local action_state = require("telescope.actions.state")
 -- Make a "recent changes" list - e.g. on main branch without changes, can get a list of files/changes ordered by most recent. ['git changes', 'local changes', 'git history'] ?
 -- New: replace easypick by implementing git helpers
 -- New: basic git commands on <C-g>
+-- New: new version of TODO Telescope with nicer formatting
 
 local function get_labels(option_table)
   local labels = {}
@@ -47,14 +48,14 @@ local function spy(name, commands, opts)
   local type = require("telescope.themes").get_dropdown(config)
 
   pickers
-    .new(type, {
-      prompt_title = name,
-      finder = finders.new_table(get_labels(commands)),
-      sorter = conf.generic_sorter(),
-      attach_mappings = action,
-      cache_picker = false,
-    })
-    :find()
+      .new(type, {
+        prompt_title = name,
+        finder = finders.new_table(get_labels(commands)),
+        sorter = conf.generic_sorter(),
+        attach_mappings = action,
+        cache_picker = false,
+      })
+      :find()
 end
 
 local function lsp_actions()
@@ -96,7 +97,7 @@ vim.api.nvim_create_user_command("SpyLspActions", lsp_actions, {})
 
 local function git_conflicts()
   local ok, conflicts =
-    pcall(vim.fn.systemlist, "git status --porcelain | grep '^UU' | cut -c4-")
+      pcall(vim.fn.systemlist, "git status --porcelain | grep '^UU' | cut -c4-")
 
   if not ok or #conflicts == 0 then
     print("No conflicts found")
