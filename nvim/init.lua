@@ -114,4 +114,3 @@ vim.diagnostic.config({ jump = { float = true } })
 -- TODO: Undo delete of file in tree?
 -- TODO: Add small version of Claude in a small popup (bottom right?) that just gets the current buffer as context. Bonus if it automatically takes highlighted text in the input when opened
 -- TODO: Way to save without formatting
--- TODO: split leader+n and leader+i from gitsigns

@@ -23,6 +23,16 @@ vim.api.nvim_create_user_command("Hunt", hunt, {})
 
 -- Inspect thing under cursor
 local function inspect()
+  local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+  -- Check for diagnostics first
+  local diagnostics = vim.diagnostic.get(0, { lnum = line })
+  if #diagnostics > 0 then
+    vim.diagnostic.open_float({ scope = "line", border = "rounded" })
+    return
+  end
+
+  -- Check for LSP clients
   local clients = vim.lsp.get_clients({ bufnr = 0 })
   local preview = require("gitsigns").preview_hunk_inline
 
@@ -31,13 +41,14 @@ local function inspect()
     return
   end
 
+  -- Try LSP hover, fallback to git preview
   local params = vim.lsp.util.make_position_params(0, "utf-8")
   vim.lsp.buf_request(0, "textDocument/hover", params, function(_, result, _, _)
     if
-      result
-      and result.contents
-      and result.contents.value
-      and result.contents.value ~= ""
+        result
+        and result.contents
+        and result.contents.value
+        and result.contents.value ~= ""
     then
       vim.lsp.buf.hover({ border = "rounded", max_width = 80 })
     else
@@ -53,7 +64,7 @@ vim.api.nvim_create_user_command("Inspect", inspect, {})
 local function open_all_changed()
   local changed_files = vim.fn.systemlist("git diff --name-only HEAD")
   local untracked_files =
-    vim.fn.systemlist("git ls-files --others --exclude-standard")
+      vim.fn.systemlist("git ls-files --others --exclude-standard")
 
   local all_files = {}
   if vim.v.shell_error == 0 and #changed_files > 0 then

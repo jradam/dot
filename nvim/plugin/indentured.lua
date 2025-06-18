@@ -74,9 +74,14 @@ local function highlight_current_indent()
       goto continue
     end
 
-    -- Add guide at the correct level on matching lines
-    local char_at_pos = line_content:sub(current_indent, current_indent)
-    if char_at_pos == " " or char_at_pos == "\t" then
+    local target_character = line_content:sub(current_indent, current_indent)
+    local target_guide = line_content:sub(col_pos + 1, col_pos + 1)
+
+    -- Only add guide if target line has whitespace and target guide position is empty
+    local line_is_indented = target_character == " " or target_character == "\t"
+    local guide_space_free = target_guide == " " or target_guide == "\t" or target_guide == ""
+
+    if line_is_indented and guide_space_free then
       add_guide(bufnr, line, col_pos, "│")
     end
 

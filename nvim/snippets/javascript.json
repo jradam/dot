@@ -1,0 +1,44 @@
+{
+  "className": {
+    "prefix": "cl",
+    "body": "className=\"$1\""
+  },
+  "className with cn": {
+    "prefix": "cn",
+    "body": "className={cn('$1')}"
+  },
+  "console.log": {
+    "prefix": "cs",
+    "body": "console.log($1)"
+  },
+  "React Component": {
+    "prefix": "rc",
+    "body": [
+      "import { ReactElement, ReactNode } from 'react'",
+      "",
+      "type Props = {",
+      "  children?: ReactNode",
+      "}",
+      "export default function ${TM_FILENAME_BASE}(props: Props): ReactElement {",
+      "  const { children } = props",
+      "",
+      "  return <div>{children}</div>",
+      "}"
+    ]
+  },
+  "fake await": {
+    "prefix": "fa",
+    "body": [
+      "const fakeAwait = async (): Promise<boolean> => {",
+      "  const res: boolean = await new Promise((resolve) => {",
+      "    setTimeout(() => resolve(true), 1000)",
+      "  })",
+      "  return res",
+      "}"
+    ]
+  },
+  "for loop": {
+    "prefix": "fl",
+    "body": "for (let i = 0; i < $1; i++) { $2 }"
+  }
+}
