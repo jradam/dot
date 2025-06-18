@@ -6,11 +6,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
     if type == "help" or type == "markdown" or type == "text" then
       vim.bo.buflisted = true -- Unhide from buffer list
-      vim.cmd.only() -- Put in own buffer
+      -- FIXME: This makes us unable to navigate back to other buffers
+      vim.cmd.only()          -- Put in own buffer
     end
 
     local tabs_open = vim.fn.tabpagenr("$")
-    local file_path = vim.fn.bufname(event.buf)
 
     -- If a tab has appeared, close it and re-open the file normally
     if tabs_open > 1 then
