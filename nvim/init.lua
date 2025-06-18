@@ -12,7 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -114,3 +114,4 @@ vim.diagnostic.config({ jump = { float = true } })
 -- TODO: Undo delete of file in tree?
 -- TODO: Add small version of Claude in a small popup (bottom right?) that just gets the current buffer as context. Bonus if it automatically takes highlighted text in the input when opened
 -- TODO: Way to save without formatting
+-- TODO: split leader+n and leader+i from gitsigns

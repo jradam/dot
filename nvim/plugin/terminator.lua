@@ -2,7 +2,7 @@ local state = { terminals = {} }
 
 local function create_terminal_window(opts)
   local buf = vim.api.nvim_buf_is_valid(opts.buf) and opts.buf
-    or vim.api.nvim_create_buf(false, true)
+      or vim.api.nvim_create_buf(false, true)
 
   local border_hl = "TermBorder" .. opts.index
   vim.api.nvim_set_hl(0, border_hl, { fg = opts.color, bg = "#282A36" })

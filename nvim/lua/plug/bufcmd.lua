@@ -10,14 +10,9 @@ return {
     },
   },
   keys = {
-    { "<tab>",     ":bn<cr>", desc = "Next buffer",     silent = true },
-    { "<s-tab>",   ":bp<cr>", desc = "Previous buffer", silent = true },
-    { "<leader>x", ":bw<cr>", desc = "Close buffer",    silent = true },
-    {
-      "<leader>o",
-      ":BufCmdCloseOthers<cr>",
-      desc = "Close others",
-      silent = true,
-    },
+    { "<tab>",     ":bn<cr>",                desc = "Next buffer",     silent = true },
+    { "<s-tab>",   ":bp<cr>",                desc = "Previous buffer", silent = true },
+    { "<leader>x", ":bw<cr>",                desc = "Close buffer",    silent = true },
+    { "<leader>o", ":BufCmdCloseOthers<cr>", desc = "Close others",    silent = true },
   },
 }

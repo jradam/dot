@@ -33,6 +33,9 @@ return {
         FlashCurrent = { fg = c.cyan },
         FlashBackdrop = { fg = c.comment, bg = darkBg },
         FlashLabel = { fg = c.green },
+
+        -- Indent lines
+        Indent = { fg = c.bg },
       }
     end,
   },
