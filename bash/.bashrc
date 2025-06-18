@@ -28,3 +28,4 @@ eval "$(~/.local/bin/mise activate bash)"
 
 # Activate starship
 eval "$(starship init bash)"
+
