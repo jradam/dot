@@ -113,6 +113,8 @@ vim.diagnostic.config({ jump = { float = true } })
 -- https://www.reddit.com/r/neovim/comments/1jw0zav/psa_heres_a_quick_guide_to_using_the_new_built_in/
 -- https://github.com/ruicsh/nvim-config/tree/main/lsp
 
+-- FIXME: troubleshoot rs project - make sure typescript is working!
+
 -- TODO: button that refactors arrow into normal function and vice-versa
 -- TODO: line blame
 -- TODO: make ctrl-v work in claude code terminal the same as right-click/paste
