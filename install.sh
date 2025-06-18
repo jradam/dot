@@ -13,6 +13,7 @@ ln -sf ~/dot/env/.mise.toml ~/.config/mise/config.toml
 curl https://mise.run | sh
 touch ~/dot/.env
 ln -sf ~/dot/bash/.bashrc ~/.bashrc
+ln -sf ~/dot/bash/starship.toml ~/.config/starship.toml
 source ~/.bashrc
 mise install
 source ~/.bashrc

@@ -3,6 +3,7 @@ gh = "latest"
 neovim = "nightly"
 node = "latest"
 ripgrep = "latest"
+starship = "latest"
 
 # Node tools
 "npm:@anthropic-ai/claude-code" = "latest"
@@ -13,8 +14,7 @@ ripgrep = "latest"
 "npm:yarn" = "latest"
 
 # Language servers
-"lua-language-server" = "latest"
+lua-language-server = "latest"
 "npm:pyright" = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
-"rust-analyzer" = "latest"

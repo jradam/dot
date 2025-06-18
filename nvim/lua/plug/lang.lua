@@ -1,6 +1,11 @@
 return {
-  { "j-hui/fidget.nvim",  opts = {} }, -- Show loading state of LSPs
-  { "folke/lazydev.nvim", opts = {} }, -- Better Lua LSP support
+  { "j-hui/fidget.nvim", opts = {} }, -- Show loading state of LSPs
+  {
+    "folke/lazydev.nvim",             -- Better Lua LSP support
+    -- TODO: Waiting for 'deprecated' fix
+    commit = "40e0e3ae31f2a44fa7765752127f842a1b0a7311",
+    opts = {}
+  },
   {
     "nvim-treesitter/nvim-treesitter", -- Highlighting
     build = ":TSUpdate",

@@ -1,4 +1,16 @@
-.env
+# Node 
 **/node_modules
+
+# Rust
+target
+
+# Python
+*.spec
+dist
+build
+
+# Misc 
+.env
+mise.toml
 .claude
 

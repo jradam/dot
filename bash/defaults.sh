@@ -48,7 +48,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# Set default editor to neovim
-export EDITOR=nvim
-
