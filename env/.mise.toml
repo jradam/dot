@@ -13,6 +13,7 @@ starship = "latest"
 "npm:yarn" = "latest"
 
 # Language servers
+"npm:bash-language-server" = "latest"
 "npm:pyright" = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"

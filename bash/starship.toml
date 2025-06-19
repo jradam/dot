@@ -1,9 +1,6 @@
 # https://starship.rs/config/
 '$schema' = 'https://starship.rs/config-schema.json'
 
-# TODO: https://github.com/spaceship-prompt/spaceship-prompt/issues/397
-# https://github.com/spaceship-prompt/spaceship-prompt/issues/375#issuecomment-1235581715
-
 palette = 'dracula'
 
 [character]
@@ -22,16 +19,16 @@ format = '[\($symbol$branch(:$remote_branch)\)]($style) '
 
 [git_status]
 # "nf-oct" -> https://www.nerdfonts.com/cheat-sheet
-#                                  
+#                                     ⚡ 
 conflicted = ' '
 ahead = '[ ](green)'
 behind = ' '
 diverged = ' '
 up_to_date = ''
-untracked = ' '
+untracked = '[ ](green)'
 stashed = ' '
-modified = '[⚡](yellow)'
-staged = ' '
+modified = '[ ](orange)'
+staged = '[ ](blue)'
 renamed = ' '
 deleted = ' '
 typechanged = ' '

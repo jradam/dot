@@ -57,7 +57,8 @@ return {
     k("n", "<leader>j", "<C-]>", { desc = "Tag jump" })
 
     -- Close floating windows
-    k({ "n", "t" }, "<Esc>", function()
+    -- FIXME: Currently can't close terminals for some reason. Can't just enable in 't' though, since we need to send Esc in insert mode in terminals sometimes (e.g, git commits)
+    k("n", "<Esc>", function()
       vim.cmd("ClearGit") -- Clear Gitsign inline previews
 
       -- Close floating windows

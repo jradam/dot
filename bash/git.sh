@@ -48,8 +48,65 @@ gp() {
   fi
 }
 
+# TODO: Replace diff-so-fancy with own solution                                                
+# git diff "$@" | diff-so-fancy | less -RFX 
 gd() {
-  git diff "$@" | diff-so-fancy | less -RFX
+  local STAGED NEW DELETED MODIFIED
+  {
+    echo
+
+    STAGED=$(git diff --name-status --cached "$@")
+    if [ -n "$STAGED" ]; then
+      echo -e "${BLUE}READY TO COMMIT${ESC}"
+      echo "$STAGED" | while read -r status file; do
+        case "$status" in
+          A) echo -e " ${GREEN}● ADD: ${ESC}$file" ;;
+          M) echo -e " ${ORANGE}● MODIFY: ${ESC}$file" ;;
+          D) echo -e " ${RED}● DELETE: ${ESC}$file" ;;
+          *) echo -e " ${BLUE}● ${ESC}$file" ;;
+        esac
+      done
+      echo
+    fi
+
+    NEW=$(git ls-files -o --exclude-standard)
+    if [ -n "$NEW" ]; then
+      echo -e "${GREEN}UNTRACKED FILES${ESC}"
+      echo "$NEW" | while read -r line; do
+        echo -e " ${GREEN}● ${ESC}$line"
+      done
+      echo
+    fi
+    
+    DELETED=$(git diff --name-only --diff-filter=D "$@")
+    if [ -n "$DELETED" ]; then
+      echo -e "${RED}DELETED (UNSTAGED)${ESC}"
+      echo "$DELETED" | while read -r line; do
+        echo -e " ${RED}● ${ESC}$line"
+      done
+      echo
+    fi
+
+    MODIFIED=$(git diff --name-only --diff-filter=M "$@")
+    if [ -n "$MODIFIED" ]; then
+      echo -e "${ORANGE}MODIFIED (UNSTAGED)${ESC}"
+      echo "$MODIFIED" | while read -r file; do
+        echo -e " ${ORANGE}● ${ESC}$file"
+        git diff --color=always "$@" -- "$file" | tail -n +5 | while IFS= read -r line; do
+          if [[ $line =~ ^@@ ]]; then
+            echo -e "   ${BLUE}${line}${ESC}"
+          elif [[ $line =~ ^- ]]; then
+            echo -e "   ${RED}${line:1}${ESC}"
+          elif [[ $line =~ ^+ ]]; then
+            echo -e "   ${GREEN}${line:1}${ESC}"
+          else
+            echo "   $line"
+          fi
+        done
+        echo
+      done
+    fi
+  } | less -RFX
 }
 
 gc() {
