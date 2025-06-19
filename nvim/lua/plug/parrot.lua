@@ -1,48 +1,48 @@
--- FIXME: this sucks
+-- FIXME: delete this?
 return {
-  "frankroeder/parrot.nvim",
-  tag = "v1.8.0",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("parrot").setup({
-      providers = {
-        anthropic = {
-          api_key = os.getenv("ANTHROPIC_API_KEY"),
-          model = "claude-sonnet-4-20250514",
-        },
-      },
-      hooks = {
-        File = function(parrot, params)
-          local prompt = [[
-        I have the following code from {{filename}}:
-
-        ```{{filetype}}
-        {{filecontent}}
-        ```
-
-        Please look at the following selection specifically:
-        ```{{filetype}}
-        {{selection}}
-        ```
-
-        Please finish the code selection carefully and logically.
-        Respond just with the snippet of code that should be inserted.
-        Do not copy out code that already exists.
-        Do not reply with any explanation.
-        Just the code snippet.
-        ]]
-
-          local model_obj = parrot.get_model("command")
-          parrot.Prompt(params, parrot.ui.Target.append, model_obj, nil, prompt)
-        end,
-      },
-    })
-
-    vim.keymap.set(
-      { "n", "v" },
-      "<leader>p",
-      ":PrtFile<CR>",
-      { desc = "Parrot" }
-    )
-  end,
+  --   "frankroeder/parrot.nvim",
+  --   tag = "v1.8.0",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("parrot").setup({
+  --       providers = {
+  --         anthropic = {
+  --           api_key = os.getenv("ANTHROPIC_API_KEY"),
+  --           model = "claude-sonnet-4-20250514",
+  --         },
+  --       },
+  --       hooks = {
+  --         File = function(parrot, params)
+  --           local prompt = [[
+  --         I have the following code from {{filename}}:
+  --
+  --         ```{{filetype}}
+  --         {{filecontent}}
+  --         ```
+  --
+  --         Please look at the following selection specifically:
+  --         ```{{filetype}}
+  --         {{selection}}
+  --         ```
+  --
+  --         Please finish the code selection carefully and logically.
+  --         Respond just with the snippet of code that should be inserted.
+  --         Do not copy out code that already exists.
+  --         Do not reply with any explanation.
+  --         Just the code snippet.
+  --         ]]
+  --
+  --           local model_obj = parrot.get_model("command")
+  --           parrot.Prompt(params, parrot.ui.Target.append, model_obj, nil, prompt)
+  --         end,
+  --       },
+  --     })
+  --
+  --     vim.keymap.set(
+  --       { "n", "v" },
+  --       "<leader>p",
+  --       ":PrtFile<CR>",
+  --       { desc = "Parrot" }
+  --     )
+  --   end,
 }

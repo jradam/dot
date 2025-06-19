@@ -237,3 +237,5 @@ vim.diagnostic.config({ jump = { float = true } })
 -- end
 --
 -- TODO: cmd line enter should run, not accept suggestion
+-- TODO: stop C-d closing terminals when nothing to scroll
+-- TODO: implement this? https://github.com/Robitx/gp.nvim/

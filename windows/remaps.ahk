@@ -1,5 +1,3 @@
-; TODO: add key for `alt + space` then `m` for moving windows
-
 ; -------------------- Settings
 activate := "CapsLock"
 onActivate := "{Esc}"

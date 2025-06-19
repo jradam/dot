@@ -57,7 +57,7 @@ return {
     k("n", "<leader>j", "<C-]>", { desc = "Tag jump" })
 
     -- Close floating windows
-    k("n", "<Esc>", function()
+    k({ "n", "t" }, "<Esc>", function()
       vim.cmd("ClearGit") -- Clear Gitsign inline previews
 
       -- Close floating windows
