@@ -4,7 +4,6 @@ source $HOME/dot/.env
 source $HOME/dot/bash/aliases.sh
 source $HOME/dot/bash/defaults.sh
 source $HOME/dot/bash/git.sh
-source $HOME/dot/bash/runners.sh
 
 # Link Window's browser to WSL2
 export BROWSER="powershell.exe /C start"

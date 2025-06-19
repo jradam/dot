@@ -12,7 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -139,7 +139,6 @@ vim.diagnostic.config({ jump = { float = true } })
 --   },
 -- },
 
-
 -- TODO: add tailwind support to prettier
 -- "plugins": ["prettier-plugin-tailwindcss"],
 -- "tailwindFunctions": ["cn"]
@@ -237,3 +236,4 @@ vim.diagnostic.config({ jump = { float = true } })
 --   actions.select_default(telescope)
 -- end
 --
+-- TODO: cmd line enter should run, not accept suggestion

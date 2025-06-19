@@ -10,6 +10,12 @@ return {
 
     -- Actions
     k("n", "<leader>w", ":w<cr>", { desc = "Write" })
+    k(
+      "n",
+      "<leader>W",
+      function() vim.cmd("noautocmd w") end,
+      { desc = "Write no format" }
+    )
     k("n", "<leader>q", ":q<cr>", { desc = "Quit" })
     k("n", "<leader>r", function()
       vim.cmd("checktime")
@@ -35,8 +41,8 @@ return {
       "r",
       function()
         return ":s/\\%V"
-            .. vim.fn.escape(vim.fn.getreg('"'), "/\\")
-            .. "//g<Left><Left>"
+          .. vim.fn.escape(vim.fn.getreg('"'), "/\\")
+          .. "//g<Left><Left>"
       end,
       { desc = "Replace", expr = true }
     )

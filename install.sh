@@ -19,6 +19,7 @@ mise install
 source ~/.bashrc
 
 # OTHER 
+touch ~/.hushlogin
 sudo apt update && yes | sudo apt install build-essential
 ln -sf ~/dot/nvim ~/.config/nvim
 

@@ -8,13 +8,13 @@ starship = "latest"
 # Node tools
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:diff-so-fancy" = "latest"
-"npm:ts-node" = "latest"
 "npm:typescript" = "latest"
 "npm:wsl-open" = "latest"
 "npm:yarn" = "latest"
 
 # Language servers
 lua-language-server = "latest"
+stylua = "latest"
 "npm:pyright" = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"

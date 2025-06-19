@@ -1,10 +1,16 @@
+-- FIXME: this sucks
 return {
   "frankroeder/parrot.nvim",
   tag = "v1.8.0",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("parrot").setup({
-      providers = { anthropic = { api_key = os.getenv("ANTHROPIC_API_KEY") } },
+      providers = {
+        anthropic = {
+          api_key = os.getenv("ANTHROPIC_API_KEY"),
+          model = "claude-sonnet-4-20250514",
+        },
+      },
       hooks = {
         File = function(parrot, params)
           local prompt = [[
@@ -20,7 +26,7 @@ return {
         ```
 
         Please finish the code selection carefully and logically.
-        Respond just with the snippet of code that should be inserted. 
+        Respond just with the snippet of code that should be inserted.
         Do not copy out code that already exists.
         Do not reply with any explanation.
         Just the code snippet.
@@ -31,8 +37,6 @@ return {
         end,
       },
     })
-
-    -- TODO: upgrade this, and check model is the smartest one
 
     vim.keymap.set(
       { "n", "v" },

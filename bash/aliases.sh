@@ -30,3 +30,18 @@ alias dz='dir=$PWD; cd ~ && COUNT=$(find . -name "*:Zone.Identifier" -type f -pr
 # Expose wsl
 alias expose='yes | npx expose-wsl@latest'
 
+r() { # Quick runner for TS, JS, and Python
+  local file="$1"
+  if [ -z "$file" ]; then
+    for f in {main,init,index}.{ts,js,py}; do
+      [ -f "$f" ] && { file="$f"; break; }
+    done
+    [ -z "$file" ] && { echo "No main/init/index file found."; return 1; }
+  fi
+  case "${file##*.}" in
+    ts) node --no-warnings "$file" ;;
+    js) node "$file" ;;
+    py) python3 "$file" ;;
+    *) echo "Unsupported file: ${file##*.}"; return 1 ;;
+  esac
+}

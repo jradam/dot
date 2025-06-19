@@ -22,8 +22,8 @@ return {
         GitSignsDelete = { bg = darkBg, undercurl = true },
 
         -- For the Gitsigns inline previews
-        -- TODO: need this?: DiffDelete = { bg = c.bg, fg = c.red },
-        GitSignsAddPreview = { bg = c.bg, fg = c.green },
+        DiffDelete = { bg = darkBg, fg = c.red },
+        GitSignsAddPreview = { bg = darkBg, fg = c.green },
         GitSignsAddInline = { bg = darkPurple, fg = c.purple },
         GitSignsChangeInline = { bg = darkGreen, fg = c.green },
         GitSignsDeleteLnInline = { bg = darkRed, fg = c.red },
