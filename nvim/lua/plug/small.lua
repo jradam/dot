@@ -1,5 +1,17 @@
 return {
   {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({
+        user_default_options = {
+          names = false,
+          css = true,
+          tailwind = "lsp",
+        },
+      })
+    end,
+  },
+  {
     "echasnovski/mini.move",
     opts = { mappings = { left = "H", right = "L", down = "J", up = "K" } },
   },
