@@ -18,6 +18,7 @@ return {
     end,
   },
   {
+    -- TODO: Don't want completion in comments
     "saghen/blink.cmp", -- Completion
     version = "1.*",
     opts = {

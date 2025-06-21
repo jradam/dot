@@ -21,6 +21,7 @@ return {
       vim.cmd("checktime")
       vim.cmd("nohlsearch")
       vim.cmd("e")
+      -- TODO: If in dotfiles, this should source the file too
     end, { desc = "Refresh buffer" })
     k("n", "<leader>R", ":restart<cr>", { desc = "Restart nvim" })
     k("n", "<leader>m", ":messages<cr>", { desc = "Messages" })
@@ -48,11 +49,12 @@ return {
     )
     k("x", "p", [["_dP]], { desc = "Copyless paste" })
 
-    -- Diagnostics
+    -- Diagnostics & Actions
     k("n", "<leader>n", "<cmd>Hunt<cr>", { desc = "Hunt" })
     k("n", "<leader>i", "<cmd>Inspect<cr>", { desc = "Inspect" })
     k("n", "<leader>d", "<cmd>SpyLspActions<cr>", { desc = "LSP Actions" })
     k("n", "<leader>C", "<cmd>SpyConflicts<cr>", { desc = "Conflict search" })
+    k("n", "<leader>g", "<cmd>SpyGit<cr>", { desc = "Git Actions" })
 
     k("n", "<leader>j", "<C-]>", { desc = "Tag jump" })
 
