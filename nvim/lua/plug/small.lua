@@ -31,7 +31,7 @@ return {
 
       vim.keymap.set("n", "<C-d>", function()
         local file_lines = vim.fn.line("$")
-        local win_height = vim.fn.winheight(0) - 2 -- -2 for lualine and cmdline
+        local win_height = vim.fn.winheight(0) - 3 -- -3 for tmux line, lualine, cmdline
         local current_line = vim.fn.line(".")
 
         local top_half = current_line < (win_height / 2)
@@ -48,7 +48,7 @@ return {
   },
   {
     "jradam/todo-comments.nvim",
-    branch = 'telescope-filename-option',
+    branch = "telescope-filename-option",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
@@ -73,8 +73,8 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
-      jump = { autojump = true },             -- If only one match, jump to it
-      label = { uppercase = false },          -- Do not allow uppercase jump labels
+      jump = { autojump = true }, -- If only one match, jump to it
+      label = { uppercase = false }, -- Do not allow uppercase jump labels
       modes = { char = { enabled = false } }, -- Disable when in other modes
     },
     keys = {
